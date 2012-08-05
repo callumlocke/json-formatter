@@ -24,7 +24,7 @@ http://feeds.delicious.com/v2/json/popular
 Installation
 ------------
 
-Just go here and install it:
+Go here and install it:
 
 https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa
 
