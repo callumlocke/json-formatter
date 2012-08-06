@@ -213,7 +213,7 @@
     // First, check if it's a PRE and exit if not
       var bodyChildren = document.body.childNodes ;
       pre = bodyChildren[0] ;
-      var jsonLength = pre.innerText.length ;
+      var jsonLength = (pre.innerText || "").length ;
       if (
         bodyChildren.length !== 1 ||
         pre.tagName !== 'PRE' ||
