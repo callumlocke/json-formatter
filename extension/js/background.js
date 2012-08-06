@@ -129,7 +129,7 @@
     // }
 
   // Record current version (in case future update wants to know)
-    localStorage.jfVersion = '0.5.3' ;
+    localStorage.jfVersion = '0.5.4' ;
 
   // Template elements
     var templates,
