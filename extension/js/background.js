@@ -129,7 +129,7 @@
     // }
 
   // Record current version (in case future update wants to know)
-    localStorage.jfVersion = '0.5.4' ;
+    localStorage.jfVersion = '0.5.5' ;
 
   // Template elements
     var templates,
@@ -378,7 +378,7 @@
     chrome.extension.onConnect.addListener(function(port) {
 
       if (port.name !== 'jf') {
-        console.log('Unknown port name '+port.name, port) ;
+        console.log('JSON Formatter error - unknown port name '+port.name, port) ;
         return ;
       }
 

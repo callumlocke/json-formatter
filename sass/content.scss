@@ -126,7 +126,7 @@ pre {
   background-position: center center; 
   display: block ;
   opacity: 0.15 ;
-  -webkit-transition: -webkit-transform 0.05s linear ;
+  // -webkit-transition: -webkit-transform 0.05s linear ;
 
   .collapsed > & {
     -webkit-transform: rotate(-90deg) ;
