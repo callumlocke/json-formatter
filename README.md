@@ -1,7 +1,7 @@
 JSON Formatter
 ==============
 
-Chrome extension for pretty-printing JSON and JSONP when you visit it 'directly'.
+Chrome extension for printing JSON and JSONP nicely when you visit it 'directly' in a browser tab.
 
 Features
 --------
@@ -19,18 +19,17 @@ A background worker is used to prevent the UI freezing when processing very long
 Installation
 ------------
 
-Go here and install it:
+**Option 1** – just install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
-https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa
+**Option 2** – install it from souce:
 
-Or install from source:
-
+* clone/download this repo,
 * open Chrome and go to `chrome://chrome/extensions/`,
 * enable "Developer mode",
 * click "Load unpacked extension",
-* select the `extension` subdirectory of this repo.
+* select the `extension` folder in this repo.
 
-Some URLs to try it on:
+**Some URLs to try it on:**
 
 * http://feeds.delicious.com/v2/json/popular?callback=hello
 * http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?alt=json&v=2
