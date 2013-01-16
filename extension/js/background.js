@@ -340,6 +340,25 @@
 
       return kvov ;
     }
+  
+      function _firstJSONCharIndex(s) {
+        var arrayIdx = s.indexOf('[');
+        var objIdx = s.indexOf('{');
+        var idx = 0;
+        if (arrayIdx != -1) {
+          idx = arrayIdx;
+        }
+        if (objIdx != -1) {
+          if (arrayIdx == -1) {
+            idx = objIdx;
+          }
+          else {
+            idx = Math.min(objIdx, arrayIdx);
+          }
+        }
+        return idx;
+      }
+
 
   // Function to convert object to an HTML string
     function jsonObjToHTML(obj, jsonpFunctionName) {
@@ -388,13 +407,18 @@
         if (msg.type === 'SENDING TEXT') {
           // Try to parse as JSON
             var obj,
-              text = msg.text ;
+            text = msg.text ;
+
+            // Try stripping leading garbage, such as a 'while(1);'
+            var indexOfFirstJson = _firstJSONCharIndex(text)
+            var strippedText = text.substring(indexOfFirstJson)
+
             try {
-              obj = JSON.parse(text) ;
+              obj = JSON.parse(strippedText) ;
             }
             catch(e){
-              // Not JSON; could be JSONP though.
 
+              // Not JSON; could be JSONP though.
               // Try stripping 'padding' (if any), and try parsing it again
                 text = text.trim() ;
                 // Find where the first paren is (and exit if none)
