@@ -120,6 +120,23 @@
       }
       return str.join('').slice(2, -2);
     }
+
+    function firstJSONCharIndex(s) {
+      var arrayIdx = s.indexOf('['),
+          objIdx = s.indexOf('{'),
+          idx = 0
+      ;
+      if (arrayIdx !== -1)
+        idx = arrayIdx ;
+      if (objIdx !== -1) {
+        if (arrayIdx === -1)
+          idx = objIdx ;
+        else
+          idx = Math.min(objIdx, arrayIdx) ;
+      }
+      return idx ;
+    }
+
     // function spin(seconds) {
     //   // spin - Hog the CPU for the specified number of seconds
     //   // (for simulating long processing times in development)
@@ -341,23 +358,7 @@
       return kvov ;
     }
   
-      function _firstJSONCharIndex(s) {
-        var arrayIdx = s.indexOf('[');
-        var objIdx = s.indexOf('{');
-        var idx = 0;
-        if (arrayIdx != -1) {
-          idx = arrayIdx;
-        }
-        if (objIdx != -1) {
-          if (arrayIdx == -1) {
-            idx = objIdx;
-          }
-          else {
-            idx = Math.min(objIdx, arrayIdx);
-          }
-        }
-        return idx;
-      }
+
 
 
   // Function to convert object to an HTML string
@@ -409,14 +410,13 @@
             var obj,
             text = msg.text ;
 
-            // Try stripping leading garbage, such as a 'while(1);'
-            var indexOfFirstJson = _firstJSONCharIndex(text)
-            var strippedText = text.substring(indexOfFirstJson)
+            // Strip any leading garbage, such as a 'while(1);'
+              var strippedText = text.substring( firstJSONCharIndex(text) ) ;
 
             try {
               obj = JSON.parse(strippedText) ;
             }
-            catch(e){
+            catch (e) {
 
               // Not JSON; could be JSONP though.
               // Try stripping 'padding' (if any), and try parsing it again
