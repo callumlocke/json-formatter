@@ -106,8 +106,6 @@
             }, 250) ;
           
           
-          
-          
           // Create option bar
             var optionBar = document.createElement('div') ;
             optionBar.id = 'optionBar' ;
@@ -165,9 +163,6 @@
               false
             ) ;
             
-
-
-
             // Put it in optionBar
               optionBar.appendChild(buttonPlain) ;
               optionBar.appendChild(buttonFormatted) ;
@@ -179,16 +174,16 @@
               false // No need to propogate down
             ) ;
           
-          
           // Put option bar in DOM
             document.body.insertBefore(optionBar, pre) ;
+
           break ;
             
         case 'FORMATTED' :
           // Insert HTML content
             jfContent.innerHTML = msg[1] ;
           
-          displayedFormattedJsonTime = +(new Date()) ;
+          displayedFormattedJsonTime = Date.now() ;
 
           // Log times
             //console.log('DOM ready took '+ (domReadyTime - startTime) +'ms' ) ;
@@ -196,6 +191,14 @@
             //console.log('Formatting & displaying JSON took '+ (displayedFormattedJsonTime - isJsonTime) +'ms' ) ;
             console.log('JSON detected and formatted in ' + ( displayedFormattedJsonTime - domReadyTime ) + ' ms') ;
             // console.markTimeline('JSON formatted and displayed') ;
+
+          // Export parsed JSON for easy access in console
+            setTimeout(function () {
+              var script = document.createElement("script") ;
+              script.innerHTML = 'window.json = ' + JSON.parse(JSON.stringify(msg[2])) + ';' ;
+              document.head.appendChild(script);
+            }, 100) ;
+
           break ;
         
         default :
@@ -208,7 +211,7 @@
 
   function ready () {
     
-    domReadyTime = +(new Date()) ;
+    domReadyTime = Date.now() ;
       
     // First, check if it's a PRE and exit if not
       var bodyChildren = document.body.childNodes ;

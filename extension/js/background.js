@@ -403,7 +403,9 @@
       }
 
       port.onMessage.addListener(function(msg) {
-        var jsonpFunctionName = null ;
+        var jsonpFunctionName = null,
+            validJsonText
+        ;
 
         if (msg.type === 'SENDING TEXT') {
           // Try to parse as JSON
@@ -415,6 +417,7 @@
 
             try {
               obj = JSON.parse(strippedText) ;
+              validJsonText = strippedText ;
             }
             catch (e) {
 
@@ -459,8 +462,9 @@
                   text = text.substring(indexOfParen+1, indexOfLastParen) ;
                   try {
                     obj = JSON.parse(text) ;
+                    validJsonText = text ;
                   }
-                  catch(e2) {
+                  catch (e2) {
                     // Just some other text that happens to be in a function call.
                     // Respond as not JSON, and exit
                       port.postMessage(['NOT JSON', 'looks like a function call, but the parameter is not valid JSON']) ;
@@ -486,7 +490,7 @@
               var html = jsonObjToHTML(obj, jsonpFunctionName) ;
 
             // Post the HTML string to the content script
-              port.postMessage(['FORMATTED', html]) ;
+              port.postMessage(['FORMATTED', html, validJsonText]) ;
 
             // Disconnect
               port.disconnect() ;
@@ -494,3 +498,4 @@
       });
     });
 }()) ;
+
