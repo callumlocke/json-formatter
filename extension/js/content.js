@@ -196,7 +196,8 @@
             setTimeout(function () {
               var script = document.createElement("script") ;
               script.innerHTML = 'window.json = ' + JSON.parse(JSON.stringify(msg[2])) + ';' ;
-              document.head.appendChild(script);
+              document.head.appendChild(script) ;
+              console.log('Type "json" to inspect.') ;
             }, 100) ;
 
           break ;
