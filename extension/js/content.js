@@ -189,7 +189,7 @@
             //console.log('DOM ready took '+ (domReadyTime - startTime) +'ms' ) ;
             //console.log('Confirming as JSON took '+ (isJsonTime - domReadyTime) +'ms' ) ;
             //console.log('Formatting & displaying JSON took '+ (displayedFormattedJsonTime - isJsonTime) +'ms' ) ;
-            console.log('JSON detected and formatted in ' + ( displayedFormattedJsonTime - domReadyTime ) + ' ms') ;
+            // console.log('JSON detected and formatted in ' + ( displayedFormattedJsonTime - domReadyTime ) + ' ms') ;
             // console.markTimeline('JSON formatted and displayed') ;
 
           // Export parsed JSON for easy access in console
@@ -197,7 +197,7 @@
               var script = document.createElement("script") ;
               script.innerHTML = 'window.json = ' + JSON.parse(JSON.stringify(msg[2])) + ';' ;
               document.head.appendChild(script) ;
-              console.log('Type "json" to inspect.') ;
+              console.log('JSON Formatter: Type "json" to inspect.') ;
             }, 100) ;
 
           break ;
