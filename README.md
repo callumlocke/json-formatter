@@ -13,6 +13,7 @@ Features
 * Collapsible trees, with indent guides
 * Clickable URLs
 * Buttons for switching between raw and parsed JSON
+* Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console
 
 A background worker is used to prevent the UI freezing when processing very long JSON pages.
 
