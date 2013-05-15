@@ -15,7 +15,7 @@ body {
   right: 17px ;
 }
 
-#buttonFormatted, #buttonPlain {
+#buttonFormatted, #buttonPlain, #buttonBeautified {
   -webkit-border-radius: 2px;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   -webkit-user-select: none;
@@ -33,7 +33,11 @@ body {
   width: 80px ;
   text-shadow: 1px 1px rgba(255,255,255,0.3) ;
 }
-
+#buttonBeautified{
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
 #buttonFormatted {
   margin-left: 0 ;
   border-top-left-radius: 0 ;
@@ -46,7 +50,7 @@ body {
   border-right: none ;
 }
 
-#buttonFormatted:hover, #buttonPlain:hover {
+#buttonFormatted:hover, #buttonPlain:hover,#buttonBeautified:hover {
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
   background: #ebebeb -webkit-linear-gradient(#fefefe, #f8f8f8 40%, #e9e9e9);
   border-color: #999;
@@ -54,14 +58,14 @@ body {
 }
 
 #buttonFormatted:active,
-#buttonPlain:active {
+#buttonPlain:active,#buttonBeautified:active {
   -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
   background: #ebebeb -webkit-linear-gradient(#f4f4f4, #efefef 40%, #dcdcdc);
   color: #333;
 }
 
 #buttonFormatted.selected,
-#buttonPlain.selected {
+#buttonPlain.selected,#buttonBeautified.selected {
   -webkit-box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
   background: #ebebeb -webkit-linear-gradient(#e4e4e4, #dfdfdf 40%, #dcdcdc);
   color: #333;
