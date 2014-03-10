@@ -137,6 +137,13 @@
       return idx ;
     }
 
+    /* This function gets called for every string value in the object, so it needs to be
+     * super-speedy. A good regex would be more accurate but would probably be much
+     * slower too. Matching on the value starting with `http` is crude but fast — some
+     * false positives, but rare, and the UX doesn't suffer terribly from them.
+     * If the key is named `url` or `href` we assume that the value is a URL — this is
+     * useful for relative URLs.
+     */
     function isURL(keyName, value) {
       return ((value[0] === 'h' && value.substring(0, 4) === 'http')
               || keyName === 'url'
