@@ -137,6 +137,12 @@
       return idx ;
     }
 
+    function isURL(keyName, value) {
+      return ((value[0] === 'h' && value.substring(0, 4) === 'http')
+              || (keyName[0] === 'u' && keyName === 'url')
+              || (keyName[0] === 'h' && keyName === 'href'));
+    }
+
     // function spin(seconds) {
     //   // spin - Hog the CPU for the specified number of seconds
     //   // (for simulating long processing times in development)
@@ -263,7 +269,8 @@
                   escapedString = JSON.stringify(value)
               ;
               escapedString = escapedString.substring(1, escapedString.length-1) ; // remove quotes
-              if (value[0] === 'h' && value.substring(0, 4) === 'http') { // crude but fast - some false positives, but rare, and UX doesn't suffer terribly from them.
+
+              if (isURL(keyName, value)) {
                 var innerStringA = document.createElement('A') ;
                 innerStringA.href = value ;
                 innerStringA.innerText = escapedString ;
