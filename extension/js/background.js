@@ -139,8 +139,8 @@
 
     function isURL(keyName, value) {
       return ((value[0] === 'h' && value.substring(0, 4) === 'http')
-              || (keyName[0] === 'u' && keyName === 'url')
-              || (keyName[0] === 'h' && keyName === 'href'));
+              || keyName === 'url'
+              || keyName === 'href');
     }
 
     // function spin(seconds) {
