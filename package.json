@@ -1,0 +1,40 @@
+{
+  "name": "json-formatter",
+  "private": true,
+  "version": "1.0.0-alpha.1",
+  "description": "Makes JSON(P) easy to read in Google Chrome",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/callumlocke/json-formatter.git"
+  },
+  "keywords": [
+    "chrome",
+    "chromextension",
+    "json",
+    "beautifier",
+    "prettifier",
+    "jsonp"
+  ],
+  "author": "Callum Locke",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/callumlocke/json-formatter/issues"
+  },
+  "homepage": "https://github.com/callumlocke/json-formatter",
+  "devDependencies": {
+    "gulp-clean": "~0.2.4",
+    "gulp-template": "~0.1.1",
+    "gulp": "~3.5.5",
+    "run-sequence": "~0.3.6",
+    "gulp-load-plugins": "~0.4.0",
+    "gulp-sass": "~0.7.1",
+    "gulp-browserify": "~0.5.0",
+    "coffeeify": "~0.6.0",
+    "event-stream": "~3.1.0",
+    "gulp-rename": "~1.2.0",
+    "gulp-if": "0.0.5",
+    "simply-deferred": "~3.0.0",
+    "lodash.assign": "~2.4.1",
+    "bluebird": "~1.1.0"
+  }
+}

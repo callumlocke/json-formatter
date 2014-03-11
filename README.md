@@ -1,6 +1,8 @@
 JSON Formatter
 ==============
 
+> This branch is a WIP
+
 Chrome extension for printing JSON and JSONP nicely when you visit it 'directly' in a browser tab.
 
 Features

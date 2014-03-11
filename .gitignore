@@ -1,1 +1,2 @@
-compass_app_log.txt
+/node_modules/
+/dist/

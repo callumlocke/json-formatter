@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JSON Formatter Options</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <div class="container">
+      
+      <header class="page-header">
+        <h1>JSON Formatter</h1>
+        <p class="lead">Options</p>
+      </header>
+
+      <label><input type="checkbox" id="option-debug"> Debug mode</label>
+
+      <div>
+        <label for="option-jsonTypes">JSON types</label>
+        <textarea id="option-jsonTypes"></textarea>
+      </div>
+
+      <div>
+        <label for="option-jsonpTypes">JSONP types</label>
+        <textarea id="option-jsonpTypes"></textarea>
+      </div>
+      
+      <button class="btn btn-info" id="save">Save</button>
+    </div>
+
+    <script src="jquery.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
