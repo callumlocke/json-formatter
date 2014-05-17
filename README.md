@@ -30,7 +30,16 @@ Installation
 * click "Load unpacked extension",
 * select the `extension` folder in this repo.
 
-**Some URLs to try it on:**
+Development
+-----------
+
+After installing from source, also install compass (`gem install compass`),
+for tweaking the css in `scss/` that `extension/css/` is generated from.
+Run `compass watch .` to make css rebuild as soon as you save any changes,
+and reload the extension in Chrome by hitting Cmd-R on your extensions page.
+
+Some URLs to try it on
+----------------------
 
 * http://feeds.delicious.com/v2/json/popular?callback=hello
 * http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?alt=json&v=2
