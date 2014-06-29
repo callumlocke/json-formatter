@@ -257,6 +257,15 @@
         
           // Now, this script will just wait to receive anything back via another port message. The returned message will be something like "NOT JSON" or "IS JSON"
       }
+
+      document.addEventListener('keyup', function(e) {
+        if (e.keyCode === 37) {
+          buttonPlain.click();
+        }
+        else if (e.keyCode === 39) {
+          buttonFormatted.click();
+        }
+      });
   }
   
   document.addEventListener("DOMContentLoaded", ready, false);
