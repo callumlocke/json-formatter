@@ -259,10 +259,10 @@
       }
 
       document.addEventListener('keyup', function(e) {
-        if (e.keyCode === 37) {
+        if (e.keyCode === 37 && buttonPlain.length) {
           buttonPlain.click();
         }
-        else if (e.keyCode === 39) {
+        else if (e.keyCode === 39 && buttonFormatted.length) {
           buttonFormatted.click();
         }
       });
