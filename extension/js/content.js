@@ -259,10 +259,10 @@
       }
 
       document.addEventListener('keyup', function(e) {
-        if (e.keyCode === 37 && buttonPlain.length) {
+        if (e.keyCode === 37 && typeof buttonPlain !== 'undefined') {
           buttonPlain.click();
         }
-        else if (e.keyCode === 39 && buttonFormatted.length) {
+        else if (e.keyCode === 39 && typeof buttonFormatted !== 'undefined') {
           buttonFormatted.click();
         }
       });
