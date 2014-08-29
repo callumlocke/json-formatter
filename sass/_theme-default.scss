@@ -1,0 +1,62 @@
+$default-color-background: white;
+$default-color-text: black;
+$default-color-key: black;
+$default-color-value: #0B7500;
+$default-color-url: #8ac21b;
+$default-color-null: #1A01CC;
+
+body[data-theme="default"] {
+  background-color: $default-color-background;
+  .e {
+    border-top-color: $default-color-text;
+  }
+  /* SYNTAX HIGHLIGHTING */
+  #formattedJson, #jsonpOpener, #jsonpCloser {
+    color: $default-color-text;
+  }
+  #formattedJson {
+    color: $default-color-text;
+  }
+  .objProp {
+    color: $default-color-key;
+  }
+  .b {
+    font-weight: bold;
+    color: $default-color-text;
+  }
+  .s {
+    color: $default-color-value;
+  }
+  .k {
+    color: $default-color-key;
+  }
+  #themeChooser {
+    border: 1px solid $default-color-key;
+    color: $default-color-value;
+  }
+  li.themeOption {
+    border: 1px solid $default-color-key;
+  }
+  pre {
+    color: $default-color-text;
+  }
+  a:hover, a:active {
+    color: $default-color-url;
+  }
+  .bl, .nl, .n {
+    color: $default-color-null;
+  }
+}
+
+.themeOption[data-theme="default"] {
+  background-color: $default-color-background;
+  .key {
+    color: $default-color-key;
+  }
+  .semicolon {
+    color: $default-color-text;
+  }
+  .value {
+    color: $default-color-value;
+  }
+}

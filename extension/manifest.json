@@ -6,14 +6,16 @@
   "homepage_url": "https://github.com/callumlocke/json-formatter",
   "minimum_chrome_version": "21",
   "icons": {
-       "128": "icons/128.png",
-       "32": "icons/32.png"
+    "128": "icons/128.png",
+    "32": "icons/32.png"
   },
   "background": {
     "scripts": ["js/background.js"]
   },
-  "content_scripts": [
-    { "matches": ["<all_urls>"], "js": ["js/content.js"], "run_at": "document_start" }
-  ],
-  "permissions":["*://*/*", "<all_urls>"]
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["js/content.js"],
+    "run_at": "document_start"
+  }],
+  "permissions": ["*://*/*", "<all_urls>"]
 }

@@ -1,0 +1,62 @@
+$monokai-color-background: #272822;
+$monokai-color-text: #f8f8f2;
+$monokai-color-key: #F92672;
+$monokai-color-value: #a6e22e;
+$monokai-color-url: #8ac21b;
+$monokai-color-null: #AE81FF;
+
+body[data-theme="monokai"] {
+  background-color: $monokai-color-background;
+  .e {
+    border-top-color: $monokai-color-text;
+  }
+  /* SYNTAX HIGHLIGHTING */
+  #formattedJson, #jsonpOpener, #jsonpCloser {
+    color: $monokai-color-text;
+  }
+  #formattedJson {
+    color: $monokai-color-text;
+  }
+  .objProp {
+    color: $monokai-color-key;
+  }
+  .b {
+    font-weight: bold;
+    color: $monokai-color-text;
+  }
+  .s {
+    color: $monokai-color-value;
+  }
+  .k {
+    color: $monokai-color-key;
+  }
+  #themeChooser {
+    border: 1px solid $monokai-color-key;
+    color: $monokai-color-value;
+  }
+  li.themeOption {
+    border: 1px solid $monokai-color-key;
+  }
+  pre {
+    color: $monokai-color-text;
+  }
+  a:hover, a:active {
+    color: $monokai-color-url;
+  }
+  .bl, .nl, .n {
+    color: $monokai-color-null;
+  }
+}
+
+.themeOption[data-theme="monokai"] {
+  background-color: $monokai-color-background;
+  .key {
+    color: $monokai-color-key;
+  }
+  .semicolon {
+    color: $monokai-color-text;
+  }
+  .value {
+    color: $monokai-color-value;
+  }
+}
