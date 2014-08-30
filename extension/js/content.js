@@ -142,6 +142,7 @@
 
                   buttonFormatted.classList.remove('selected') ;
                   buttonPlain.classList.add('selected') ;
+                  buttonPlain.blur() ;
                 }
               },
               false
@@ -158,6 +159,7 @@
 
                   buttonFormatted.classList.add('selected') ;
                   buttonPlain.classList.remove('selected') ;
+                  buttonFormatted.blur() ;
                 }
               },
               false
