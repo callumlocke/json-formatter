@@ -141,7 +141,11 @@
      * UTF-8 decode string
      */
     function decode_utf8(s) {
-      return decodeURIComponent(escape(s));
+      try {
+        return decodeURIComponent(escape(s));
+      }catch(e) {
+        return s;
+      }
     }
 
     // function spin(seconds) {
