@@ -22,7 +22,7 @@ Installation
 
 **Option 1** – just install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
-**Option 2** – install it from souce:
+**Option 2** – install it from source:
 
 * clone/download this repo,
 * open Chrome and go to `chrome://chrome/extensions/`,
@@ -35,3 +35,7 @@ Installation
 * http://feeds.delicious.com/v2/json/popular?callback=hello
 * http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?alt=json&v=2
 * http://twitter.com/statuses/public_timeline.json
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/callumlocke/json-formatter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
