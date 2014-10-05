@@ -67,6 +67,11 @@ body {
   color: #333;
 }
 
+#buttonFormatted:focus,
+#buttonPlain:focus {
+  outline: 0;
+}
+
 
 #jsonpOpener,
 #jsonpCloser {
