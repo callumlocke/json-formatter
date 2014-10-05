@@ -195,7 +195,7 @@
           // Export parsed JSON for easy access in console
             setTimeout(function () {
               var script = document.createElement("script") ;
-              script.innerHTML = 'window.json = ' + JSON.parse(JSON.stringify(msg[2])) + ';' ;
+              script.innerHTML = 'window.json = ' + msg[2] + ';' ;
               document.head.appendChild(script) ;
               console.log('JSON Formatter: Type "json" to inspect.') ;
             }, 100) ;
