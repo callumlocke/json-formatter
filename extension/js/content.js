@@ -270,8 +270,17 @@
   
   document.addEventListener("DOMContentLoaded", ready, false);
 
+  function findBlockInner(el) {
+    var blockInner = el.firstElementChild ;
+    while ( blockInner && !blockInner.classList.contains('blockInner') ) {
+      blockInner = blockInner.nextElementSibling ;
+    }
+
+    return blockInner ;
+  }
+
   var lastKvovIdGiven = 0 ;
-  function collapse(elements) {
+  function collapse(elements, recursive) {
     // console.log('elements', elements) ;
 
     var el, i, blockInner, count ;
@@ -280,36 +289,46 @@
       el = elements[i] ;
       el.classList.add('collapsed') ;
 
-      // (CSS hides the contents and shows an ellipsis.)
+      if (recursive || !el.id) {
+        blockInner = findBlockInner(el) ;
 
-      // Add a count of the number of child properties/items (if not already done for this item)
-        if (!el.id) {
-          el.id = 'kvov' + (++lastKvovIdGiven) ;
+        if (!blockInner)
+          continue ;
 
-          // Find the blockInner
-            blockInner = el.firstElementChild ;
-            while ( blockInner && !blockInner.classList.contains('blockInner') ) {
-              blockInner = blockInner.nextElementSibling ;
-            }
-            if (!blockInner)
-              continue ;
+        // (CSS hides the contents and shows an ellipsis.)
 
-          // See how many children in the blockInner
-            count = blockInner.children.length ;
+        // Add a count of the number of child properties/items (if not already done for this item)
+          if (!el.id) {
+            el.id = 'kvov' + (++lastKvovIdGiven) ;
 
-          // Generate comment text eg "4 items"
-            var comment = count + (count===1 ? ' item' : ' items') ;
-          // Add CSS that targets it
-            jfStyleEl.insertAdjacentHTML(
-              'beforeend',
-              '\n#kvov'+lastKvovIdGiven+'.collapsed:after{color: #aaa; content:" // '+comment+'"}'
-            ) ;
-        }
+            // See how many children in the blockInner
+              count = blockInner.children.length ;
+
+            // Generate comment text eg "4 items"
+              var comment = count + (count===1 ? ' item' : ' items') ;
+            // Add CSS that targets it
+              jfStyleEl.insertAdjacentHTML(
+                'beforeend',
+                '\n#kvov'+lastKvovIdGiven+'.collapsed:after{color: #aaa; content:" // '+comment+'"}'
+              ) ;
+          }
+
+          if (recursive)
+            collapse(blockInner.children, recursive) ;
+      }
     }
   }
-  function expand(elements) {
-    for (var i = elements.length - 1; i >= 0; i--)
+  function expand(elements, recursive) {
+    var blockInner;
+    for (var i = elements.length - 1; i >= 0; i--) {
       elements[i].classList.remove('collapsed') ;
+
+      if (recursive) {
+        blockInner = findBlockInner(elements[i]) ;
+        if (blockInner)
+          expand(blockInner.children, recursive) ;
+      }
+    }
   }
 
   var mac = navigator.platform.indexOf('Mac') !== -1,
@@ -344,14 +363,18 @@
         // Expand or collapse
           if (parent.classList.contains('collapsed')) {
             // EXPAND
-              if (modKey(ev))
+              if (ev.shiftKey)
+                expand([parent], true) ;
+              else if (modKey(ev))
                 expand(parent.parentNode.children) ;
               else
                 expand([parent]) ;
           }
           else {
             // COLLAPSE
-              if (modKey(ev))
+              if (ev.shiftKey)
+                collapse([parent], true) ;
+              else if (modKey(ev))
                 collapse(parent.parentNode.children) ;
               else
                 collapse([parent]) ;
