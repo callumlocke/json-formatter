@@ -47,6 +47,11 @@
       TYPE_NULL   = 6
     ;
 
+    var NUM_HACK_START    = "<json_formatter_number_hack>";
+    var NUM_HACK_END      = "</json_formatter_number_hack>";
+    var NUM_REGEX         = new RegExp("^\\d+(\\.\\d*)?$", "g");
+    var NUM_HACK_REGEX    = new RegExp("^" + NUM_HACK_START + "\\d+(\\.\\d*)?" + NUM_HACK_END + "$", "g");
+
   // Utility functions
     function removeComments (str) {
       str = ('__' + str + '__').split('');
@@ -206,10 +211,10 @@
       ;
 
       // Establish value type
-        if (typeof value === 'string')
-          type = TYPE_STRING ;
-        else if (typeof value === 'number')
+        if (typeof value === 'string' && value.match(NUM_HACK_REGEX))
           type = TYPE_NUMBER ;
+        else if (typeof value === 'string')
+          type = TYPE_STRING ;
         else if (value === false || value === true )
           type = TYPE_BOOL ;
         else if (value === null)
@@ -282,7 +287,7 @@
           case TYPE_NUMBER:
             // Simply add a number element (span.n)
               valueElement = templates.t_number.cloneNode(false) ;
-              valueElement.innerText = value ;
+              valueElement.innerText = value.substring(NUM_HACK_START.length, value.length - NUM_HACK_END.length) ;
               kvov.appendChild(valueElement) ;
             break ;
           
@@ -415,6 +420,35 @@
             // Strip any leading garbage, such as a 'while(1);'
               var strippedText = text.substring( firstJSONCharIndex(text) ) ;
 
+            // pass all numbers to json parser as strings in order to maintain precision,
+            // unwrap them later without quotes
+              var buffer = "";
+              var numberBuffer = "";
+              var isInString = false;
+              var isInNumber = false;
+              var previous = "";
+              for (var i = 0, len = strippedText.length; i < len; i++) {
+                if (strippedText[i] == '"' && previous != '\\')
+                  isInString = !isInString;
+                if (!isInString && !isInNumber && (('0' <= strippedText[i] && strippedText[i] <= '9') || strippedText[i] == '.'))
+                  isInNumber = true;
+                if (!isInString && isInNumber && (('0' > strippedText[i] || strippedText[i] > '9') && strippedText[i] != '.')) {
+                  isInNumber = false;
+                  if (numberBuffer.match(NUM_REGEX))
+                    buffer += '"' + NUM_HACK_START + numberBuffer + NUM_HACK_END + '"';
+                  else
+                    buffer += numberBuffer;
+                  numberBuffer = "";
+                }
+                if (isInNumber)
+                  numberBuffer += strippedText[i];
+                else {
+                  buffer += strippedText[i];
+                  previous = strippedText[i];
+                }
+              }
+              strippedText = buffer;
+
             try {
               obj = JSON.parse(strippedText) ;
               validJsonText = strippedText ;
@@ -498,3 +532,4 @@
       });
     });
 }()) ;
+
