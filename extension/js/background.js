@@ -34,7 +34,7 @@
 /*global chrome, console */
 
 (function () {
-  
+
   "use strict" ;
 
   // Constants
@@ -151,7 +151,7 @@
   // Template elements
     var templates,
         baseSpan = document.createElement('span') ;
-    
+
     function getSpanBoth(innerText,className) {
       var span = baseSpan.cloneNode(false) ;
       span.className = className ;
@@ -176,19 +176,19 @@
         t_key: getSpanClass('k'),
         t_string: getSpanClass('s'),
         t_number: getSpanClass('n'),
-        
+
         t_null: getSpanBoth('null', 'nl'),
         t_true: getSpanBoth('true','bl'),
         t_false: getSpanBoth('false','bl'),
-        
+
         t_oBrace: getSpanBoth('{','b'),
         t_cBrace: getSpanBoth('}','b'),
         t_oBracket: getSpanBoth('[','b'),
         t_cBracket: getSpanBoth(']','b'),
-        
+
         t_ellipsis: getSpanClass('ell'),
         t_blockInner: getSpanClass('blockInner'),
-        
+
         t_colonAndSpace: document.createTextNode(':\u00A0'),
         t_commaText: document.createTextNode(','),
         t_dblqText: document.createTextNode('"')
@@ -221,7 +221,7 @@
 
       // Root node for this kvov
         kvov = templates.t_kvov.cloneNode(false) ;
-      
+
       // Add an 'expander' first (if this is object/array with non-zero size)
         if (type === TYPE_OBJECT || type === TYPE_ARRAY) {
           nonZeroSize = false ;
@@ -234,7 +234,7 @@
           if (nonZeroSize)
             kvov.appendChild(  templates.t_exp.cloneNode(false) ) ;
         }
-        
+
       // If there's a key, add that before the value
         if (keyName !== false) { // NB: "" is a legal keyname in JSON
           // This kvov must be an object property
@@ -253,7 +253,7 @@
           // This is an array element instead
             kvov.classList.add('arrElem') ;
         }
-      
+
       // Generate DOM for this value
         var blockInner, childKvov ;
         switch (type) {
@@ -278,14 +278,17 @@
               valueElement.appendChild(templates.t_dblqText.cloneNode(false)) ;
               kvov.appendChild(valueElement) ;
             break ;
-          
+
           case TYPE_NUMBER:
             // Simply add a number element (span.n)
               valueElement = templates.t_number.cloneNode(false) ;
               valueElement.innerText = value ;
+              if (value > 631152000000 && value < 4070908800000) {
+                valueElement.title = (new Date(value)).toISOString();
+              }
               kvov.appendChild(valueElement) ;
             break ;
-          
+
           case TYPE_OBJECT:
             // Add opening brace
               kvov.appendChild( templates.t_oBrace.cloneNode(true) ) ;
@@ -312,7 +315,7 @@
                 // Add blockInner
                   kvov.appendChild( blockInner ) ;
               }
-            
+
             // Add closing brace
               kvov.appendChild( templates.t_cBrace.cloneNode(true) ) ;
             break ;
@@ -357,7 +360,7 @@
 
       return kvov ;
     }
-  
+
 
 
 
@@ -373,15 +376,15 @@
 
       // Set class on root node to identify it
         rootKvov.classList.add('rootKvov') ;
-        
+
       // Make div#formattedJson and append the root kvov
         var divFormattedJson = document.createElement('DIV') ;
         divFormattedJson.id = 'formattedJson' ;
         divFormattedJson.appendChild( rootKvov ) ;
-      
+
       // Convert it to an HTML string (shame about this step, but necessary for passing it through to the content page)
         var returnHTML = divFormattedJson.outerHTML ;
-        
+
       // Top and tail with JSONP padding if necessary
         if (jsonpFunctionName !== null) {
           returnHTML =
@@ -431,7 +434,7 @@
                     port.disconnect() ;
                     return ;
                   }
-                
+
                 // Get the substring up to the first "(", with any comments/whitespace stripped out
                   var firstBit = removeComments( text.substring(0,indexOfParen) ).trim() ;
                   if ( ! firstBit.match(/^[a-zA-Z_$][\.\[\]'"0-9a-zA-Z_$]*$/) ) {
@@ -440,7 +443,7 @@
                     port.disconnect() ;
                     return ;
                   }
-                
+
                 // Find last parenthesis (exit if none)
                   var indexOfLastParen ;
                   if ( ! (indexOfLastParen = text.lastIndexOf(')') ) ) {
@@ -448,7 +451,7 @@
                     port.disconnect() ;
                     return ;
                   }
-                
+
                 // Check that what's after the last parenthesis is just whitespace, comments, and possibly a semicolon (exit if anything else)
                   var lastBit = removeComments(text.substring(indexOfLastParen+1)).trim() ;
                   if ( lastBit !== "" && lastBit !== ';' ) {
@@ -456,7 +459,7 @@
                     port.disconnect() ;
                     return ;
                   }
-                  
+
                 // So, it looks like a valid JS function call, but we don't know whether it's JSON inside the parentheses...
                 // Check if the 'argument' is actually JSON (and record the parsed result)
                   text = text.substring(indexOfParen+1, indexOfLastParen) ;
@@ -470,7 +473,7 @@
                       port.postMessage(['NOT JSON', 'looks like a function call, but the parameter is not valid JSON']) ;
                       return ;
                   }
-                  
+
               jsonpFunctionName = firstBit ;
             }
 
