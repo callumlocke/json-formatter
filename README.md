@@ -33,7 +33,7 @@ Installation
 **Some URLs to try it on:**
 
 * http://feeds.delicious.com/v2/json/popular?callback=hello
-* http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?alt=json&v=2
+* https://www.googleapis.com/discovery/v1/apis
 * http://twitter.com/statuses/public_timeline.json
 
 FAQ
