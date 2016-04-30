@@ -1,0 +1,112 @@
+{
+"geocoded_waypoints": [
+{
+"geocoder_status": "OK",
+"place_id": "ChIJGeYapWDJyFIRnFO6poGXJsk",
+"types": [
+"street_address"
+]
+},
+{
+"geocoder_status": "OK",
+"place_id": "ChIJLRCIXwbMyFIRNpcPiXOoP5Q",
+"types": [
+"premise"
+]
+}
+],
+"routes": [
+{
+"bounds": {
+"northeast": {
+"lat": 46.87738700000001,
+"lng": -96.7896104
+},
+"southwest": {
+"lat": 46.8526544,
+"lng": -96.7985479
+}
+},
+"copyrights": "Map data ©2016 Google",
+"legs": [
+{
+"distance": {
+"text": "2.1 mi",
+"value": 3411
+},
+"duration": {
+"text": "6 mins",
+"value": 363
+},
+"end_address": "1720 University Dr, Fargo, ND 58103, USA",
+"end_location": {
+"lat": 46.8526544,
+"lng": -96.7985479
+},
+"start_address": "633 1st Ave N, Fargo, ND 58102, USA",
+"start_location": {
+"lat": 46.87693729999999,
+"lng": -96.7896104
+},
+"steps": [
+{
+"distance": {
+"text": "0.4 mi",
+"value": 661
+},
+"duration": {
+"text": "2 mins",
+"value": 93
+},
+"end_location": {
+"lat": 46.8773855,
+"lng": -96.7982407
+},
+"html_instructions": "Head <b>west</b> on <b>1st Ave N</b> toward <b>Roberts St N</b>",
+"polyline": {
+"points": "{sb}G`fwmQ?V?Ze@jHYvCSnCAl@?l@AnC@zA?t@AxCAhH@tAA|C"
+},
+"start_location": {
+"lat": 46.87693729999999,
+"lng": -96.7896104
+},
+"travel_mode": "DRIVING"
+},
+{
+"distance": {
+"text": "1.7 mi",
+"value": 2750
+},
+"duration": {
+"text": "5 mins",
+"value": 270
+},
+"end_location": {
+"lat": 46.8526544,
+"lng": -96.7985479
+},
+"html_instructions": "Turn <b>left</b> onto <b>N University Dr</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+"maneuver": "turn-left",
+"polyline": {
+"points": "uvb}G~{xmQ|E@x@@f@A|A?`A?bBBhB?xA?L?fB?nA@^?dB?`A@dA@lA@lA?Z?fB@dE?tDBxB?pABlEBfB?hB@hB?dBBpEFxA@tB?tAAjBCfA?`CBlC?~FBdEBb@?`D@rA@lA?bB@hDBjC@Z?"
+},
+"start_location": {
+"lat": 46.8773855,
+"lng": -96.7982407
+},
+"travel_mode": "DRIVING"
+}
+],
+"via_waypoint": []
+}
+],
+"overview_polyline": {
+"points": "{sb}G`fwmQ?r@e@jHYvCSnCAl@A|DAtQ?rFvGBdCAdDBxH?tOFlH@nHB~GFpE@zNL~JEnGBdMFfJBtLF"
+},
+"summary": "N University Dr",
+"warnings": [],
+"waypoint_order": []
+}
+],
+"status": "OK"
+}
