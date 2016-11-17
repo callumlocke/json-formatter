@@ -296,8 +296,10 @@
                 // Create blockInner, which indents (don't attach yet)
                   blockInner = templates.t_blockInner.cloneNode(false) ;
                 // For each key/value pair, add as a kvov to blockInner
-                  var count = 0, k, comma ;
-                  for (k in value) {
+                  var count = 0, k, kk, comma ;
+                  var keyz = Object.keys(value).sort();
+                  for (kk in keyz) {
+                    k = keyz[kk];
                     if (value.hasOwnProperty(k)) {
                       count++ ;
                       childKvov =  getKvovDOM(value[k], k) ;
