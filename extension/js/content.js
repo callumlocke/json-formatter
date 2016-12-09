@@ -213,9 +213,20 @@
   function ready () {
     
     domReadyTime = Date.now() ;
+
+      var bodyChildren = document.body.childNodes ;
+
+      //when the response header do not contain "Content-Type:application/json", the brower will not auto insert pre tag to wrap the text
+      if (bodyChildren[0].nodeType === Node.TEXT_NODE && bodyChildren.length === 1) {
+        var newPre = document.createElement('pre');
+        newPre.style = 'word-wrap: break-word; white-space: pre-wrap;';
+        newPre.innerText = bodyChildren[0].textContent;
+        document.body.removeChild(bodyChildren[0])
+        document.body.appendChild(newPre);
+      }
       
     // First, check if it's a PRE and exit if not
-      var bodyChildren = document.body.childNodes ;
+      
       pre = bodyChildren[0] ;
       var jsonLength = (pre && pre.innerText || "").length ;
       if (
