@@ -218,10 +218,9 @@
       var bodyChildren = document.body.childNodes ;
       pre = bodyChildren[0] ;
       var jsonLength = (pre && pre.innerText || "").length ;
-      if (
-        bodyChildren.length !== 1 ||
-        pre.tagName !== 'PRE' ||
-        jsonLength > (3000000) ) {
+      // removed - "bodyChildren.length !== 1" check
+      // conflicts with popup blocker, popup blocker creates "div.adsbox", causes bodyChildren.length to 2
+      if ( pre.tagName !== 'PRE' || jsonLength > (3000000) ) {
 
         // console.log('Not even text (or longer than 3MB); exiting') ;
         // console.log(bodyChildren.length,pre.tagName, pre.innerText.length) ;
