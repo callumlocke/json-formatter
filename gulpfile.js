@@ -19,7 +19,7 @@ const BUILD_DIR = './dist';
 gulp.task('clean', () => del(BUILD_DIR));
 
 gulp.task('configs', () => {
-  return gulp.src(`${SRC_DIR}/*`).pipe(gulp.dest(BUILD_DIR));
+  return gulp.src(`${SRC_DIR}/manifest.json`).pipe(gulp.dest(BUILD_DIR));
 });
 
 gulp.task('icons', () => {
@@ -41,8 +41,7 @@ gulp.task('scripts:dist', ['scripts'], () => {
 });
 
 gulp.task('build', ['configs', 'icons', 'scripts']);
-
-gulp.task('dist', ['scripts:dist']);
+gulp.task('build:dist', ['configs', 'icons', 'scripts:dist']);
 
 gulp.task('watch', ['build'], () => {
   return gulp.watch(`${SRC_DIR}/**/*`, ['build']);
