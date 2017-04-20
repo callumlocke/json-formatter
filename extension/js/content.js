@@ -31,11 +31,15 @@
  */
 
 /*jshint eqeqeq:true, forin:true, strict:true */
-/*global chrome, console */
+/*global browser, chrome, console */
 
 (function() {
 
   "use strict" ;
+
+  function getBrowser() {
+    return typeof browser !== 'undefined' ? browser : chrome;
+  }
 
   var jfContent,
       pre,
@@ -51,7 +55,7 @@
   
   // Open the port "jf" now, ready for when we need it
     // console.time('established port') ;
-    port = chrome.extension.connect({name: 'jf'}) ;
+    port = getBrowser().runtime.connect({name: 'jf'}) ;
     
   // Add listener to receive response from BG when ready
     port.onMessage.addListener( function (msg) {

@@ -1,16 +1,18 @@
 {
   "name": "JSON Formatter",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "manifest_version": 2,
   "description": "Makes JSON easy to read. Open source.",
-  "homepage_url": "https://github.com/callumlocke/json-formatter",
-  "minimum_chrome_version": "21",
+  "homepage_url": "https://github.com/nikrolls/json-formatter",
+  "author": "Nik Rolls, Callum Locke",
+  "minimum_edge_version": "38",
   "icons": {
        "128": "icons/128.png",
        "32": "icons/32.png"
   },
   "background": {
-    "scripts": ["js/background.js"]
+    "scripts": ["js/background.js"],
+    "persistent": false
   },
   "content_scripts": [
     { "matches": ["<all_urls>"], "js": ["js/content.js"], "run_at": "document_start" }

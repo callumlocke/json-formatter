@@ -31,7 +31,7 @@
  */
 
 /*jshint eqeqeq:true, forin:true, strict:true */
-/*global chrome, console */
+/*global browser, chrome, console */
 
 (function () {
   
@@ -46,6 +46,10 @@
       TYPE_BOOL   = 5,
       TYPE_NULL   = 6
     ;
+
+    function getBrowser() {
+      return typeof browser !== 'undefined' ? browser : chrome;
+    }
 
   // Utility functions
     function removeComments (str) {
@@ -395,7 +399,7 @@
     }
 
   // Listen for requests from content pages wanting to set up a port
-    chrome.extension.onConnect.addListener(function(port) {
+    getBrowser().runtime.onConnect.addListener(function(port) {
 
       if (port.name !== 'jf') {
         console.log('JSON Formatter error - unknown port name '+port.name, port) ;
