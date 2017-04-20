@@ -1,0 +1,35 @@
+$background: #272822;
+$foreground: #f8f8f2;
+
+body {
+  background-color: $background;
+  color: $foreground;
+}
+
+#formattedJson, #jsonpOpener, #jsonpCloser {
+  color: $foreground;
+}
+
+.key {
+  color: #a6e22e;
+}
+
+.number {
+  color: #ae81ff;
+}
+
+.string {
+  color: #e6db74;
+}
+
+.bool {
+  color: #ae81ff;
+}
+
+.null {
+  color: #ae81ff;
+}
+
+.brace {
+  color: $foreground;
+}
