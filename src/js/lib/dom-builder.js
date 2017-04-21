@@ -78,11 +78,8 @@ function getKeyValueOrValueDom(value, keyName) {
     keyValueOrValue.classList.add('objectProperty');
     // Create a span for the key name
     const keySpan = templates.key();
-    keySpan.textContent = JSON.stringify(keyName).slice(1, -1); // remove quotes
-    // Add it to keyValueOrValue, with quote marks
-    keyValueOrValue.appendChild(templates.doubleQuoteText());
+    keySpan.textContent = JSON.stringify(keyName);
     keyValueOrValue.appendChild(keySpan);
-    keyValueOrValue.appendChild(templates.doubleQuoteText());
     // Also add ":&nbsp;" (colon and non-breaking space)
     keyValueOrValue.appendChild(templates.colonAndSpace());
   }

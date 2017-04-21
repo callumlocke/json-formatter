@@ -10,7 +10,7 @@ body {
 }
 
 #themeOptionBar {
-  right: 11.5rem;
+  right: 11.3rem;
 }
 
 .optionBar {
@@ -18,8 +18,9 @@ body {
   display: block;
   position: absolute;
   top: 0.7rem;
+  font: 13px "Lucida Grande", "Segoe UI", "Tahoma";
 
-  button {
+  button, select {
     border-radius: 0.1rem;
     box-shadow: 0 0.05rem 0.2rem rgba(0, 0, 0, 0.1);
     user-select: none;
@@ -33,20 +34,22 @@ body {
     position: relative;
     z-index: 10;
     display: inline-block;
-    width: 5rem;
+    height: 1.5rem;
     text-shadow: 0.05rem 0.05rem rgba(255, 255, 255, 0.3);
 
-    &:last-child {
-      margin-left: 0;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
+    &:not(:only-child) {
+      &:last-child {
+        margin-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
 
-    &:first-child {
-      margin-right: 0;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      border-right: none;
+      &:first-child {
+        margin-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+      }
     }
 
     &:hover {
@@ -70,6 +73,18 @@ body {
 
     &:focus {
       outline: 0;
+    }
+  }
+
+  button {
+    width: 5rem;
+  }
+
+  select {
+    width: 9.1rem;
+
+    &::-ms-expand {
+      background: none;
     }
   }
 }
@@ -150,7 +165,7 @@ pre {
     opacity: 0.5;
   }
 
-  /* .e that are *inside* the children of a collapsed one */
+  /* .expanders that are *inside* the children of a collapsed one */
   .collapsed .keyValueOrValue & {
     display: none;
   }

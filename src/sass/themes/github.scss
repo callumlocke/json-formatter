@@ -1,0 +1,29 @@
+body {
+  background-color: white;
+  color: black;
+}
+
+::selection {
+  background-color: #b5d5ff;
+}
+
+.number {
+  color: #099;
+}
+
+.string {
+  color: #d14;
+}
+
+.bool, .null {
+  font-weight: bold;
+}
+
+.brace {
+  font-weight: bold;
+}
+
+.collapsed:after {
+  color: #998;
+  font-style: italic;
+}

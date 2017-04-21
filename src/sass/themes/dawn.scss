@@ -1,0 +1,25 @@
+body {
+  background-color: #f9f9f9;
+  color: #080808;
+}
+
+::selection {
+  background-color: transparentize(#275fff, 0.70);
+}
+
+.key {
+  color: #234a97;
+}
+
+.number, .bool, .null {
+  color: #811f24;
+}
+
+.string {
+  color: #0b6125;
+}
+
+.collapsed:after {
+  font-style: italic;
+  color: #5a525f
+}
