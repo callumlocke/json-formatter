@@ -5,7 +5,8 @@
   "description": "Makes JSON easy to read. Open source.",
   "homepage_url": "https://github.com/nikrolls/json-formatter",
   "author": "Nik Rolls, Callum Locke",
-  "minimum_edge_version": "38",
+  "minimum_edge_version": "40",
+  "minimum_chrome_version": "21",
   "icons": {
        "128": "icons/128.png",
        "32": "icons/32.png"

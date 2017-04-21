@@ -17,12 +17,9 @@ port.onMessage.addListener(function(message) {
       const themeName = themes[message[1]] ? message[1] : themes.default;
       switchToTheme(themes[themeName]);
 
-      if (themeName === 'dawn') {
-        document.getElementById('buttonLight').classList.add('selected');
-        document.getElementById('buttonDark').classList.remove('selected');
-      } else if (themeName === 'monokai') {
-        document.getElementById('buttonLight').classList.remove('selected');
-        document.getElementById('buttonDark').classList.add('selected');
+      const themeSelectOption = document.getElementById('themeSelect').querySelector(`[value="${themeName}"]`);
+      if (themeSelectOption) {
+        themeSelectOption.selected = true;
       }
 
       break;
@@ -119,22 +116,60 @@ function configureThemeOptionBar() {
   themeBar.id = 'themeOptionBar';
   themeBar.classList.add('optionBar');
 
-  const buttonLight = document.createElement('button');
-  const buttonDark = document.createElement('button');
-  buttonLight.id = 'buttonLight';
-  buttonLight.innerText = 'Light';
-  buttonDark.id = 'buttonDark';
-  buttonDark.innerText = 'Dark';
+  const label = document.createElement('label');
+  const select = document.createElement('select');
+  label.innerText = 'Theme: ';
+  select.id = 'themeSelect';
+  select.innerHTML = `
+    <optgroup label="Light">
+      <option value="chrome">Chrome</option>
+      <option value="clouds">Clouds</option>
+      <option value="crimsonEditor">Crimson Editor</option>
+      <option value="dawn">Dawn</option>
+      <option value="dreamweaver">Dreamweaver</option>
+      <option value="eclipse">Eclipse</option>
+      <option value="github">GitHub</option>
+      <option value="iplastic">iPlastic</option>
+      <option value="katzenMilch">KatzenMilch</option>
+      <option value="kurior">Kuroir</option>
+      <option value="solarizedLight">Solarized Light</option>
+      <option value="sqlServer">SQL Server</option>
+      <option value="textmate">TextMate</option>
+      <option value="tomorrow">Tomorrow</option>
+      <option value="xcode">XCode</option>
+    </optgroup>
+    <optgroup label="Dark">
+      <option value="ambiance">Ambiance</option>
+      <option value="chaos">Chaos</option>
+      <option value="cloudsMidnight">Clouds Midnight</option>
+      <option value="cobalt">Cobalt</option>
+      <option value="gob">Gob</option>
+      <option value="gruvbox">Gruvbox</option>
+      <option value="idleFingers">idle Fingers</option>
+      <option value="krTheme">krTheme</option>
+      <option value="merbivore">Merbivore</option>
+      <option value="merbivoreSoft">Merbivore Soft</option>
+      <option value="monoIndustrial">Mono Industrial</option>
+      <option value="monokai">Monokai</option>
+      <option value="pastelOnDark">Pastel on dark</option>
+      <option value="solarizedDark">Solarized Dark</option>
+      <option value="terminal">Terminal</option>
+      <option value="tomorrowNight">Tomorrow Night</option>
+      <option value="tomorrowNightBlue">Tomorrow Night Blue</option>
+      <option value="tomorrowNightBright">Tomorrow Night Bright</option>
+      <option value="tomorrowNightEighties">Tomorrow Night ’80s</option>
+      <option value="twilight">Twilight</option>
+      <option value="vibrantInk">Vibrant Ink</option>
+    </optgroup>
+  `;
 
-  buttonLight.addEventListener('click', () => {
-    port.postMessage({type: 'UPDATE STORED THEME', theme: 'dawn'});
-  });
-  buttonDark.addEventListener('click', () => {
-    port.postMessage({type: 'UPDATE STORED THEME', theme: 'monokai'});
+  select.addEventListener('change', () => {
+    port.postMessage({type: 'UPDATE STORED THEME', theme: select.value});
+    select.blur();
   });
 
-  themeBar.appendChild(buttonLight);
-  themeBar.appendChild(buttonDark);
+  label.appendChild(select);
+  themeBar.appendChild(label);
   document.body.insertBefore(themeBar, pre);
 }
 
@@ -222,7 +257,7 @@ function collapse(elements) {
       // Add CSS that targets it
       jfStyleEl.insertAdjacentHTML(
         'beforeend',
-        `\n#keyValueOrValue${lastKeyValueOrValueIdGiven}.collapsed:after{color: #aaa; content:" // ${comment}"}`
+        `\n#keyValueOrValue${lastKeyValueOrValueIdGiven}.collapsed:after{content:" // ${comment}"}`
       );
     }
   }
