@@ -10,11 +10,13 @@ const uglify = require('gulp-uglify');
 const vinylNamed = require('vinyl-named');
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
+const zip = require('gulp-zip');
 
 const webpackConfig = require('./webpack.config');
 
 const SRC_DIR = './src';
-const BUILD_DIR = './dist';
+const BUILD_DIR = './build';
+const RELEASE_DIR = './release';
 
 gulp.task('clean', () => del(BUILD_DIR));
 
@@ -42,6 +44,14 @@ gulp.task('scripts:dist', ['scripts'], () => {
 
 gulp.task('build', ['configs', 'icons', 'scripts']);
 gulp.task('build:dist', ['configs', 'icons', 'scripts:dist']);
+
+gulp.task('release', ['build:dist'], () => {
+  const manifest = require(`${BUILD_DIR}/manifest.json`);
+
+  return gulp.src(`${BUILD_DIR}/**/*`)
+    .pipe(zip(`json-formatter-${manifest.version}.zip`))
+    .pipe(gulp.dest(RELEASE_DIR));
+});
 
 gulp.task('watch', ['build'], () => {
   return gulp.watch(`${SRC_DIR}/**/*`, ['build']);
