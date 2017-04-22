@@ -1,6 +1,8 @@
+$foreground: black;
+
 body {
   background-color: white;
-  color: black;
+  color: $foreground;
 }
 
 ::selection {
@@ -16,11 +18,13 @@ body {
 }
 
 .bool, .null {
+  color: $foreground;
   font-weight: bold;
 }
 
 .brace {
   font-weight: bold;
+  color: $foreground;
 }
 
 .collapsed:after {

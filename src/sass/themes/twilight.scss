@@ -1,6 +1,8 @@
+$foreground: #f8f8f8;
+
 body {
   background-color: #141414;
-  color: #f8f8f8;
+  color: $foreground;
 }
 
 ::selection {
@@ -17,6 +19,10 @@ body {
 
 .string {
   color: #8f9d6a;
+}
+
+.brace {
+  color: $foreground;
 }
 
 .collapsed:after {

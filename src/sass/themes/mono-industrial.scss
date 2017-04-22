@@ -1,6 +1,8 @@
+$foreground: white;
+
 body {
   background-color: #222c28;
-  color: #fff;
+  color: $foreground;
 }
 
 ::selection {
@@ -22,6 +24,10 @@ body {
 
 .bool, .null {
   color: #648bd2;
+}
+
+.brace {
+  color: $foreground;
 }
 
 .collapsed:after {

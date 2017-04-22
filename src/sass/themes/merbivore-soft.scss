@@ -1,10 +1,16 @@
+$foreground: #e6e1dc;
+
 body {
   background-color: #1c1c1c;
-  color: #e6e1dc;
+  color: $foreground;
 }
 
 ::selection {
   background-color: #494949;
+}
+
+.key {
+  color: $foreground;
 }
 
 .number {
@@ -17,6 +23,10 @@ body {
 
 .bool, .null {
   color: #e1c582;
+}
+
+.brace {
+  color: $foreground;
 }
 
 .collapsed:after {
