@@ -6,21 +6,28 @@ let pre;
 let jfStyleEl;
 let slowAnalysisTimeout;
 
-// Open the port "jf" now, ready for when we need it
+// Open the port 'jf' now, ready for when we need it
 const port = connect();
 
 // Add listener to receive response from BG when ready
 port.onMessage.addListener(function(message) {
-
   switch (message[0]) {
     case 'NOT JSON' :
-      pre.hidden = false;
-      document.body.removeChild(jfContent);
+      document.documentElement.style.color = null;
       break;
 
     case 'FORMATTING' :
+      convertPlainTextDocumentToPreIfNeeded();
+      pre = document.querySelector('body > pre');
+      pre.hidden = true;
+
       // It is JSON, and it's now being formatted in the background worker.
       enableTheming();
+
+      // Add jfContent DIV, ready to display stuff
+      jfContent = document.createElement('div');
+      jfContent.id = 'jfContent';
+      document.body.appendChild(jfContent);
 
       // Clear the slowAnalysisTimeout (if the BG worker had taken longer than 1s to respond with an answer to whether or not this is JSON, then it would have fired, unhiding the PRE... But now that we know it's JSON, we can clear this timeout, ensuring the PRE stays hidden.)
       clearTimeout(slowAnalysisTimeout);
@@ -42,27 +49,28 @@ port.onMessage.addListener(function(message) {
 
       insertFormatOptionBar();
 
-      // Attach event handlers
-      document.addEventListener('click', generalClick, false);
-
       break;
 
     case 'FORMATTED' :
       // Insert HTML content
       jfContent.innerHTML = message[1];
+      pre.hidden = true;
 
       // Export parsed JSON for easy access in console
       setTimeout(function() {
-        const script = document.createElement("script");
-        script.innerHTML = 'window.json = ' + message[2] + ';';
+        const script = document.createElement('script');
+        script.innerHTML = `window.json=${message[2]};`;
         document.head.appendChild(script);
-        console.log('JSON Formatter: Type "json" to inspect.');
+        console.info(`JSON Formatter: Type 'json' to inspect.`);
       }, 100);
+
+      // Attach event handlers
+      document.addEventListener('click', generalClick, false);
 
       break;
 
     default :
-      throw new Error('Message not understood: ' + message[0]);
+      throw new Error(`Message not understood: ${message[0]}`);
   }
 });
 
@@ -93,52 +101,6 @@ function insertFormatOptionBar() {
     buttonPlain.classList.remove('selected');
   });
 
-  formatBar.appendChild(buttonPlain);
-  formatBar.appendChild(buttonFormatted);
-  document.body.insertBefore(formatBar, pre);
-}
-
-function ready() {
-
-  // First, check if it's a PRE and exit if not
-  const bodyChildren = document.body.childNodes;
-  pre = bodyChildren[0];
-  const jsonLength = (pre && pre.innerText || "").length;
-  if (
-    bodyChildren.length !== 1 ||
-    pre.tagName !== 'PRE' ||
-    jsonLength > (3000000)) {
-
-    // Disconnect the port (without even having used it)
-    port.disconnect();
-
-    // EXIT POINT: NON-PLAIN-TEXT PAGE (or longer than 3MB)
-  } else {
-    // This is a 'plain text' page (just a body with one PRE child).
-    // It might be JSON/JSONP, or just some other kind of plain text (eg CSS).
-
-    // Hide the PRE immediately (until we know what to do, to prevent FOUC)
-    pre.hidden = true;
-    slowAnalysisTimeout = setTimeout(function() {
-      pre.hidden = false;
-    }, 1000);
-
-    // Send the contents of the PRE to the BG script
-    // Add jfContent DIV, ready to display stuff
-    jfContent = document.createElement('div');
-    jfContent.id = 'jfContent';
-    document.body.appendChild(jfContent);
-
-    // Post the contents of the PRE
-    port.postMessage({
-      type: "SENDING TEXT",
-      text: pre.innerText,
-      length: jsonLength
-    });
-
-    // Now, this script will just wait to receive anything back via another port message. The returned message will be something like "NOT JSON" or "IS JSON"
-  }
-
   document.addEventListener('keyup', function(e) {
     if (e.keyCode === 37 && typeof buttonPlain !== 'undefined') {
       buttonPlain.click();
@@ -147,9 +109,71 @@ function ready() {
       buttonFormatted.click();
     }
   });
+
+  formatBar.appendChild(buttonPlain);
+  formatBar.appendChild(buttonFormatted);
+  document.body.insertBefore(formatBar, pre);
 }
 
-document.addEventListener("DOMContentLoaded", ready, false);
+function ready() {
+  // First, check if it's plain text and exit if not
+  const plainText = getTextFromTextOnlyDocument();
+  console.log(plainText);
+  if (!plainText || plainText.length > 3000000) {
+    port.disconnect();
+    return;
+  }
+
+  // Hide the text immediately (until we know what to do, to prevent a flash of unstyled content)
+  document.documentElement.style.color = 'transparent';
+  slowAnalysisTimeout = setTimeout(function() {
+    document.documentElement.style.color = null;
+  }, 1000);
+
+  // Send the text to the background script
+  port.postMessage({
+    type: 'SENDING TEXT',
+    text: plainText
+  });
+}
+
+function getTextFromTextOnlyDocument() {
+  const bodyChildren = document.body.childNodes;
+  const firstChild = bodyChildren[0];
+
+  const bodyHasOnlyOneElement = document.body.childNodes.length === 1;
+  const isPre = isPreElement(firstChild);
+  const isPlainText = isPlainTextElement(firstChild);
+
+  if (bodyHasOnlyOneElement && (isPre || isPlainText)) {
+    return firstChild.innerText || firstChild.nodeValue;
+  }
+}
+
+function convertPlainTextDocumentToPreIfNeeded() {
+  if (isPlainTextDocument()) {
+    const plainTextNode = document.body.childNodes[0];
+    const preElement = document.createElement('pre');
+    preElement.innerText = plainTextNode.nodeValue;
+    document.body.appendChild(preElement);
+    document.body.removeChild(plainTextNode);
+  }
+}
+
+function isPlainTextDocument() {
+  return document.body.childNodes.length === 1
+    && isPlainTextElement(document.body.childNodes[0]);
+}
+
+function isPreElement(element) {
+  return element.tagName === 'PRE';
+}
+
+function isPlainTextElement(element) {
+  return element.nodeType === Node.TEXT_NODE;
+}
+
+document.addEventListener('DOMContentLoaded', ready, false);
 
 let lastKeyValueOrValueIdGiven = 0;
 function collapse(elements) {
@@ -177,7 +201,7 @@ function collapse(elements) {
       // See how many children in the blockInner
       count = blockInner.children.length;
 
-      // Generate comment text eg "4 items"
+      // Generate comment text eg '4 items'
       const comment = count + (count === 1 ? ' item' : ' items');
       // Add CSS that targets it
       jfStyleEl.insertAdjacentHTML(
