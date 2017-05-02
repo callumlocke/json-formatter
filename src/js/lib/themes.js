@@ -45,10 +45,10 @@ export const themes = {
     type: 'Light',
     styles: require('../../sass/themes/katzen-milch.scss')
   },
-  kurior: {
-    name: 'Kurior',
+  kuroir: {
+    name: 'Kuroir',
     type: 'Light',
-    styles: require('../../sass/themes/kurior.scss')
+    styles: require('../../sass/themes/kuroir.scss')
   },
   solarizedLight: {
     name: 'Solarized Light',
@@ -161,7 +161,7 @@ export const themes = {
     styles: require('../../sass/themes/tomorrow-night-blue.scss')
   },
   tomorrowNightBright: {
-    name: 'Tomorrow Night Blue',
+    name: 'Tomorrow Night Bright',
     type: 'Dark',
     styles: require('../../sass/themes/tomorrow-night-bright.scss')
   },
