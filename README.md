@@ -26,7 +26,7 @@ Installation
 
 1. Clone/download this repo
 2. Install dependencies using [NPM](https://nodejs.org/) or [Yarn](https://yarnpkg.com/en/).
-3. Build the extension: `gulp dist`
+3. Build the extension: `gulp build:dist`
 4. Side-load the extension in your browser as per below
 
 Chrome
@@ -34,14 +34,14 @@ Chrome
 5. Open Chrome and go to `chrome://chrome/extensions/`
 6. Enable "Developer mode"
 7. Click "Load unpacked extension"
-8. Select the `dist` folder created in step 3
+8. Select the `build` folder created in step 3
 
 Edge
 
 5. Open Edge and go to `about:flags`
 6. Enable the option "Enable extension developer features" and restart the browser
 7. Click on the ellipsis (...) menu, click "Extensions", and click "Load extension"
-8. Select the `dist` folder created in step 3
+8. Select the `build` folder created in step 3
 
 FAQ
 ---
