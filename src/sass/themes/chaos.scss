@@ -10,7 +10,7 @@ body {
 }
 
 .key {
-  color: #997744;
+  color: #974;
 }
 
 .number {
@@ -27,6 +27,16 @@ body {
 
 .brace {
   color: $foreground;
+}
+
+#gutter {
+  background: #141414;
+  border-right: 1px solid #282828;
+
+}
+
+[line-number]:before {
+  color: #595959;
 }
 
 .collapsed:after {

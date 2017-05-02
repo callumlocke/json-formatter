@@ -37,6 +37,14 @@ body {
   @include transition;
 }
 
+#gutter {
+  @include transition;
+}
+
+[line-number]:before {
+  @include transition;
+}
+
 .collapsed:after {
   @include transition;
 }

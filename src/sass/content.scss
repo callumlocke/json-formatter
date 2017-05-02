@@ -1,5 +1,6 @@
 body {
   user-select: text;
+  overflow-x: hidden;
   overflow-y: scroll !important;
   margin: 0;
   position: relative;
@@ -91,18 +92,22 @@ body {
 
 #jsonpOpener,
 #jsonpCloser {
-  padding: 0.25rem 0 0 0.5rem;
-  color: black;
-  margin-bottom: -0.4rem;
+  margin-left: -1rem;
 }
 
-#jsonpCloser {
-  margin-top: 0;
+#gutter {
+  position: absolute;
+  user-select: none;
+  left: 0;
+  height: 100%;
 }
 
 #formattedJson {
-  padding-left: 1.75rem;
+  position: relative;
+  padding-left: 1.45rem;
   padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  word-wrap: break-word;
 }
 
 pre {
@@ -114,7 +119,15 @@ pre {
   display: block;
   padding-left: 1.25rem;
   margin-left: -1.25rem;
-  position: relative;
+}
+
+:not(.collapsed) > [line-number] {
+  &:before {
+    content: attr(line-number);
+    position: absolute;
+    right: calc(100% + 0.6rem);
+    margin-top: 0.1rem;
+  }
 }
 
 .collapsed {
@@ -140,19 +153,18 @@ pre {
 }
 
 .expander {
-  display: block;
-  position: absolute;
-  width: 1.25rem;
-  height: 1.15rem;
-  left: 0.3rem;
+  float: left;
+  margin-left: -1.05rem;
+  margin-right: 0.25rem;
   font-size: 24px;
   z-index: 5;
   opacity: 0.15;
   cursor: pointer;
 
   &:before {
-    display: block;
+    display: inline;
     content: '▾';
+    user-select: none;
   }
 
   .collapsed > &:before {
@@ -182,7 +194,7 @@ pre {
 /* SYNTAX HIGHLIGHTING */
 
 #formattedJson, #jsonpOpener, #jsonpCloser, pre {
-  font: 13px/1.15rem monospace;
+  font: 13px/1.1rem monospace;
 }
 
 .string {

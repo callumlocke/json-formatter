@@ -29,6 +29,10 @@ body {
   color: $foreground;
 }
 
+[line-number]:before {
+  color: #333;
+}
+
 .collapsed:after {
   color: transparentize(#949494, 0.09);
   background-color: transparentize(#dcdcdc, 0.44);

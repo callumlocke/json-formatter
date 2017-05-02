@@ -11,8 +11,11 @@ const TOKEN_TYPES = {
   NULL: 'NULL',
 };
 
+let lineNumber;
+
 export function jsonObjectToHTML(obj, jsonpFunctionName) {
   // Format object (using recursive keyValueOrValue builder)
+  lineNumber = jsonpFunctionName === null ? 1 : 2;
   const rootKeyValueOrValue = getKeyValueOrValueDom(obj, false);
 
   // The whole DOM is now built.
@@ -20,24 +23,27 @@ export function jsonObjectToHTML(obj, jsonpFunctionName) {
   // Set class on root node to identify it
   rootKeyValueOrValue.classList.add('rootKeyValueOrValue');
 
+  const gutterWidth = 1 + (lineNumber.toString().length * 0.5) + 'rem';
+  const gutter = document.createElement('div');
+  gutter.id = 'gutter';
+  gutter.style.width = gutterWidth;
+
   // Make div#formattedJson and append the root keyValueOrValue
   const divFormattedJson = document.createElement('div');
   divFormattedJson.id = 'formattedJson';
+  divFormattedJson.style.marginLeft = gutterWidth;
   divFormattedJson.appendChild(rootKeyValueOrValue);
-
-  // Convert it to an HTML string (shame about this step, but necessary for passing it through to the content page)
-  let returnHTML = divFormattedJson.outerHTML;
 
   // Top and tail with JSONP padding if necessary
   if (jsonpFunctionName !== null) {
-    returnHTML =
-      `<div id="jsonpOpener">${jsonpFunctionName} (</div>
-         ${returnHTML}
-       <div id="jsonpCloser">)</div>`;
+    divFormattedJson.innerHTML =
+      `<div id="jsonpOpener" line-number="1">${jsonpFunctionName}(</div>
+         ${divFormattedJson.innerHTML}
+       <div id="jsonpCloser" line-number="${lineNumber}">)</div>`;
   }
 
   // Return the HTML
-  return returnHTML;
+  return gutter.outerHTML + divFormattedJson.outerHTML;
 }
 
 // Core recursive DOM-building function
@@ -62,6 +68,7 @@ function getKeyValueOrValueDom(value, keyName) {
 
   // Root node for this keyValueOrValue
   const keyValueOrValue = templates.keyValueOrValue();
+  keyValueOrValue.setAttribute('line-number', lineNumber++);
 
   // Add an 'expander' first (if this is object/array with non-zero size)
   if (type === TOKEN_TYPES.OBJECT || type === TOKEN_TYPES.ARRAY) {
@@ -147,7 +154,9 @@ function getKeyValueOrValueDom(value, keyName) {
       }
 
       // Add closing brace
-      keyValueOrValue.appendChild(templates.closingBrace());
+      const closingBrace = templates.closingBrace();
+      closingBrace.setAttribute('line-number', lineNumber++);
+      keyValueOrValue.appendChild(closingBrace);
       break;
 
     case TOKEN_TYPES.ARRAY:
@@ -174,7 +183,9 @@ function getKeyValueOrValueDom(value, keyName) {
         keyValueOrValue.appendChild(blockInner);
       }
       // Add closing bracket
-      keyValueOrValue.appendChild(templates.closingBracket());
+      const closingBracket = templates.closingBracket();
+      closingBracket.setAttribute('line-number', lineNumber++);
+      keyValueOrValue.appendChild(closingBracket);
       break;
 
     case TOKEN_TYPES.BOOL:

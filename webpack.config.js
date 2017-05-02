@@ -13,7 +13,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ['text-loader', 'sass-loader?outputStyle=compressed']
+        use: [
+          'to-string-loader',
+          'css-loader?importLoaders=1',
+          'postcss-loader',
+          'sass-loader?outputStyle=compressed'
+        ]
       }
     ]
   },

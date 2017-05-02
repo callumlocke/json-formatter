@@ -25,6 +25,10 @@ body {
   color: $foreground;
 }
 
+[line-number]:before {
+  color: $foreground;
+}
+
 .collapsed:after {
   font-style: italic;
   color: #928375;

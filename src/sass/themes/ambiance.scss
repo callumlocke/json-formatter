@@ -8,11 +8,11 @@ body {
 }
 
 .key {
-  color: #9999cc;
+  color: #99c;
 }
 
 .number {
-  color: #78Cf8a;
+  color: #78cf8a;
 }
 
 .string {
@@ -20,11 +20,23 @@ body {
 }
 
 .bool, .null {
-  color: #cf7Ea9;
+  color: #cf7ea9;
 }
 
 .brace {
   color: #24c2c7;
+}
+
+#gutter {
+  background-color: #3d3d3d;
+  background-image: linear-gradient(to right, #3d3d3d, #333);
+  background-repeat: repeat-x;
+  border-right: 1px solid #4d4d4d;
+}
+
+[line-number]:before {
+  text-shadow: 0 1px 1px #4d4d4d;
+  color: #222;
 }
 
 .collapsed:after {

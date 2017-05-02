@@ -118,7 +118,6 @@ function insertFormatOptionBar() {
 function ready() {
   // First, check if it's plain text and exit if not
   const plainText = getTextFromTextOnlyDocument();
-  console.log(plainText);
   if (!plainText || plainText.length > 3000000) {
     port.disconnect();
     return;

@@ -25,6 +25,14 @@ body {
   color: $foreground;
 }
 
+#gutter {
+  background: #272727;
+}
+
+[line-number]:before {
+  color: $foreground;
+}
+
 .collapsed:after {
   color: #999;
 }

@@ -27,6 +27,14 @@ body {
   color: $foreground;
 }
 
+#gutter {
+  background: #ddd;
+}
+
+[line-number]:before {
+  color: #666;
+}
+
 .collapsed:after {
   color: #777;
   font-style: italic;
