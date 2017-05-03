@@ -20,7 +20,7 @@ A background worker is used to prevent the UI freezing when processing very long
 Installation
 ------------
 
-**Option 1** – Install it from the [Chrome Web Store](rome.google.com/webstore/detail/mhimpmpmffogbmmkmajibklelopddmjf/) or [Windows Store](https://www.microsoft.com/en-us/store/p/json-formatter-for-edge/9nz9d2j86w6s).
+**Option 1** – Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/mhimpmpmffogbmmkmajibklelopddmjf/) or [Windows Store](https://www.microsoft.com/en-us/store/p/json-formatter-for-edge/9nz9d2j86w6s).
 
 **Option 2** – Install it from source:
 
