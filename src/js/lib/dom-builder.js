@@ -155,8 +155,10 @@ function getKeyValueOrValueDom(value, keyName) {
 
       // Add closing brace
       const closingBrace = templates.closingBrace();
-      closingBrace.setAttribute('line-number', lineNumber++);
       keyValueOrValue.appendChild(closingBrace);
+      if (nonZeroSize) {
+        closingBrace.setAttribute('line-number', lineNumber++);
+      }
       break;
 
     case TOKEN_TYPES.ARRAY:
@@ -184,8 +186,10 @@ function getKeyValueOrValueDom(value, keyName) {
       }
       // Add closing bracket
       const closingBracket = templates.closingBracket();
-      closingBracket.setAttribute('line-number', lineNumber++);
       keyValueOrValue.appendChild(closingBracket);
+      if (nonZeroSize) {
+        closingBracket.setAttribute('line-number', lineNumber++);
+      }
       break;
 
     case TOKEN_TYPES.BOOL:
