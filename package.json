@@ -19,6 +19,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.1.2",
     "gulp-zip": "^4.0.0",
+    "json-tokenizer": "^1.0.1",
     "node-sass": "^4.5.2",
     "postcss-loader": "^1.3.3",
     "sass-loader": "^6.0.3",
@@ -27,5 +28,8 @@
     "vinyl-named": "^1.1.0",
     "webpack": "^2.4.1",
     "webpack-stream": "^3.2.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1"
   }
 }

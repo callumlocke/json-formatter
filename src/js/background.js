@@ -3,7 +3,7 @@
 import browser from './lib/browser';
 import { listen } from './lib/messaging';
 import { removeComments, firstJSONCharIndex } from './lib/utilities';
-import { jsonObjectToHTML } from './lib/dom-builder';
+import { jsonStringToHTML } from './lib/dom-builder';
 
 // Record current version (in case a future update wants to know)
 browser.storage.local.set({appVersion: browser.runtime.getManifest().version});
@@ -91,10 +91,8 @@ listen((port, msg) => {
     port.postMessage(['FORMATTING']);
 
     // Do formatting
-    const html = jsonObjectToHTML(obj, jsonpFunctionName);
-
-    // Post the HTML string to the content script
-    port.postMessage(['FORMATTED', html, validJsonText]);
+    jsonStringToHTML(validJsonText, jsonpFunctionName)
+      .then(html => port.postMessage(['FORMATTED', html, validJsonText]));
   } else if (msg.type === 'GET STORED THEME') {
     browser.storage.sync.get('theme', (data) => {
       port.postMessage({type: 'STORED THEME', themeName: data && data.theme})
