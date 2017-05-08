@@ -9,8 +9,9 @@ Features
 * JSONP support
 * Fast, even on long pages
 * Works on any valid JSON page – URL doesn't matter
-* Syntax highlighting
+* Syntax highlighting with 36 light and dark themes
 * Collapsible trees, with indent guides
+* Line numbers
 * Clickable URLs
 * Buttons for switching between raw and parsed JSON
 * Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console
@@ -43,23 +44,7 @@ Edge
 7. Click on the ellipsis (...) menu, click "Extensions", and click "Load extension"
 8. Select the `build` folder created in step 3
 
-FAQ
----
+**Some URLs to try it on:**
 
-### Why are large numbers not displayed accurately?
-
-This is a [limitation of JavaScript](http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2). The largest possible number is `Number.MAX_SAFE_INTEGER`, or **9007199254740991**. If you try to use a number larger than this in JavaScript, you'll lose accuracy.
-
-The idea of JSON Formatter is to show you how the computer sees your JSON, so we don't attempt to circumvent this limitation, otherwise that would give a misleading representation of your data. It's better to see exactly what the JavaScript engine sees.
-
-If you want to use long sequences of digits in your JSON, then **quote them as strings**.
-
-### Why are object keys sometimes in the wrong order?
-
-What you see in JSON Formatter is a representation of the **parsed** object/array. You see what the browser engine sees.
-
-Plain JavaScript objects are [unordered collections of properties](http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4). If you go through them with `for...in`, for example, there is no guarantee of any particular order. In practice, most engines maintain the order in which the keys were first declared, but V8 moves any numeric keys (e.g. `"1234"`) to the front, for a small performance gain. This was a [controversial issue](https://code.google.com/p/v8/issues/detail?id=164) – a lot of people think it sucks that you can't predict key enumeration order in Chrome – but the V8 team refused to 'fix' it, because it's not a bug, and they're right. If you want your values to be in a certain order, and you're relying on the non-standard key-ordering logic of a particular engine, then your code is broken. Restructure your data to use arrays.
-
-##### But I just want it to be in order for readability
-
-That would require tokenising the JSON string manually instead of using `JSON.parse`, which would be too slow. And it's not a good idea to go down the road of representing the data differently from how the engine actually sees it.
+* https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=contributors&format=json
+* http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=jsonp&tags=json&tagmode=any&format=json

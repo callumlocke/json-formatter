@@ -26,10 +26,8 @@ export const Templates = {
   key: createSpanWithClass('key'),
   string: createSpanWithClass('string'),
   number: createSpanWithClass('number'),
-
+  boolean: createSpanWithClass('bool'),
   null: createSpanWithTextAndClass('null', 'null'),
-  true: createSpanWithTextAndClass('true', 'bool'),
-  false: createSpanWithTextAndClass('false', 'bool'),
 
   openingBrace: createSpanWithTextAndClass('{', 'brace'),
   closingBrace: createSpanWithTextAndClass('}', 'brace'),
