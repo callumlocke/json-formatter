@@ -1,43 +1,43 @@
-$foreground: black;
+body.theme-eclipse {
+  $foreground: black;
 
-body {
   background-color: #fff;
   color: $foreground;
-}
 
-::selection {
-  background-color: #b5d5ff;
-}
+  ::selection {
+    background-color: #b5d5ff;
+  }
 
-.key {
-  color: #7f0055;
-}
+  .key {
+    color: #7f0055;
+  }
 
-.number {
-  color: darkblue;
-}
+  .number {
+    color: darkblue;
+  }
 
-.string {
-  color: #2a00ff;
-}
+  .string {
+    color: #2a00ff;
+  }
 
-.bool, .null {
-  color: #5848f6;
-}
+  .bool, .null {
+    color: #5848f6;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #ebebeb;
-  border-right: 1px solid #9f9f9f;
-}
+  #gutter {
+    background: #ebebeb;
+    border-right: 1px solid #9f9f9f;
+  }
 
-[line-number]:before {
-  color: #888;
-}
+  [line-number]:before {
+    color: #888;
+  }
 
-.collapsed:after {
-  color: #719682;
+  .collapsed:after {
+    color: #719682;
+  }
 }

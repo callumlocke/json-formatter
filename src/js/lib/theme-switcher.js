@@ -1,8 +1,8 @@
-import { themes } from './themes';
-import { connect } from "./messaging";
+import {themes} from './themes';
+import {connect} from "./messaging";
 
 const transitionStyles = require('../../sass/transition.scss');
-let port, themeStyleElement, transitionStyleElement;
+let port, transitionStylesInject;
 
 export function enableTheming() {
   port = connect();
@@ -68,36 +68,25 @@ function generateOptionsHTML() {
 
 function switchToTheme(themeName) {
   themeName = themes[themeName] ? themeName : themes.default;
-  const theme = themes[themeName];
-  const element = getThemeElement();
-
-  if (element.innerHTML) {
-    insertTransitionThemes();
-  }
-  if (element.innerHTML !== theme.styles) {
-    element.innerHTML = theme.styles;
-  }
+  document.body.className = `theme-${themeName}`;
 
   const themeSelect = getThemeSelect();
   const themeSelectOption = themeSelect && themeSelect.querySelector(`[value="${themeName}"]`);
   if (themeSelectOption) {
     themeSelectOption.selected = true;
   }
+
+  insertTransitionStylesOnce();
 }
 
-function getThemeElement() {
-  if (!themeStyleElement) {
-    themeStyleElement = document.createElement('style');
-    document.head.appendChild(themeStyleElement);
-  }
-
-  return themeStyleElement;
-}
-
-function insertTransitionThemes() {
-  if (!transitionStyleElement) {
-    transitionStyleElement = document.createElement('style');
-    transitionStyleElement.innerHTML = transitionStyles;
-    document.head.appendChild(transitionStyleElement);
+function insertTransitionStylesOnce() {
+  if (!transitionStylesInject) {
+    transitionStylesInject = true;
+    window.setTimeout(() => {
+      port.postMessage({
+        type: 'INSERT CSS',
+        code: transitionStyles
+      });
+    }, 1000);
   }
 }

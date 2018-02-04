@@ -6,6 +6,9 @@ export default {
   },
   get storage() {
     return getBrowser().storage;
+  },
+  get tabs() {
+    return getBrowser().tabs;
   }
 };
 

@@ -1,44 +1,44 @@
-$foreground: white;
+body.theme-monoIndustrial {
+  $foreground: white;
 
-body {
   background-color: #222c28;
   color: $foreground;
-}
 
-::selection {
-  background-color: transparentize(#919994, 0.6);
-}
+  ::selection {
+    background-color: transparentize(#919994, 0.6);
+  }
 
-.key {
-  color: #a8b3ab;
-}
+  .key {
+    color: #a8b3ab;
+  }
 
-.number {
-  color: #e98800;
-}
+  .number {
+    color: #e98800;
+  }
 
-.string {
-  background-color: #151c19;
-  color: #fff;
-}
+  .string {
+    background-color: #151c19;
+    color: #fff;
+  }
 
-.bool, .null {
-  color: #648bd2;
-}
+  .bool, .null {
+    color: #648bd2;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #1d2521;
-}
+  #gutter {
+    background: #1d2521;
+  }
 
-[line-number]:before {
-  color: #c5c9c9;
-}
+  [line-number]:before {
+    color: #c5c9c9;
+  }
 
-.collapsed:after {
-  color: #666c68;
-  background-color: #151c19;
+  .collapsed:after {
+    color: #666c68;
+    background-color: #151c19;
+  }
 }

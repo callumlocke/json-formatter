@@ -1,38 +1,38 @@
-$foreground: #f8f8f2;
+body.theme-monokai {
+  $foreground: #f8f8f2;
 
-body {
   background-color: #272822;
   color: $foreground;
-}
 
-::selection {
-  background-color: #49483e;
-}
+  ::selection {
+    background-color: #49483e;
+  }
 
-.key {
-  color: #a6e22e;
-}
+  .key {
+    color: #a6e22e;
+  }
 
-.number, .bool, .null {
-  color: #ae81ff;
-}
+  .number, .bool, .null {
+    color: #ae81ff;
+  }
 
-.string {
-  color: #e6db74;
-}
+  .string {
+    color: #e6db74;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #2f3129;
-}
+  #gutter {
+    background: #2f3129;
+  }
 
-[line-number]:before {
-  color: #8f908a;
-}
+  [line-number]:before {
+    color: #8f908a;
+  }
 
-.collapsed:after {
-  color: #75715e;
+  .collapsed:after {
+    color: #75715e;
+  }
 }

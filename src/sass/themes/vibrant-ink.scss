@@ -1,42 +1,42 @@
-$foreground: white;
+body.theme-vibrantInk {
+  $foreground: white;
 
-body {
   background-color: #0f0f0f;
   color: $foreground;
-}
 
-::selection {
-  background-color: #69c;
-}
+  ::selection {
+    background-color: #69c;
+  }
 
-.key {
-  color: #fc0;
-}
+  .key {
+    color: #fc0;
+  }
 
-.number {
-  color: #9c9;
-}
+  .number {
+    color: #9c9;
+  }
 
-.string {
-  color: #6f0;
-}
+  .string {
+    color: #6f0;
+  }
 
-.bool, .null {
-  color: #399;
-}
+  .bool, .null {
+    color: #399;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #1a1a1a;
-}
+  #gutter {
+    background: #1a1a1a;
+  }
 
-[line-number]:before {
-  color: #bebebe;
-}
+  [line-number]:before {
+    color: #bebebe;
+  }
 
-.collapsed:after {
-  color: #93c;
+  .collapsed:after {
+    color: #93c;
+  }
 }

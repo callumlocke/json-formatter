@@ -1,39 +1,39 @@
-$foreground: #363636;
+body.theme-kuroir {
+  $foreground: #363636;
 
-body {
   background-color: #e8e9e8;
   color: $foreground;
-}
 
-::selection {
-  background-color: transparentize(#f5aa00, 0.43);
-}
+  ::selection {
+    background-color: transparentize(#f5aa00, 0.43);
+  }
 
-.key {
-  color: #009acd;
-}
+  .key {
+    color: #009acd;
+  }
 
-.number {
-  color: #9a5925;
-}
+  .number {
+    color: #9a5925;
+  }
 
-.string {
-  color: #639300;
-}
+  .string {
+    color: #639300;
+  }
 
-.bool, .null {
-  color: #cd6839;
-}
+  .bool, .null {
+    color: #cd6839;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-[line-number]:before {
-  color: #333;
-}
+  [line-number]:before {
+    color: #333;
+  }
 
-.collapsed:after {
-  color: transparentize(#949494, 0.09);
-  background-color: transparentize(#dcdcdc, 0.44);
+  .collapsed:after {
+    color: transparentize(#949494, 0.09);
+    background-color: transparentize(#dcdcdc, 0.44);
+  }
 }

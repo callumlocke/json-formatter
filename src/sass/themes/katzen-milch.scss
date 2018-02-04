@@ -1,48 +1,48 @@
-$foreground: #0f0009;
+body.theme-katzenMilch {
+  $foreground: #0f0009;
 
-body {
   background-color: #f3f2f3;
   color: $foreground;
-}
 
-::selection {
-  background-color: transparentize(#6405d0, 0.73);
-}
+  ::selection {
+    background-color: transparentize(#6405d0, 0.73);
+  }
 
-.key {
-  color: transparentize(#025f49, 0.3);
-  background-color: transparentize(#22ff49, 0.88);
-}
+  .key {
+    color: transparentize(#025f49, 0.3);
+    background-color: transparentize(#22ff49, 0.88);
+  }
 
-.number {
-  color: transparentize(#4f827b, 0.7);
-  background-color: transparentize(#77c2bb, 0.9411);
-}
+  .number {
+    color: transparentize(#4f827b, 0.7);
+    background-color: transparentize(#77c2bb, 0.9411);
+  }
 
-.string {
-  color: #5a5f9b;
-  background-color: transparentize(#aaafdb, 0.965);
-}
+  .string {
+    color: #5a5f9b;
+    background-color: transparentize(#aaafdb, 0.965);
+  }
 
-.bool, .null {
-  color: #7d7e52;
-  background-color: transparentize(#bdbe82, 0.941);
-}
+  .bool, .null {
+    color: #7d7e52;
+    background-color: transparentize(#bdbe82, 0.941);
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #e8e8e8;
-}
+  #gutter {
+    background: #e8e8e8;
+  }
 
-[line-number]:before {
-  color: #333;
-}
+  [line-number]:before {
+    color: #333;
+  }
 
-.collapsed:after {
-  font-style: italic;
-  color: rgba(64, 79, 80, 0.67);
-  background-color: transparentize(#5f0fff, 0.9922)
+  .collapsed:after {
+    font-style: italic;
+    color: rgba(64, 79, 80, 0.67);
+    background-color: transparentize(#5f0fff, 0.9922)
+  }
 }

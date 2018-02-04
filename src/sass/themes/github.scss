@@ -1,41 +1,41 @@
-$foreground: black;
+body.theme-github {
+  $foreground: black;
 
-body {
   background-color: white;
   color: $foreground;
-}
 
-::selection {
-  background-color: #b5d5ff;
-}
+  ::selection {
+    background-color: #b5d5ff;
+  }
 
-.number {
-  color: #099;
-}
+  .number {
+    color: #099;
+  }
 
-.string {
-  color: #d14;
-}
+  .string {
+    color: #d14;
+  }
 
-.bool, .null {
-  color: $foreground;
-  font-weight: bold;
-}
+  .bool, .null {
+    color: $foreground;
+    font-weight: bold;
+  }
 
-.brace {
-  font-weight: bold;
-  color: $foreground;
-}
+  .brace {
+    font-weight: bold;
+    color: $foreground;
+  }
 
-#gutter {
-  background: #e8e8e8;
-}
+  #gutter {
+    background: #e8e8e8;
+  }
 
-[line-number]:before {
-  color: #aaa;
-}
+  [line-number]:before {
+    color: #aaa;
+  }
 
-.collapsed:after {
-  color: #998;
-  font-style: italic;
+  .collapsed:after {
+    color: #998;
+    font-style: italic;
+  }
 }

@@ -1,42 +1,42 @@
-$foreground: #404040;
+body.theme-crimsonEditor {
+  $foreground: #404040;
 
-body {
   background-color: white;
   color: $foreground;
-}
 
-::selection {
-  background-color: #b5d5ff;
-}
+  ::selection {
+    background-color: #b5d5ff;
+  }
 
-.key {
-  color: #004080;
-}
+  .key {
+    color: #004080;
+  }
 
-.number {
-  color: #000040;
-}
+  .number {
+    color: #000040;
+  }
 
-.string {
-  color: #800080;
-}
+  .string {
+    color: #800080;
+  }
 
-.bool, .null {
-  color: #ff9c00;
-}
+  .bool, .null {
+    color: #ff9c00;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #ebebeb;
-}
+  #gutter {
+    background: #ebebeb;
+  }
 
-[line-number]:before {
-  color: #333;
-}
+  [line-number]:before {
+    color: #333;
+  }
 
-.collapsed:after {
-  color: #4c886b;
+  .collapsed:after {
+    color: #4c886b;
+  }
 }

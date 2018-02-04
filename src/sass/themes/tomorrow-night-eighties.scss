@@ -1,38 +1,38 @@
-$foreground: #ccc;
+body.theme-tomorrowNightEighties {
+  $foreground: #ccc;
 
-body {
   background-color: #2d2d2d;
   color: $foreground;
-}
 
-::selection {
-  background-color: #515151;
-}
+  ::selection {
+    background-color: #515151;
+  }
 
-.key {
-  color: #f2777a;
-}
+  .key {
+    color: #f2777a;
+  }
 
-.number, .bool, .null {
-  color: #f99157;
-}
+  .number, .bool, .null {
+    color: #f99157;
+  }
 
-.string {
-  color: #9c9;
-}
+  .string {
+    color: #9c9;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #272727;
-}
+  #gutter {
+    background: #272727;
+  }
 
-[line-number]:before {
-  color: $foreground;
-}
+  [line-number]:before {
+    color: $foreground;
+  }
 
-.collapsed:after {
-  color: #999;
+  .collapsed:after {
+    color: #999;
+  }
 }

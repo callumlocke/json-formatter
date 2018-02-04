@@ -1,45 +1,45 @@
-body {
+body.theme-ambiance {
   background-color: #202020;
   color: #e6e1dc;
-}
 
-::selection {
-  background-color: transparentize(#ddf0ff, 0.80);
-}
+  ::selection {
+    background-color: transparentize(#ddf0ff, 0.80);
+  }
 
-.key {
-  color: #99c;
-}
+  .key {
+    color: #99c;
+  }
 
-.number {
-  color: #78cf8a;
-}
+  .number {
+    color: #78cf8a;
+  }
 
-.string {
-  color: #8f9d6a;
-}
+  .string {
+    color: #8f9d6a;
+  }
 
-.bool, .null {
-  color: #cf7ea9;
-}
+  .bool, .null {
+    color: #cf7ea9;
+  }
 
-.brace {
-  color: #24c2c7;
-}
+  .brace {
+    color: #24c2c7;
+  }
 
-#gutter {
-  background-color: #3d3d3d;
-  background-image: linear-gradient(to right, #3d3d3d, #333);
-  background-repeat: repeat-x;
-  border-right: 1px solid #4d4d4d;
-}
+  #gutter {
+    background-color: #3d3d3d;
+    background-image: linear-gradient(to right, #3d3d3d, #333);
+    background-repeat: repeat-x;
+    border-right: 1px solid #4d4d4d;
+  }
 
-[line-number]:before {
-  text-shadow: 0 1px 1px #4d4d4d;
-  color: #222;
-}
+  [line-number]:before {
+    text-shadow: 0 1px 1px #4d4d4d;
+    color: #222;
+  }
 
-.collapsed:after {
-  font-style: italic;
-  color: #555;
+  .collapsed:after {
+    font-style: italic;
+    color: #555;
+  }
 }

@@ -47,7 +47,6 @@ gulp.task('build:dist', ['configs', 'icons', 'scripts:dist']);
 
 gulp.task('release', ['build:dist'], () => {
   const manifest = require(`${BUILD_DIR}/manifest.json`);
-
   return gulp.src(`${BUILD_DIR}/**/*`)
     .pipe(zip(`json-formatter-${manifest.version}.zip`))
     .pipe(gulp.dest(RELEASE_DIR));

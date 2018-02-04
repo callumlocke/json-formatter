@@ -2,182 +2,146 @@ export const themes = {
   default: 'dawn',
   chrome: {
     name: 'Chrome',
-    type: 'Light',
-    styles: require('../../sass/themes/chrome.scss')
+    type: 'Light'
   },
   clouds: {
     name: 'Clouds',
-    type: 'Light',
-    styles: require('../../sass/themes/clouds.scss')
+    type: 'Light'
   },
   crimsonEditor: {
     name: 'Crimson Editor',
-    type: 'Light',
-    styles: require('../../sass/themes/crimson-editor.scss')
+    type: 'Light'
   },
   dawn: {
     name: 'Dawn',
-    type: 'Light',
-    styles: require('../../sass/themes/dawn.scss')
+    type: 'Light'
   },
   dreamweaver: {
     name: 'Dreamweaver',
-    type: 'Light',
-    styles: require('../../sass/themes/dreamweaver.scss')
+    type: 'Light'
   },
   eclipse: {
     name: 'Eclipse',
-    type: 'Light',
-    styles: require('../../sass/themes/eclipse.scss')
+    type: 'Light'
   },
   github: {
     name: 'GitHub',
-    type: 'Light',
-    styles: require('../../sass/themes/github.scss')
+    type: 'Light'
   },
   iplastic: {
     name: 'iPlastic',
-    type: 'Light',
-    styles: require('../../sass/themes/iplastic.scss')
+    type: 'Light'
   },
   katzenMilch: {
     name: 'KatzenMilch',
-    type: 'Light',
-    styles: require('../../sass/themes/katzen-milch.scss')
+    type: 'Light'
   },
   kuroir: {
     name: 'Kuroir',
-    type: 'Light',
-    styles: require('../../sass/themes/kuroir.scss')
+    type: 'Light'
   },
   solarizedLight: {
     name: 'Solarized Light',
-    type: 'Light',
-    styles: require('../../sass/themes/solarized-light.scss')
+    type: 'Light'
   },
   sqlServer: {
     name: 'SQL Server',
-    type: 'Light',
-    styles: require('../../sass/themes/sql-server.scss')
+    type: 'Light'
   },
   textmate: {
     name: 'TextMate',
-    type: 'Light',
-    styles: require('../../sass/themes/textmate.scss')
+    type: 'Light'
   },
   tomorrow: {
     name: 'Tomorrow',
-    type: 'Light',
-    styles: require('../../sass/themes/tomorrow.scss')
+    type: 'Light'
   },
   xcode: {
     name: 'XCode',
-    type: 'Light',
-    styles: require('../../sass/themes/xcode.scss')
+    type: 'Light'
   },
   ambiance: {
     name: 'Ambiance',
-    type: 'Dark',
-    styles: require('../../sass/themes/ambiance.scss')
+    type: 'Dark'
   },
   chaos: {
     name: 'Chaos',
-    type: 'Dark',
-    styles: require('../../sass/themes/chaos.scss')
+    type: 'Dark'
   },
   cloudsMidnight: {
     name: 'Clouds Midnight',
-    type: 'Dark',
-    styles: require('../../sass/themes/clouds-midnight.scss')
+    type: 'Dark'
   },
   cobalt: {
     name: 'Cobalt',
-    type: 'Dark',
-    styles: require('../../sass/themes/cobalt.scss')
+    type: 'Dark'
   },
   gob: {
     name: 'Gob',
-    type: 'Dark',
-    styles: require('../../sass/themes/gob.scss')
+    type: 'Dark'
   },
   gruvbox: {
     name: 'Gruvbox',
-    type: 'Dark',
-    styles: require('../../sass/themes/gruvbox.scss')
+    type: 'Dark'
   },
   idleFingers: {
     name: 'idle Fingers',
-    type: 'Dark',
-    styles: require('../../sass/themes/idle-fingers.scss')
+    type: 'Dark'
   },
   krTheme: {
     name: 'krTheme',
-    type: 'Dark',
-    styles: require('../../sass/themes/kr-theme.scss')
+    type: 'Dark'
   },
   merbivore: {
     name: 'Merbivore',
-    type: 'Dark',
-    styles: require('../../sass/themes/merbivore.scss')
+    type: 'Dark'
   },
   merbivoreSoft: {
     name: 'Merbivore Soft',
-    type: 'Dark',
-    styles: require('../../sass/themes/merbivore-soft.scss')
+    type: 'Dark'
   },
   monoIndustrial: {
     name: 'Mono Industrial',
-    type: 'Dark',
-    styles: require('../../sass/themes/mono-industrial.scss')
+    type: 'Dark'
   },
   monokai: {
     name: 'Monokai',
-    type: 'Dark',
-    styles: require('../../sass/themes/monokai.scss')
+    type: 'Dark'
   },
   pastelOnDark: {
     name: 'Pastel on dark',
-    type: 'Dark',
-    styles: require('../../sass/themes/pastel-on-dark.scss')
+    type: 'Dark'
   },
   solarizedDark: {
     name: 'Solarized Dark',
-    type: 'Dark',
-    styles: require('../../sass/themes/solarized-dark.scss')
+    type: 'Dark'
   },
   terminal: {
     name: 'Terminal',
-    type: 'Dark',
-    styles: require('../../sass/themes/terminal.scss')
+    type: 'Dark'
   },
   tomorrowNight: {
     name: 'Tomorrow Night',
-    type: 'Dark',
-    styles: require('../../sass/themes/tomorrow-night.scss')
+    type: 'Dark'
   },
   tomorrowNightBlue: {
     name: 'Tomorrow Night Blue',
-    type: 'Dark',
-    styles: require('../../sass/themes/tomorrow-night-blue.scss')
+    type: 'Dark'
   },
   tomorrowNightBright: {
     name: 'Tomorrow Night Bright',
-    type: 'Dark',
-    styles: require('../../sass/themes/tomorrow-night-bright.scss')
+    type: 'Dark'
   },
   tomorrowNightEighties: {
     name: 'Tomorrow Night ’80s',
-    type: 'Dark',
-    styles: require('../../sass/themes/tomorrow-night-eighties.scss')
+    type: 'Dark'
   },
   twilight: {
     name: 'Twilight',
-    type: 'Dark',
-    styles: require('../../sass/themes/twilight.scss')
+    type: 'Dark'
   },
   vibrantInk: {
     name: 'Vibrant Ink',
-    type: 'Dark',
-    styles: require('../../sass/themes/vibrant-ink.scss')
+    type: 'Dark'
   }
 };

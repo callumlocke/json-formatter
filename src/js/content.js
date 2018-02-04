@@ -1,5 +1,6 @@
 import { connect } from './lib/messaging';
 import { enableTheming } from './lib/theme-switcher';
+import browser from "./lib/browser";
 
 let jfContent;
 let pre;
@@ -32,13 +33,6 @@ port.onMessage.addListener(function(message) {
       // Clear the slowAnalysisTimeout (if the BG worker had taken longer than 1s to respond with an answer to whether or not this is JSON, then it would have fired, unhiding the PRE... But now that we know it's JSON, we can clear this timeout, ensuring the PRE stays hidden.)
       clearTimeout(slowAnalysisTimeout);
 
-      // Insert CSS
-      jfStyleEl = document.createElement('style');
-      jfStyleEl.id = 'jfStyleEl';
-      document.head.appendChild(jfStyleEl);
-
-      jfStyleEl.insertAdjacentHTML('beforeend', require('../sass/content.scss'));
-
       jfContent.innerHTML = '<p id="formattingMsg"><svg id="spinner" width="16" height="16" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1"><path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#3d7fe6"></path></svg> Formatting...</p>';
 
       const formattingMsg = document.getElementById('formattingMsg');
@@ -57,11 +51,14 @@ port.onMessage.addListener(function(message) {
       pre.hidden = true;
 
       // Export parsed JSON for easy access in console
+      // Only works if target page's CSP allows it
       setTimeout(function() {
         const script = document.createElement('script');
-        script.innerHTML = `window.json=${message[2]};`;
+        script.innerHTML = `
+          window.json=${message[2]};
+          console.info("JSON Formatter: Type 'json' to inspect.");
+        `;
         document.head.appendChild(script);
-        console.info(`JSON Formatter: Type 'json' to inspect.`);
       }, 100);
 
       // Attach event handlers
@@ -203,10 +200,10 @@ function collapse(elements) {
       // Generate comment text eg '4 items'
       const comment = count + (count === 1 ? ' item' : ' items');
       // Add CSS that targets it
-      jfStyleEl.insertAdjacentHTML(
-        'beforeend',
-        `\n#keyValueOrValue${lastKeyValueOrValueIdGiven}.collapsed:after{content:" // ${comment}"}`
-      );
+      port.postMessage({
+        type: 'INSERT CSS',
+        code: `#keyValueOrValue${lastKeyValueOrValueIdGiven}.collapsed:after{content:" // ${comment}"}`
+      });
     }
   }
 }

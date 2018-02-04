@@ -1,36 +1,36 @@
-body {
+body.theme-sqlServer {
   background-color: #fff;
   color: black;
-}
 
-::selection {
-  background-color: #b5d5ff;
-}
+  ::selection {
+    background-color: #b5d5ff;
+  }
 
-.key {
-  color: #318495;
-}
+  .key {
+    color: #318495;
+  }
 
-.string {
-  color: #f00;
-}
+  .string {
+    color: #f00;
+  }
 
-.bool, .null {
-  color: #979797;
-}
+  .bool, .null {
+    color: #979797;
+  }
 
-.brace {
-  color: #808080;
-}
+  .brace {
+    color: #808080;
+  }
 
-#gutter {
-  background: #ebebeb;
-}
+  #gutter {
+    background: #ebebeb;
+  }
 
-[line-number]:before {
-  color: #333;
-}
+  [line-number]:before {
+    color: #333;
+  }
 
-.collapsed:after {
-  color: #008000;
+  .collapsed:after {
+    color: #008000;
+  }
 }

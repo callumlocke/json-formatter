@@ -1,35 +1,35 @@
-$foreground: #ebdab4;
+body.theme-gruvbox {
+  $foreground: #ebdab4;
 
-body {
   background-color: #1d2021;
   color: $foreground;
-}
 
-::selection {
-  background-color: transparentize(#b36539, 0.25);
-}
+  ::selection {
+    background-color: transparentize(#b36539, 0.25);
+  }
 
-.key {
-  color: #84a598;
-}
+  .key {
+    color: #84a598;
+  }
 
-.number, .bool, .null {
-  color: #c2859a;
-}
+  .number, .bool, .null {
+    color: #c2859a;
+  }
 
-.string {
-  color: #b8ba37;
-}
+  .string {
+    color: #b8ba37;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-[line-number]:before {
-  color: $foreground;
-}
+  [line-number]:before {
+    color: $foreground;
+  }
 
-.collapsed:after {
-  font-style: italic;
-  color: #928375;
+  .collapsed:after {
+    font-style: italic;
+    color: #928375;
+  }
 }

@@ -1,42 +1,42 @@
-$foreground: black;
+body.theme-dreamweaver {
+  $foreground: black;
 
-body {
   background-color: #fff;
   color: $foreground;
-}
 
-::selection {
-  background-color: #b5d5ff;
-}
+  ::selection {
+    background-color: #b5d5ff;
+  }
 
-.key {
-  color: #06f;
-}
+  .key {
+    color: #06f;
+  }
 
-.number {
-  color: #0000cd;
-}
+  .number {
+    color: #0000cd;
+  }
 
-.string {
-  color: #00f;
-}
+  .string {
+    color: #00f;
+  }
 
-.bool, .null {
-  color: #585cf6;
-}
+  .bool, .null {
+    color: #585cf6;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #e8e8e8;
-}
+  #gutter {
+    background: #e8e8e8;
+  }
 
-[line-number]:before {
-  color: #333;
-}
+  [line-number]:before {
+    color: #333;
+  }
 
-.collapsed:after {
-  color: #4c886b;
+  .collapsed:after {
+    color: #4c886b;
+  }
 }

@@ -1,43 +1,43 @@
-$foreground: #93a1a1;
+body.theme-solarizedDark {
+  $foreground: #93a1a1;
 
-body {
   background-color: #002b36;
   color: $foreground;
-}
 
-::selection {
-  background-color: transparentize(white, 0.9);
-}
+  ::selection {
+    background-color: transparentize(white, 0.9);
+  }
 
-.key {
-  color: #268bd2;
-}
+  .key {
+    color: #268bd2;
+  }
 
-.number {
-  color: #d33682;
-}
+  .number {
+    color: #d33682;
+  }
 
-.string {
-  color: #2aa198;
-}
+  .string {
+    color: #2aa198;
+  }
 
-.bool, .null {
-  color: #b58900;
-}
+  .bool, .null {
+    color: #b58900;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #01313f;
-}
+  #gutter {
+    background: #01313f;
+  }
 
-[line-number]:before {
-  color: #d0edf7;
-}
+  [line-number]:before {
+    color: #d0edf7;
+  }
 
-.collapsed:after {
-  font-style: italic;
-  color: #657b83;
+  .collapsed:after {
+    font-style: italic;
+    color: #657b83;
+  }
 }

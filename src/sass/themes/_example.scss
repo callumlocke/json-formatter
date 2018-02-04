@@ -1,0 +1,22 @@
+body.theme-example {
+
+  ::selection {}
+
+  .key {}
+
+  .number {}
+
+  .string {}
+
+  .bool {}
+
+  .null {}
+
+  .brace {}
+
+  #gutter {}
+
+  [line-number]:before {}
+
+  .collapsed:after {}
+}

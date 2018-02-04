@@ -1,43 +1,43 @@
-$foreground: #e6e1dc;
+body.theme-merbivore {
+  $foreground: #e6e1dc;
 
-body {
   background-color: #161616;
   color: $foreground;
-}
 
-::selection {
-  background-color: #454545;
-}
+  ::selection {
+    background-color: #454545;
+  }
 
-.key {
-  color: $foreground;
-}
+  .key {
+    color: $foreground;
+  }
 
-.number {
-  color: #58c554;
-}
+  .number {
+    color: #58c554;
+  }
 
-.string {
-  color: #8dff0a;
-}
+  .string {
+    color: #8dff0a;
+  }
 
-.bool, .null {
-  color: #fdc251;
-}
+  .bool, .null {
+    color: #fdc251;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #202020;
-}
+  #gutter {
+    background: #202020;
+  }
 
-[line-number]:before {
-  color: $foreground;
-}
+  [line-number]:before {
+    color: $foreground;
+  }
 
-.collapsed:after {
-  font-style: italic;
-  color: #ad2ea4;
+  .collapsed:after {
+    font-style: italic;
+    color: #ad2ea4;
+  }
 }

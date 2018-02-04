@@ -1,45 +1,45 @@
-$foreground: #e6e1dc;
+body.theme-chaos {
+  $foreground: #e6e1dc;
 
-body {
   background-color: #161616;
   color: $foreground;
-}
 
-::selection {
-  background-color: #494836;
-}
+  ::selection {
+    background-color: #494836;
+  }
 
-.key {
-  color: #974;
-}
+  .key {
+    color: #974;
+  }
 
-.number {
-  color: #58c554;
-}
+  .number {
+    color: #58c554;
+  }
 
-.string {
-  color: #58c554;
-}
+  .string {
+    color: #58c554;
+  }
 
-.bool, .null {
-  color: #fdc251;
-}
+  .bool, .null {
+    color: #fdc251;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #141414;
-  border-right: 1px solid #282828;
+  #gutter {
+    background: #141414;
+    border-right: 1px solid #282828;
 
-}
+  }
 
-[line-number]:before {
-  color: #595959;
-}
+  [line-number]:before {
+    color: #595959;
+  }
 
-.collapsed:after {
-  font-style: italic;
-  color: #555;
+  .collapsed:after {
+    font-style: italic;
+    color: #555;
+  }
 }

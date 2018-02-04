@@ -12,6 +12,7 @@ browser.storage.local.set({appVersion: browser.runtime.getManifest().version});
 listen((port, msg) => {
   let jsonpFunctionName = null;
   let validJsonText;
+  let tab = port.sender.tab;
 
   if (msg.type === 'SENDING TEXT') {
     // Try to parse as JSON
@@ -79,9 +80,10 @@ listen((port, msg) => {
     }
 
     // If still running, we now have obj, which is valid JSON.
+    browser.tabs.insertCSS(tab.id, {code: require('../sass/content.scss')});
 
     // Ensure it's not a number or string (technically valid JSON, but no point prettifying it)
-    if (typeof obj !== 'object' && typeof obj !== 'array') {
+    if (typeof obj !== 'object') {
       port.postMessage(['NOT JSON', 'technically JSON but not an object or array']);
       port.disconnect();
       return;
@@ -101,5 +103,7 @@ listen((port, msg) => {
     browser.storage.sync.set({theme: msg.theme}, () => {
       port.postMessage({type: 'STORED THEME', themeName: msg.theme});
     });
+  } else if (msg.type === 'INSERT CSS') {
+    browser.tabs.insertCSS(tab.id, {code: msg.code});
   }
 });

@@ -1,39 +1,39 @@
-$foreground: #fcffe0;
+body.theme-krTheme {
+  $foreground: #fcffe0;
 
-body {
   background-color: #0b0a09;
   color: $foreground;
-}
 
-::selection {
-  background-color: transparentize(#a0f, 0.55);
-}
+  ::selection {
+    background-color: transparentize(#a0f, 0.55);
+  }
 
-.key {
-  color: #d1a796;
-}
+  .key {
+    color: #d1a796;
+  }
 
-.number, .bool, .null {
-  color: transparentize(#d27518, 0.24);
-}
+  .number, .bool, .null {
+    color: transparentize(#d27518, 0.24);
+  }
 
-.string {
-  color: transparentize(#a4a1b5, 0.2);
-}
+  .string {
+    color: transparentize(#a4a1b5, 0.2);
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #1c1917;
-}
+  #gutter {
+    background: #1c1917;
+  }
 
-[line-number]:before {
-  color: $foreground;
-}
+  [line-number]:before {
+    color: $foreground;
+  }
 
-.collapsed:after {
-  font-style: italic;
-  color: #706d5b;
+  .collapsed:after {
+    font-style: italic;
+    color: #706d5b;
+  }
 }

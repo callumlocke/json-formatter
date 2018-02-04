@@ -1,38 +1,38 @@
-$foreground: #dedede;
+body.theme-terminal {
+  $foreground: #dedede;
 
-body {
   background-color: black;
   color: $foreground;
-}
 
-::selection {
-  background-color: #424242;
-}
+  ::selection {
+    background-color: #424242;
+  }
 
-.key {
-  color: #d54e53;
-}
+  .key {
+    color: #d54e53;
+  }
 
-.number, .bool, .null {
-  color: #e78c45;
-}
+  .number, .bool, .null {
+    color: #e78c45;
+  }
 
-.string {
-  color: #b9ca4a;
-}
+  .string {
+    color: #b9ca4a;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #1a0005;
-}
+  #gutter {
+    background: #1a0005;
+  }
 
-[line-number]:before {
-  color: steelblue;
-}
+  [line-number]:before {
+    color: steelblue;
+  }
 
-.collapsed:after {
-  color: orangered;
+  .collapsed:after {
+    color: orangered;
+  }
 }

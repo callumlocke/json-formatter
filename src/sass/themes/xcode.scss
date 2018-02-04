@@ -1,38 +1,38 @@
-$foreground: black;
+body.theme-xcode {
+  $foreground: black;
 
-body {
   background-color: white;
   color: $foreground;
-}
 
-::selection {
-  background: #b5d5ff;
-}
+  ::selection {
+    background: #b5d5ff;
+  }
 
-.number {
-  color: #3a00dc;
-}
+  .number {
+    color: #3a00dc;
+  }
 
-.string {
-  color: #df0002;
-}
+  .string {
+    color: #df0002;
+  }
 
-.bool, .null {
-  color: #c800a4;
-}
+  .bool, .null {
+    color: #c800a4;
+  }
 
-.brace {
-  color: $foreground;
-}
+  .brace {
+    color: $foreground;
+  }
 
-#gutter {
-  background: #e8e8e8;
-}
+  #gutter {
+    background: #e8e8e8;
+  }
 
-[line-number]:before {
-  color: #333;
-}
+  [line-number]:before {
+    color: #333;
+  }
 
-.collapsed:after {
-  color: #008e00;
+  .collapsed:after {
+    color: #008e00;
+  }
 }
