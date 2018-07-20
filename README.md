@@ -32,8 +32,7 @@ Installation
 
 **Some URLs to try it on:**
 
-* http://feeds.delicious.com/v2/json/popular?callback=hello
-* http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?alt=json&v=2
+* https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22
 * http://twitter.com/statuses/public_timeline.json
 
 FAQ
