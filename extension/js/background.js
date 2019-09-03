@@ -171,7 +171,7 @@
 			break;
 		  
 		case 'k':
-			span.className += " hljs hljs-attr";
+			span.className += " hljs-attr";
 			break;
 			
 		case 's':
@@ -183,7 +183,7 @@
 			break;
 			
 		//case 'e':
-		//	span.className += " hljs-bullet";
+		//	span.className += " hljs-comment";
 		//	break;
 			
 		case 'nl':
