@@ -171,7 +171,7 @@
 			break;
 		  
 		case 'k':
-			span.className += " hljs-attr";
+			span.className += " hljs hljs-attr";
 			break;
 			
 		case 's':
