@@ -153,8 +153,7 @@
         baseSpan = document.createElement('span') ;
     
     function getSpanBoth(innerText,className) {
-      var span = baseSpan.cloneNode(false) ;
-      span.className = className ;
+      var span = getSpanClass(className);
       span.innerText = innerText ;
       return span ;
     }
@@ -164,8 +163,35 @@
       return span ;
     }
     function getSpanClass(className) {
-      var span = baseSpan.cloneNode(false) ;
-      span.className = className ;
+      var span = baseSpan.cloneNode(false);
+      span.className = className;
+	  switch(className)
+	  {
+		  default:
+			break;
+		  
+		case 'k':
+			span.className += " hljs-attr";
+			break;
+			
+		case 's':
+			span.className += " hljs-string";
+			break;
+			
+		case 'n':
+			span.className += " hljs-number";
+			break;
+			
+		//case 'e':
+		//	span.className += " hljs-bullet";
+		//	break;
+			
+		case 'nl':
+		case 'bl': 
+			span.className += " hljs-literal";
+			break;
+	  }
+	  
       return span ;
     }
 
@@ -238,14 +264,16 @@
       // If there's a key, add that before the value
         if (keyName !== false) { // NB: "" is a legal keyname in JSON
           // This kvov must be an object property
-            kvov.classList.add('objProp') ;
+            kvov.classList.add('objProp');
+			
           // Create a span for the key name
             keySpan = templates.t_key.cloneNode(false) ;
-            keySpan.textContent = JSON.stringify(keyName).slice(1,-1) ; // remove quotes
+            //keySpan.textContent = JSON.stringify(keyName).slice(1,-1) ; // remove quotes
+			keySpan.textContent = JSON.stringify(keyName);
           // Add it to kvov, with quote marks
-            kvov.appendChild(templates.t_dblqText.cloneNode(false)) ;
+            //kvov.appendChild(templates.t_dblqText.cloneNode(false)) ;
             kvov.appendChild( keySpan ) ;
-            kvov.appendChild(templates.t_dblqText.cloneNode(false)) ;
+            //kvov.appendChild(templates.t_dblqText.cloneNode(false)) ;
           // Also add ":&nbsp;" (colon and non-breaking space)
             kvov.appendChild( templates.t_colonAndSpace.cloneNode(false) ) ;
         }

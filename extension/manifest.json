@@ -13,7 +13,12 @@
     "scripts": ["js/background.js"]
   },
   "content_scripts": [
-    { "matches": ["<all_urls>"], "js": ["js/content.js"], "run_at": "document_start" }
+    { 
+		"matches": ["<all_urls>"], 
+		"js": ["js/content.js"], 
+		"run_at": "document_start"
+	}
   ],
+  "web_accessible_resources": ["styles/*"],
   "permissions":["*://*/*", "<all_urls>"]
 }
