@@ -13,7 +13,16 @@
     "scripts": ["js/background.js"]
   },
   "content_scripts": [
-    { "matches": ["<all_urls>"], "js": ["js/content.js"], "run_at": "document_start" }
+    { 
+		"matches": ["<all_urls>"], 
+		"js": ["js/content.js"], 
+		"run_at": "document_start"
+	}
   ],
-  "permissions":["*://*/*", "<all_urls>"]
+  "web_accessible_resources": ["styles/*"],
+  "permissions":["*://*/*", "<all_urls>", "storage"],
+  "browser_action": 
+  {
+	"default_popup": "options.html"
+  }
 }
