@@ -222,7 +222,7 @@
         bodyChildren.length !== 1 ||
         pre.tagName !== 'PRE' ||
         jsonLength > (3000000) ) {
-
+          alert('Cannot format JSON: Text is not even or longer than 3MB.')
         // console.log('Not even text (or longer than 3MB); exiting') ;
         // console.log(bodyChildren.length,pre.tagName, pre.innerText.length) ;
 
