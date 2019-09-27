@@ -220,9 +220,7 @@
       var jsonLength = (pre && pre.innerText || "").length ;
       if (
         bodyChildren.length !== 1 ||
-        pre.tagName !== 'PRE' ||
-        jsonLength > (3000000) ) {
-          alert('Cannot format JSON: Text is not even or longer than 3MB.')
+        pre.tagName !== 'PRE') {
         // console.log('Not even text (or longer than 3MB); exiting') ;
         // console.log(bodyChildren.length,pre.tagName, pre.innerText.length) ;
 
@@ -230,6 +228,10 @@
           port.disconnect() ;
         
         // EXIT POINT: NON-PLAIN-TEXT PAGE (or longer than 3MB)
+      }
+      else if (jsonLength > (300000)) {
+        alert('JSON Formatter Error: Cannot format JSON longer than 3MB')
+        port.disconnect();
       }
       else {
         // This is a 'plain text' page (just a body with one PRE child).
