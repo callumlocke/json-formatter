@@ -220,11 +220,11 @@
       var jsonLength = (pre && pre.innerText || "").length ;
       if (
         bodyChildren.length !== 1 ||
-        pre.tagName !== 'PRE' ||  jsonLength > (3000000)) ) {
+        pre.tagName !== 'PRE' ||  jsonLength > (3000000)) {
         // console.log('Not even text (or longer than 3MB); exiting') ;
         // console.log(bodyChildren.length,pre.tagName, pre.innerText.length) ;
         if (jsonLength) {
-            alert('JSON Formatter Error: Cannot format JSON longer than 3MB')
+            alert('JSON Formatter Error: Cannot format JSON longer than 3MB');
         }
         // Disconnect the port (without even having used it)
           port.disconnect() ;
