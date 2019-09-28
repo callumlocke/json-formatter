@@ -220,18 +220,16 @@
       var jsonLength = (pre && pre.innerText || "").length ;
       if (
         bodyChildren.length !== 1 ||
-        pre.tagName !== 'PRE') {
+        pre.tagName !== 'PRE' ||  jsonLength > (3000000)) ) {
         // console.log('Not even text (or longer than 3MB); exiting') ;
         // console.log(bodyChildren.length,pre.tagName, pre.innerText.length) ;
-
+        if (jsonLength) {
+            alert('JSON Formatter Error: Cannot format JSON longer than 3MB')
+        }
         // Disconnect the port (without even having used it)
           port.disconnect() ;
         
         // EXIT POINT: NON-PLAIN-TEXT PAGE (or longer than 3MB)
-      }
-      else if (jsonLength > (3000000)) {
-        alert('JSON Formatter Error: Cannot format JSON longer than 3MB')
-        port.disconnect();
       }
       else {
         // This is a 'plain text' page (just a body with one PRE child).
