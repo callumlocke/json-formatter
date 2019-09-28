@@ -115,13 +115,9 @@ function insertFormatOptionBar() {
 function ready() {
   // First, check if it's plain text and exit if not
   const plainText = getTextFromTextOnlyDocument();
-  if (!plainText) {
-    port.disconnect();
-    return;
-  }
-  // Second, check if length is larger than 3MB
-  if (plainText.length > 3000000) {
-    alert('JSON Formatter Error: Cannot parse JSON larger than 3MB');
+  if (!plainText || plainText.length > 300000) {
+    // If there is plain text and it's over 3MB, send alert
+    plainText && alert('JSON Formatter Error: Cannot parse JSON larger than 3MB');
     port.disconnect();
     return;
   }
