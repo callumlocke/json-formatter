@@ -87,6 +87,12 @@ listen((port, msg) => {
       port.postMessage(['NOT JSON', 'technically JSON but not an object or array']);
       port.disconnect();
       return;
+    } 
+    // If there's an empty object or array, return JSON as is
+    else if (Object.entries(obj).length === 0 || obj.length === 0) {
+      port.postMessage(['NOT JSON', 'empty object or array']);
+      port.disconnect();
+      return;
     }
 
     // And send it the message to confirm that we're now formatting (so it can show a spinner)
