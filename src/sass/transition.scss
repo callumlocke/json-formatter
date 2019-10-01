@@ -1,0 +1,50 @@
+@mixin transition {
+  transition-property: background-color, color;
+  transition-duration: 500ms;
+  transition-delay: 0s;
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+body {
+  @include transition;
+}
+
+::selection {
+  @include transition;
+}
+
+.key {
+  @include transition;
+}
+
+.number {
+  @include transition;
+}
+
+.string {
+  @include transition;
+}
+
+.bool {
+  @include transition;
+}
+
+.null {
+  @include transition;
+}
+
+.brace {
+  @include transition;
+}
+
+#gutter {
+  @include transition;
+}
+
+[line-number]:before {
+  @include transition;
+}
+
+.collapsed:after {
+  @include transition;
+}

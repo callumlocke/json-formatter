@@ -1,0 +1,39 @@
+body.theme-gob {
+  $foreground: #0f0;
+
+  background-color: #0b0b0b;
+  color: $foreground;
+
+  ::selection {
+    background-color: transparentize(#ddf0ff, 0.80);
+  }
+
+  .key {
+    color: #00f868;
+  }
+
+  .string {
+    color: #10f060;
+  }
+
+  .bool, .null {
+    color: #10f0a0;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #0b1818;
+  }
+
+  [line-number]:before {
+    color: #03ee03;
+  }
+
+  .collapsed:after {
+    font-style: italic;
+    color: #00e060;
+  }
+}

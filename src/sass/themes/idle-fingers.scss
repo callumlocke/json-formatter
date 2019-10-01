@@ -1,0 +1,39 @@
+body.theme-idleFingers {
+  $foreground: white;
+
+  background-color: #323232;
+  color: $foreground;
+
+  ::selection {
+    background-color: transparentize(#5a647e, 0.12);
+  }
+
+  .key {
+    color: $foreground;
+  }
+
+  .number, .bool, .null {
+    color: #6c99bb;
+  }
+
+  .string {
+    color: #a5c261;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #3b3b3b;
+  }
+
+  [line-number]:before {
+    color: #999;
+  }
+
+  .collapsed:after {
+    font-style: italic;
+    color: #bc9458;
+  }
+}

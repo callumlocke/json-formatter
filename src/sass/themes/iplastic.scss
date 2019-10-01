@@ -1,0 +1,41 @@
+body.theme-iplastic {
+  $foreground: #333;
+
+  background-color: #eee;
+  color: $foreground;
+
+  ::selection {
+    background-color: #bad6fd;
+  }
+
+  .key {
+    color: #36c;
+    font-style: italic;
+  }
+
+  .number, .bool, .null {
+    color: #06f;
+    font-weight: 700;
+  }
+
+  .string {
+    color: #a55f03;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #ddd;
+  }
+
+  [line-number]:before {
+    color: #666;
+  }
+
+  .collapsed:after {
+    color: #777;
+    font-style: italic;
+  }
+}

@@ -1,0 +1,252 @@
+body {
+  user-select: text;
+  overflow-x: hidden;
+  overflow-y: scroll !important;
+  margin: 0;
+  position: relative;
+}
+
+#formatOptionBar {
+  right: 0.7rem;
+}
+
+#themeOptionBar {
+  right: 11.3rem;
+}
+
+.optionBar {
+  user-select: none;
+  display: block;
+  position: absolute;
+  top: 0.7rem;
+  font: 13px "Lucida Grande", "Segoe UI", "Tahoma";
+
+  button, select {
+    border-radius: 0.1rem;
+    box-shadow: 0 0.05rem 0.2rem rgba(0, 0, 0, 0.1);
+    user-select: none;
+    background: linear-gradient(#fafafa, #f4f4f4 40%, #e5e5e5);
+    border: 1px solid #aaa;
+    color: #444;
+    font-size: 12px;
+    margin-bottom: 0;
+    min-width: 4rem;
+    padding: 0.2rem 0;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    height: 1.5rem;
+    text-shadow: 0.05rem 0.05rem rgba(255, 255, 255, 0.3);
+
+    &:not(:only-child) {
+      &:last-child {
+        margin-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &:first-child {
+        margin-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 0.05rem 0.2rem rgba(0, 0, 0, 0.2);
+      background: #ebebeb linear-gradient(#fefefe, #f8f8f8 40%, #e9e9e9);
+      border-color: #999;
+      color: #222;
+    }
+
+    &:active {
+      box-shadow: inset 0 0.05rem 0.2rem rgba(0, 0, 0, 0.2);
+      background: #ebebeb linear-gradient(#f4f4f4, #efefef 40%, #dcdcdc);
+      color: #333;
+    }
+
+    &.selected {
+      box-shadow: inset 0 0.05rem 0.3rem rgba(0, 0, 0, 0.2);
+      background: #ebebeb linear-gradient(#e4e4e4, #dfdfdf 40%, #dcdcdc);
+      color: #333;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  button {
+    width: 5rem;
+  }
+
+  select {
+    width: 9.1rem;
+
+    &::-ms-expand {
+      background: none;
+    }
+  }
+}
+
+#jsonpOpener,
+#jsonpCloser {
+  margin-left: -1rem;
+}
+
+#gutter {
+  position: absolute;
+  user-select: none;
+  left: 0;
+  height: 100%;
+}
+
+#formattedJson {
+  position: relative;
+  padding-left: 1.45rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  word-wrap: break-word;
+}
+
+pre {
+  white-space: normal;
+  padding: 2.25rem 0.3rem 0.3rem;
+}
+
+.keyValueOrValue {
+  display: block;
+  padding-left: 1.25rem;
+  margin-left: -1.25rem;
+}
+
+:not(.collapsed) > [line-number] {
+  &:before {
+    content: attr(line-number);
+    position: absolute;
+    right: calc(100% + 0.6rem);
+    margin-top: 0.1rem;
+  }
+}
+
+.collapsed {
+  white-space: nowrap;
+
+  & > .blockInner {
+    display: none;
+  }
+
+  & > .ellipsis:after {
+    content: "…";
+    font-weight: bold;
+  }
+
+  & > .ellipsis {
+    margin: 0 0.25rem;
+    color: #888;
+  }
+
+  .keyValueOrValue {
+    display: inline;
+  }
+}
+
+.expander {
+  float: left;
+  margin-left: -1.05rem;
+  margin-right: 0.25rem;
+  font-size: 24px;
+  z-index: 5;
+  opacity: 0.15;
+  cursor: pointer;
+
+  &:before {
+    display: inline;
+    content: '▾';
+    user-select: none;
+  }
+
+  .collapsed > &:before {
+    content: '▸';
+  }
+
+  &:hover {
+    opacity: 0.35;
+  }
+  &:active {
+    opacity: 0.5;
+  }
+
+  /* .expanders that are *inside* the children of a collapsed one */
+  .collapsed .keyValueOrValue & {
+    display: none;
+  }
+}
+
+.blockInner {
+  display: block;
+  padding-left: 1.5rem;
+  border-left: 0.05rem dotted #bbb;
+  margin-left: 0.1rem;
+}
+
+/* SYNTAX HIGHLIGHTING */
+
+#formattedJson, #jsonpOpener, #jsonpCloser, pre {
+  font: 13px/1.1rem monospace;
+}
+
+.string {
+  word-wrap: break-word;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
+#formattingMsg {
+  font: 13px "Lucida Grande", "Segoe UI", "Tahoma";
+  padding: 0.6rem 0 0 0.5rem;
+  margin: 0;
+}
+
+#formattingMsg > svg {
+  margin: 0 0.45rem;
+  position: relative;
+  top: 0.05rem;
+}
+
+/* Misc */
+[hidden] {
+  display: none !important;
+}
+
+span {
+  white-space: pre-wrap;
+}
+
+/* Spinner */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#spinner {
+  animation: spin 2s infinite;
+}
+
+* {
+  font-smoothing: antialiased;
+}
+
+@import 'themes/all';

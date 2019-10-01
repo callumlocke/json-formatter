@@ -1,0 +1,42 @@
+body.theme-cloudsMidnight {
+  $foreground: #929292;
+
+  background-color: #191919;
+  color: $foreground;
+
+  ::selection {
+    background-color: black;
+  }
+
+  .key {
+    color: $foreground;
+  }
+
+  .number {
+    color: #46a609;
+  }
+
+  .string {
+    color: #5d90cd;
+  }
+
+  .bool, .null {
+    color: #39946a;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #232323;
+  }
+
+  [line-number]:before {
+    color: $foreground;
+  }
+
+  .collapsed:after {
+    color: #3c403b;
+  }
+}

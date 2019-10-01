@@ -1,0 +1,42 @@
+body.theme-textmate {
+  $foreground: black;
+
+  background-color: #fff;
+  color: $foreground;
+
+  ::selection {
+    background-color: #b5d5ff;
+  }
+
+  .key {
+    color: #318495;
+  }
+
+  .number {
+    color: #0000cd;
+  }
+
+  .string {
+    color: #036a07;
+  }
+
+  .bool, .null {
+    color: #585cf6;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #f0f0f0;
+  }
+
+  [line-number]:before {
+    color: #333;
+  }
+
+  .collapsed:after {
+    color: #4c886b;
+  }
+}

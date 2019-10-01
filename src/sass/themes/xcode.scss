@@ -1,0 +1,38 @@
+body.theme-xcode {
+  $foreground: black;
+
+  background-color: white;
+  color: $foreground;
+
+  ::selection {
+    background: #b5d5ff;
+  }
+
+  .number {
+    color: #3a00dc;
+  }
+
+  .string {
+    color: #df0002;
+  }
+
+  .bool, .null {
+    color: #c800a4;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #e8e8e8;
+  }
+
+  [line-number]:before {
+    color: #333;
+  }
+
+  .collapsed:after {
+    color: #008e00;
+  }
+}

@@ -1,4 +1,4 @@
-compass_app_log.txt
-/dist/
+/.idea/
+/build/
+/release/
 /node_modules/
-/.sass-cache/

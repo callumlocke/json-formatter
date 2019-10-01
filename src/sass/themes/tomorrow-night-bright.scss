@@ -1,0 +1,38 @@
+body.theme-tomorrowNightBright {
+  $foreground: #dedede;
+
+  background-color: #000;
+  color: $foreground;
+
+  ::selection {
+    background-color: #424242;
+  }
+
+  .key {
+    color: #d54e53;
+  }
+
+  .number, .bool, .null {
+    color: #e78c45;
+  }
+
+  .string {
+    color: #b9ca4a;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #1a1a1a;
+  }
+
+  [line-number]:before {
+    color: $foreground;
+  }
+
+  .collapsed:after {
+    color: #969896;
+  }
+}

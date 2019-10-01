@@ -1,0 +1,43 @@
+body.theme-merbivoreSoft {
+  $foreground: #e6e1dc;
+
+  background-color: #1c1c1c;
+  color: $foreground;
+
+  ::selection {
+    background-color: #494949;
+  }
+
+  .key {
+    color: $foreground;
+  }
+
+  .number {
+    color: #7fc578;
+  }
+
+  .string {
+    color: #8ec65f;
+  }
+
+  .bool, .null {
+    color: #e1c582;
+  }
+
+  .brace {
+    color: $foreground;
+  }
+
+  #gutter {
+    background: #262424;
+  }
+
+  [line-number]:before {
+    color: $foreground;
+  }
+
+  .collapsed:after {
+    font-style: italic;
+    color: #ac4bb8;
+  }
+}
