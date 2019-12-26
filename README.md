@@ -1,3 +1,10 @@
+## This project is no longer maintained. A fork of this project is now maintained here:
+
+* Githuib: https://github.com/nikrolls/json-formatter
+* Chrome Store: https://chrome.google.com/webstore/detail/json-formatter/mhimpmpmffogbmmkmajibklelopddmjf?hl=en 
+
+----
+
 JSON Formatter
 ==============
 
