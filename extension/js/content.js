@@ -43,7 +43,7 @@
       slowAnalysisTimeout,
       port,
       startTime = +(new Date()),
-      domReadyTime,
+      //domReadyTime,
       isJsonTime,
       exitedNotJsonTime,
       displayedFormattedJsonTime
@@ -211,10 +211,14 @@
 
 
   function ready () {
-    
-    domReadyTime = Date.now() ;
-      
-    // First, check if it's a PRE and exit if not
+      if (! document.body) { // SVG document doesn't have a body
+          port.disconnect() ;
+          return;
+      }
+
+      //domReadyTime = Date.now() ;
+
+      // First, check if it's a PRE and exit if not
       var bodyChildren = document.body.childNodes ;
       pre = bodyChildren[0] ;
       var jsonLength = (pre && pre.innerText || "").length ;
