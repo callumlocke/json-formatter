@@ -267,6 +267,7 @@
                 var innerStringA = document.createElement('A') ;
                 innerStringA.href = value ;
                 innerStringA.innerText = escapedString ;
+                innerStringA.target = '_blank';
                 innerStringEl.appendChild(innerStringA) ;
               }
               else {
