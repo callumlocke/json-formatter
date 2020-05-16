@@ -233,3 +233,70 @@ span {
 * {
   -webkit-font-smoothing: antialiased;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #e7e6e5;
+    background-color: #191a1a;
+  }
+
+  button.selected {
+    color: #D5D3D0;
+    background-color: #1F2020;
+  }
+
+  #buttonFormatted, #buttonPlain {
+    background: -webkit-linear-gradient(#1a1a1a, #141414 40%, #252525);
+    color: #e7e6e5;
+  }
+  
+  #buttonFormatted:hover, #buttonPlain:hover {
+    background: #ebebeb -webkit-linear-gradient(#2e2e2e, #282828 40%, #393939);
+    border-color: #999;
+    color: #D5D3D0;
+  }
+  
+  #buttonFormatted:active,
+  #buttonPlain:active {
+    background: #ebebeb -webkit-linear-gradient(#f4f4f4, #efefef 40%, #dcdcdc);
+    color: #333;
+  }
+  
+  #buttonFormatted.selected,
+  #buttonPlain.selected {
+    background: #ebebeb -webkit-linear-gradient(#e4e4e4, #dfdfdf 40%, #dcdcdc);
+    color: #333;
+  }
+  
+  #jsonpOpener,
+  #jsonpCloser {
+    color: #E7E6E5 ;
+  }
+      
+  /* SYNTAX HIGHLIGHTING */
+  
+    #formattedJson, #jsonpOpener, #jsonpCloser {
+      color: #E7E6E5 ;
+    }
+  
+    #formattedJson {
+      color: #444 ;
+    }
+    .s {
+      color: #B8EFB2 ;
+    }
+    a:hover, a:active {
+      color: #050 ;
+    }
+    .bl, .nl, .n { /* bool, null, number */
+      color: #655AB0 ;
+    }
+    .k { /* key */
+      color: #E7E6E5 ;
+    }
+  
+  #formattingMsg {
+    color: #333 ;
+  }
+
+}
