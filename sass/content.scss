@@ -280,8 +280,9 @@ span {
     }
   
     #formattedJson {
-      color: #444 ;
+      color: #E7E6E5 ;
     }
+
     .s {
       color: #B8EFB2 ;
     }
@@ -294,9 +295,12 @@ span {
     .k { /* key */
       color: #E7E6E5 ;
     }
+    .e {
+      background-image: url("blob:http://localhost:8080/3d0970c7-82a2-43d1-9b7a-3971819b79d4") ;
+    }
   
   #formattingMsg {
-    color: #333 ;
+    color: #E7E6E5 ;
   }
 
 }
