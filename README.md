@@ -31,10 +31,9 @@ Installation
 * select the `extension` folder in this repo.
 
 **Some URLs to try it on:**
-
-* http://feeds.delicious.com/v2/json/popular?callback=hello
-* http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?alt=json&v=2
-* http://twitter.com/statuses/public_timeline.json
+* https://api.github.com/users/mralexgray/repos
+* https://api.rawg.io/api/games
+* https://jsonplaceholder.typicode.com/todos/1
 
 FAQ
 ---
