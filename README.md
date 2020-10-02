@@ -56,3 +56,4 @@ Plain JavaScript objects are [unordered collections of properties](http://www.ec
 ##### But I just want it to be in order for readability
 
 That would require manually parsing the JSON string with regular expressions (instead of using `JSON.parse`), which would be too slow. And it's not a good idea to go down the road of representing the data differently from how the engine actually sees it.
+If you want to get in order for readability you should have patience.
