@@ -312,7 +312,7 @@
       elements[i].classList.remove('collapsed') ;
   }
 
-  var mac = navigator.platform.indexOf('Mac') !== -1,
+  var mac = navigator.userAgentData.platform.indexOf('macOS') !== -1,
       modKey ;
   if (mac)
     modKey = function (ev) {
