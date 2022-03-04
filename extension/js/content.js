@@ -312,16 +312,10 @@
       elements[i].classList.remove('collapsed') ;
   }
 
-  var mac = navigator.platform.indexOf('Mac') !== -1,
-      modKey ;
-  if (mac)
-    modKey = function (ev) {
-      return ev.metaKey ;
-    } ;
-  else
-    modKey = function (ev) {
-      return ev.ctrlKey ;
-    } ;
+  function modKey(ev) {
+    // accept either mac or windows/linux modifiers
+    return ev.metaKey || ev.ctrlKey ;
+  }
 
   function generalClick(ev) {
     // console.log('click', ev) ;
