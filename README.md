@@ -32,9 +32,9 @@ Installation
 
 **Some URLs to try it on:**
 
-* http://feeds.delicious.com/v2/json/popular?callback=hello
-* http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?alt=json&v=2
-* http://twitter.com/statuses/public_timeline.json
+* http://date.jsontest.com/
+* https://api.github.com/users/callumlocke/repos
+* https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
 
 FAQ
 ---
