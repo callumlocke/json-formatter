@@ -74,7 +74,7 @@
             clearTimeout(slowAnalysisTimeout) ;
 
           // force to light theme until a dark mode version is created
-            document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
+            document.querySelector('meta[name="color-scheme"]')?.setAttribute("content", "light");
           
           // Insert CSS
             jfStyleEl = document.createElement('style') ;
