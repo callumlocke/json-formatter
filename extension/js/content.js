@@ -74,7 +74,18 @@
             clearTimeout(slowAnalysisTimeout) ;
 
           // force to light theme until a dark mode version is created
-            document.querySelector('meta[name="color-scheme"]').setAttribute("content", "light");
+            try {
+              let meta = document.querySelector('meta[name="color-scheme"]')
+              if (!meta) {
+                meta = document.createElement('meta')
+                meta.setAttribute("name", "color-scheme")
+                document.head.appendChild(meta)
+              }
+
+              meta.setAttribute("content", "only light");
+            } catch (error) {
+              console.warn('Failed to force light color scheme', error)
+            }
           
           // Insert CSS
             jfStyleEl = document.createElement('style') ;
