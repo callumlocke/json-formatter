@@ -233,3 +233,30 @@ span {
 * {
   -webkit-font-smoothing: antialiased;
 }
+
+@media (prefers-color-scheme: dark) {
+  #jsonpCloser {
+    color: white ;
+  }
+  #formattedJson, #jsonpOpener, #jsonpCloser {
+    color: #ddd ;
+  }
+
+  #formattedJson {
+    color: #ccc ;
+  }
+  .s {
+    color: #5F5 ;
+  }
+  a:hover, a:active {
+    text-decoration: underline ;
+    color: #8F8 ;
+  }
+  .bl, .nl, .n { /* bool, null, number */
+    font-weight: bold ;
+    color: #A8F ;
+  }
+  .k{
+    color: white
+  }
+}
