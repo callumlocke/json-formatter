@@ -6,7 +6,6 @@
 .kvov {
   display: block;
 }
-
 .b,
 .bl,
 .n,
@@ -19,6 +18,7 @@ body {
   overflow-y: scroll !important;
   margin: 0;
   position: relative;
+  background-color: #1e1e1e !important;
 }
 
 #optionBar {
@@ -45,6 +45,11 @@ body {
   display: inline-block;
   width: 80px;
   text-shadow: 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.colon,
+.comma-c {
+  color: #fff;
 }
 
 #buttonFormatted {
@@ -74,6 +79,7 @@ body {
   background: -webkit-linear-gradient(#f4f4f4, #efefef 40%, #dcdcdc) #ebebeb;
   color: #333;
 }
+
 #buttonFormatted.selected,
 #buttonPlain.selected {
   -webkit-box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -91,7 +97,6 @@ body {
   padding: 4px 0 0 8px;
   margin-bottom: -6px;
 }
-
 #jsonpCloser {
   margin-top: 0;
 }
@@ -104,6 +109,7 @@ pre {
   padding-left: 20px;
   margin-left: -20px;
   position: relative;
+  color: #9cdcfe !important;
 }
 
 .collapsed {
@@ -124,7 +130,6 @@ pre {
   margin: 0 4px;
   color: #888;
 }
-
 .collapsed .kvov {
   display: inline;
 }
@@ -177,30 +182,35 @@ pre {
   color: #444;
 }
 
+.b {
+  color: #fff !important;
+}
+
 .s {
-  color: #0b7500;
+  color: #ce9178;
   word-wrap: break-word;
 }
 
 a:link,
 a:visited {
-  text-decoration: none;
+  text-decoration: underline;
   color: inherit;
 }
 
 a:active,
 a:hover {
   text-decoration: underline;
-  color: #050;
+  color: #4e94ce;
 }
 
 .bl,
 .n,
 .nl {
-  color: #1a01cc;
+  color: #569cd6;
 }
+
 .k {
-  color: #000 !important;
+  color: #9cdcfe !important;
 }
 
 #formattingMsg {
