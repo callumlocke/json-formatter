@@ -92,9 +92,6 @@
           );
         }
 
-        if (matched) console.log("Currently in dark mode");
-        else console.log("Currently not in dark mode");
-
         // Add custom font name if set - FROM FUTURE
         // if (typeof settings.fontName === 'string') {
         //   jfStyleEl.insertAdjacentHTML(
