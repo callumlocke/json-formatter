@@ -317,17 +317,18 @@
           // Create blockInner (which indents) (don't attach yet)
           blockInner = templates.t_blockInner.cloneNode(false);
           // For each key/value pair, add the markup
-          let comma = document.createElement("span");
           for (
-            let i = 0, length = value.length, lastIndex = length - 1;
+            let i = 0, length = value.length, lastIndex = length - 1, comma;
             i < length;
             i++
           ) {
             // Make a new kvov, with no key
             childKvov = getKvovDOM(value[i], false);
-            comma.classList.add("comma-c");
+            
             // Add comma if not last one
             if (i < lastIndex) {
+              comma = document.createElement("span");
+              comma.classList.add("comma-c");
               comma.appendChild(templates.t_commaText.cloneNode());
               childKvov.appendChild(comma);
             }
