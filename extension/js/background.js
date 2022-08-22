@@ -283,6 +283,9 @@
             // Simply add a number element (span.n)
               valueElement = templates.t_number.cloneNode(false) ;
               valueElement.innerText = value ;
+              if (value > 631152000000 && value < 4070908800000) {
+                valueElement.title = (new Date(value)).toString();
+              }
               kvov.appendChild(valueElement) ;
             break ;
           
