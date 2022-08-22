@@ -233,7 +233,7 @@
       pre = bodyChildren[0] ;
       var jsonLength = (pre && pre.innerText || "").length ;
       if (
-        bodyChildren.length !== 1 ||
+        bodyChildren.length > 2 ||
         pre.tagName !== 'PRE' ||
         jsonLength > (3000000) ) {
 
