@@ -121,6 +121,10 @@
       return str.join('').slice(2, -2);
     }
 
+    function removeTypeofGuard(s) {
+      return s.replace(/^typeof \S+ === 'function' && /, '');
+    }
+
     function firstJSONCharIndex(s) {
       var arrayIdx = s.indexOf('['),
           objIdx = s.indexOf('{'),
@@ -434,6 +438,7 @@
                 
                 // Get the substring up to the first "(", with any comments/whitespace stripped out
                   var firstBit = removeComments( text.substring(0,indexOfParen) ).trim() ;
+                  firstBit = removeTypeofGuard(firstBit);
                   if ( ! firstBit.match(/^[a-zA-Z_$][\.\[\]'"0-9a-zA-Z_$]*$/) ) {
                     // The 'firstBit' is NOT a valid function identifier.
                     port.postMessage(['NOT JSON', 'first bit not a valid function name']) ;
