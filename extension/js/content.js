@@ -215,8 +215,53 @@
 
   // console.timeEnd('established port') ;
 
-  function ready() {
-    domReadyTime = Date.now();
+  function ready () {
+    
+    domReadyTime = Date.now() ;
+      
+    // First, check if it's a PRE and exit if not
+      var bodyChildren = document.body.childNodes ;
+      pre = bodyChildren[0] ;
+      var jsonLength = (pre && pre.innerText || "").length ;
+      if (
+        bodyChildren.length > 2 ||
+        pre.tagName !== 'PRE' ||
+        jsonLength > (3000000) ) {
+
+        // console.log('Not even text (or longer than 3MB); exiting') ;
+        // console.log(bodyChildren.length,pre.tagName, pre.innerText.length) ;
+
+        // Disconnect the port (without even having used it)
+          port.disconnect() ;
+        
+        // EXIT POINT: NON-PLAIN-TEXT PAGE (or longer than 3MB)
+      }
+      else {
+        // This is a 'plain text' page (just a body with one PRE child).
+        // It might be JSON/JSONP, or just some other kind of plain text (eg CSS).
+        
+        // Hide the PRE immediately (until we know what to do, to prevent FOUC)
+          pre.hidden = true ;
+          //console.log('It is text; hidden pre at ') ;
+          slowAnalysisTimeout = setTimeout(function(){
+            pre.hidden = false ;
+          }, 1000) ;
+        
+        // Send the contents of the PRE to the BG script
+          // Add jfContent DIV, ready to display stuff
+            jfContent = document.createElement('div') ;
+            jfContent.id = 'jfContent' ;
+            document.body.appendChild(jfContent) ;
+
+          // Post the contents of the PRE
+            port.postMessage({
+              type: "SENDING TEXT",
+              text: pre.innerText,
+              length: jsonLength
+            });
+        
+          // Now, this script will just wait to receive anything back via another port message. The returned message will be something like "NOT JSON" or "IS JSON"
+      }
 
     // First, check if it's a PRE and exit if not
     var bodyChildren = document.body.childNodes;
