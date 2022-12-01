@@ -1,0 +1,30 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@types/chrome': ^0.0.203
+
+devDependencies:
+  '@types/chrome': 0.0.203
+
+packages:
+
+  /@types/chrome/0.0.203:
+    resolution: {integrity: sha512-JlQNebwpBETVc8U1Rr2inDFuOTtn0lahRAhnddx1dd0S5RrLAFJEEsyIu7AXI14mkCgSunksnuLGioH8kvBqRA==}
+    dependencies:
+      '@types/filesystem': 0.0.32
+      '@types/har-format': 1.2.9
+    dev: true
+
+  /@types/filesystem/0.0.32:
+    resolution: {integrity: sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==}
+    dependencies:
+      '@types/filewriter': 0.0.29
+    dev: true
+
+  /@types/filewriter/0.0.29:
+    resolution: {integrity: sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==}
+    dev: true
+
+  /@types/har-format/1.2.9:
+    resolution: {integrity: sha512-rffW6MhQ9yoa75bdNi+rjZBAvu2HhehWJXlhuWXnWdENeuKe82wUgAwxYOb7KRKKmxYN+D/iRKd2NDQMLqlUmg==}
+    dev: true
