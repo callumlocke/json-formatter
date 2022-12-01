@@ -43,10 +43,10 @@ https://callumlocke.github.io/json-formatter/
 
 **To install your local build to Chrome**
 
-- Open Chrome and go to `chrome://chrome/extensions/`
+- Open Chrome and go to `chrome://extensions`
 - Enable "Developer mode",
-- Click "Load unpacked extension",
-- Select the `dist` folder you built above. This is the extension.
+- Click "Load unpacked",
+- Select the `dist` folder you built above.
 
 ## FAQ
 
