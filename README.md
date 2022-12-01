@@ -1,57 +1,75 @@
-JSON Formatter
-==============
+# JSON Formatter - the original
 
-Chrome extension for printing JSON and JSONP nicely when you visit it 'directly' in a browser tab.
+Chrome extension that auto-formats JSON when you view it in a browser tab.
 
-Features
---------
+## Features
 
-* JSONP support
-* Fast, even on long pages
-* Works on any valid JSON page – URL doesn't matter
-* Syntax highlighting
-* Collapsible trees, with indent guides
-* Clickable URLs
-* Buttons for switching between raw and parsed JSON
-* Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console
+- **Fast**, even on very long JSON pages
+- Dark mode
+- Syntax highlighting
+- Collapsible trees, with indent guides
+- Clickable URLs
+- Negligible performance impact on non-JSON pages (less than 1 millisecond)
+- Works on any valid JSON page – URL doesn't matter
+- Buttons for toggling between raw and parsed JSON
+- ~~Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console~~ _Disabled for now, due to difficulties getting it working with Manifest v3 upgrade._
 
-A background worker is used to prevent the UI freezing when processing very long JSON pages.
+**Some JSON documents for testing it on:**
+https://callumlocke.github.io/json-formatter/
 
-Installation
-------------
+## Installation
 
-**Option 1** – just install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa).
+**Option 1 (recommended)** – Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa).
 
-**Option 2** – install it from source:
+**Option 2** – Install it from source (see below).
 
-* clone/download this repo,
-* open Chrome and go to `chrome://chrome/extensions/`,
-* enable "Developer mode",
-* click "Load unpacked extension",
-* select the `extension` folder in this repo.
+### Development
 
-**Some URLs to try it on:**
-* https://api.github.com/users/mralexgray/repos
-* https://api.rawg.io/api/games
-* https://jsonplaceholder.typicode.com/todos/1
+**Requirements:** [Deno](https://deno.land/) (and [Node](https://nodejs.org/en/) for now).
 
-FAQ
----
+**Initial setup:**
+
+- Clone repo
+- Run `pnpm i` to get TypeScript typings for chrome (or use `npm i` if you prefer)
+- Optional: if using VSCode and you need to mess with the Deno build scripts, install the official Deno plugin and set `"deno.enablePaths": ["tasks"]`.
+
+**To build it:**
+
+- Run `bin/build`
+
+**To build and rebuild whenever files change:**
+
+- Run `bin/dev`
+
+**To install your local build to Chrome**
+
+- Open Chrome and go to `chrome://chrome/extensions/`
+- Enable "Developer mode",
+- Click "Load unpacked extension",
+- Select the `dist` folder you built above. This is the extension.
+
+## FAQ
 
 ### Why are large numbers not displayed accurately?
 
-This is a [limitation of JavaScript](http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2) (and therefore JSON). The largest possible number is `Number.MAX_SAFE_INTEGER`, or **9007199254740991**. If you try to use a number larger than this in JavaScript/JSON, you'll lose accuracy.
+This is a [limitation of JavaScript](http://www.ecma-international.org/ecma-262/5.1/#sec-15.7.3.2) and therefore a limitation of JSON as interpreted by your web browser.
 
-The idea of JSON Formatter is to show you how the computer sees your JSON, so we don't attempt to circumvent this limitation, otherwise that would give a misleading representation of your data. It's better to see exactly what V8 sees.
+- Anything above `Number.MAX_SAFE_INTEGER` (`2^53 - 1` or `9007199254740991`) is adjusted down to that number.
+- Anything below `Number.MIN_SAFE_INTEGER` (`-2^53 + 1` or `-9007199254740991`) is adjusted up to that number.
+- Extremely precise floating point numbers are rounded to 16 digits.
 
-If you want to use long sequences of digits in your JSON, then **quote them as strings**.
+It's not JSON Formatter doing this, it's the native `JSON.parse` in V8. JSON Formatter shows you the **parsed** values, exactly the same as what you'll see after loading the JSON in JavaScript.
+
+If your API endpoint really needs to represent numbers outside JavaScript's safe range, it should **quote them as strings**.
 
 ### Why are object keys sometimes in the wrong order?
 
-What you see in JSON Formatter is a representation of the **parsed** object/array. You see what V8 sees.
+What you see in JSON Formatter is a representation of the **parsed** object/array. It's the same order you'll get with `Object.keys( JSON.parse(json) )` in JavaScript.
 
-Plain JavaScript objects are [unordered collections of properties](http://www.ecma-international.org/ecma-262/5.1/#sec-12.6.4). If you go through them with `for...in`, for example, there is no guarantee of any particular order. In practice, most engines maintain the order in which the keys were first declared, but V8 moves any numeric keys (e.g. `"1234"`) to the front, for a small performance gain. This was a [controversial issue](https://code.google.com/p/v8/issues/detail?id=164) – a lot of people think it sucks that you can't predict key enumeration order in Chrome – but the V8 team refused to 'fix' it, because it's not a bug, and they're right. If you want your values to be in a certain order, and you're relying on the non-standard key-ordering logic of a particular engine, then your code is broken. Restructure your data to use arrays.
+Historically, the JavaScript standard explicitly stated that object keys can be iterated in any order, and V8 took advantage of this by moving numeric string keys (like `"1"` or `"99999"`) to the top to facilitate a small performance optimisation. This V8 implementation detail has since become standardised.
 
-##### But I just want it to be in order for readability
+##### But I just want to see exactly what the server spits out
 
-That would require manually parsing the JSON string with regular expressions (instead of using `JSON.parse`), which would be too slow. And it's not a good idea to go down the road of representing the data differently from how the engine actually sees it.
+For now, your best option is to just use the "Raw" button to see the raw JSON. This is what the server sent. The "Parsed" buttons represents what you'll get from `JSON.parse`.
+
+In future JSON Formatter might switch from using `JSON.parse` to a custom parser (if performance allows) in order to detect when a value has been 'changed' by parsing and show an appropriate warning.
