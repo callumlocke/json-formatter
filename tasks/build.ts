@@ -8,10 +8,10 @@ import * as fs from 'https://deno.land/std@0.167.0/fs/mod.ts'
 import * as esbuild from 'https://deno.land/x/esbuild@v0.15.16/mod.js'
 import { assert } from 'https://deno.land/std@0.167.0/_util/asserts.ts'
 
-const ENTRY_POINTS = ['src/content.ts']
+const ENTRY_POINTS = ['src/content.ts', 'src/options/options.ts']
 
 /** Extra files to copy from src to dist after bundling (eg manifest and icons) */
-const STATIC_FILES_GLOB = 'src/**/*.{json,png}'
+const STATIC_FILES_GLOB = 'src/**/*.{json,png,html}'
 
 console.log('----------')
 console.time('build time')
