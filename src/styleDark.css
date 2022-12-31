@@ -1,0 +1,72 @@
+body {
+  background-color: #1a1a1a;
+  color: #eee;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:hover,
+a:active {
+  color: hsl(114, 90%, 55%);
+}
+
+#optionBar {
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+#jsonFormatterParsed {
+  color: #b6b6b6;
+}
+
+.blockInner {
+  border-color: #4d4d4d;
+}
+
+.k {
+  color: #fff;
+}
+
+.s {
+  color: hsl(114, 100%, 35%);
+}
+
+.bl,
+.nl,
+.n {
+  color: hsl(200, 100%, 70%);
+}
+
+.e {
+  color: #fff;
+  opacity: 0.25;
+}
+
+.e:hover {
+  opacity: 0.45;
+}
+.e:active {
+  opacity: 0.6;
+}
+
+.collapsed:after {
+  color: #707070;
+}
+
+:is(#buttonPlain, #buttonFormatted) {
+  text-shadow: none;
+  border: 0;
+  background: hsl(200, 35%, 60%);
+  box-shadow: none;
+  color: #000;
+}
+
+:is(#buttonPlain, #buttonFormatted):not(.selected):hover {
+  box-shadow: none;
+  background: hsl(200, 50%, 70%);
+  color: #000;
+}
+
+:is(#buttonPlain, #buttonFormatted).selected {
+  box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.7);
+  background: hsl(200, 40%, 60%);
+  color: #000;
+}

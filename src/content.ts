@@ -1,13 +1,39 @@
 import './lib/beforeAll'
 
-// @ts-ignore - imports as string
+// @ts-ignore
 import css from './style.css'
+// @ts-ignore
+import darkThemeCss from './styleDark.css'
 
 import { buildDom } from './lib/buildDom'
 import { JsonArray, JsonObject, JsonValue } from './lib/types'
 import { assert } from './lib/assert'
 
 const PERFORMANCE_DEBUGGING = false
+
+const cssPromise = new Promise<string>((resolve) => {
+  chrome.storage.local.get('themeOverride', (result) => {
+    // console.log('value', result['themeOverride'])
+
+    switch (result['themeOverride']) {
+      case 'force_light':
+        resolve(css)
+        break
+      case 'force_dark':
+        resolve(css + '\n\n' + darkThemeCss)
+        break
+
+      case 'system':
+      default:
+        resolve(
+          css +
+            '\n\n@media (prefers-color-scheme: dark) {\n' +
+            darkThemeCss +
+            '\n}'
+        )
+    }
+  })
+})
 
 const resultPromise = (async (): Promise<{
   formatted: boolean
@@ -97,7 +123,7 @@ const resultPromise = (async (): Promise<{
       const jfStyleEl = document.createElement('style')
       jfStyleEl.id = 'jfStyleEl'
       //jfStyleEl.innerText = 'body{padding:0;}' ;
-      jfStyleEl.insertAdjacentHTML('beforeend', css)
+      jfStyleEl.insertAdjacentHTML('beforeend', await cssPromise)
       document.head.appendChild(jfStyleEl)
 
       // Create toggle buttons
