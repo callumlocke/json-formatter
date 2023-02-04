@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "@types/chrome": "^0.0.203"
+    "@types/chrome": "^0.0.203",
+    "esbuild": "^0.17.5"
   }
 }
