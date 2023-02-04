@@ -35,11 +35,11 @@ https://callumlocke.github.io/json-formatter/
 
 **To build it:**
 
-- Run `bin/build`
+- Run `deno task build`
 
 **To build and rebuild whenever files change:**
 
-- Run `bin/dev`
+- Run `deno task dev`
 
 **To install your local build to Chrome**
 
