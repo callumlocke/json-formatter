@@ -5,6 +5,6 @@
   },
   "imports": {
     "std/": "https://deno.land/std@0.174.0/",
-    "wire": "https://raw.githubusercontent.com/callumlocke/wire/deno/lib/mod.ts"
+    "wire": "https://raw.githubusercontent.com/callumlocke/wire/master/mod.ts"
   }
 }
