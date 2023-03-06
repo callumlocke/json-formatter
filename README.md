@@ -12,7 +12,13 @@ Chrome extension that auto-formats JSON when you view it in a browser tab.
 - Negligible performance impact on non-JSON pages (less than 1 millisecond)
 - Works on any valid JSON page – URL doesn't matter
 - Buttons for toggling between raw and parsed JSON
-- ~~Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console~~ _Disabled for now, due to difficulties getting it working with Manifest v3 upgrade._
+- ~~Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console~~*
+
+> *Typing `json` the in console is not working since Manifest v3. If you need a workaround, paste this snippet into the console:
+>
+> ```js
+> json = JSON.parse(document.getElementById("jsonFormatterRaw").querySelector("pre").innerText)
+> ```
 
 **Some JSON documents for testing it on:**
 https://callumlocke.github.io/json-formatter/
