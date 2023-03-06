@@ -189,10 +189,9 @@ const resultPromise = (async (): Promise<{
     await Promise.resolve()
     parsedJsonContainer.append(rootEntry)
 
-    // Export parsed JSON for easy access in console - DISABLED; doesn't work with manifest v3 - maybe re-enable later via background worker somehow
     // @ts-ignore
-    // window.json = parsedJsonValue
-    // console.log('JSON Formatter: Type "json" to inspect.')
+    window.json = parsedJsonValue
+    console.log('JSON Formatter: Type "json" to inspect.')
   }
 
   return {
@@ -272,3 +271,12 @@ if (PERFORMANCE_DEBUGGING) {
     console.log('Duration:', Math.round(duration * 10) / 10, 'ms')
   })
 }
+
+// Continuously execute a debugger statement to ensure the correct context is active when DevTools is opened
+const interval = setInterval(() => {
+  const then = performance.now()
+  debugger
+  if (performance.now() - then > 100) {
+    clearInterval(interval)
+  }
+}, 500)
