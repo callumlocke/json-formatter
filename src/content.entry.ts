@@ -178,6 +178,13 @@ const resultPromise = (async (): Promise<{
       optionBar.appendChild(buttonPlain)
       optionBar.appendChild(buttonFormatted)
 
+      const buttonInject = document.createElement('button')
+      buttonInject.innerText = 'Inject window.json'
+      buttonInject.setAttribute('onclick', `window.json = JSON.parse(document.getElementById("jsonFormatterRaw").querySelector("pre").innerText)`)
+      buttonInject.setAttribute('style', 'display: block; width: 100%; border-right: 1px solid #aaa;')
+      buttonInject.id = "buttonPlain"
+      optionBar.appendChild(buttonInject)
+  
       document.body.prepend(optionBar)
 
       // Attach document-wide listener
