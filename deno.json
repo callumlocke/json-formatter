@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "build": "deno run --allow-all --unstable './tasks/build.ts'",
+    "dev": "deno run --allow-all --unstable './tasks/dev.ts'"
+  },
+  "imports": {
+    "std/": "https://deno.land/std@0.174.0/",
+    "wire": "https://deno.land/x/wire@v2.0.0-alpha.2/mod.ts"
+  }
+}

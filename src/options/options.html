@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Options - JSON Formatter</title>
+    <style>
+      body {
+        margin: 18px;
+        font-family: system-ui, sans-serif;
+      }
+
+      fieldset {
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid currentColor;
+      }
+
+      legend {
+        font-weight: 600;
+        padding: 0 5px;
+      }
+
+      label {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        height: 24px;
+      }
+
+      label > input {
+        position: relative;
+        top: -2px;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #292a2d;
+          color: #e8eaed;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <fieldset>
+      <legend>Theme</legend>
+
+      <div>
+        <label>
+          <input type="radio" name="theme" value="system" />
+          Automatic (follow OS setting)
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type="radio" name="theme" value="force_dark" />
+          Force dark theme
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type="radio" name="theme" value="force_light" />
+          Force light theme
+        </label>
+      </div>
+    </fieldset>
+
+    <script src="options.js"></script>
+  </body>
+</html>
