@@ -195,6 +195,13 @@ const resultPromise = (async (): Promise<{
     // console.log('JSON Formatter: Type "json" to inspect.')
   }
 
+  // remove the pretty-print bar
+  for (const el of document.getElementsByClassName(
+    'json-formatter-container'
+  )) {
+    el.style.display = 'none'
+  }
+
   return {
     formatted: true,
     note: 'done',
