@@ -1,5 +1,20 @@
 {
-  "version": "2",
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:immer@9.0.16": "npm:immer@9.0.16"
+    },
+    "npm": {
+      "immer@9.0.16": {
+        "integrity": "sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==",
+        "dependencies": {}
+      }
+    }
+  },
+  "redirects": {
+    "https://deno.land/std/testing/asserts.ts": "https://deno.land/std@0.196.0/testing/asserts.ts",
+    "https://x.nest.land/arithmetic4@0.1.1/mod.ts": "https://qkmhap62qwfaasqzew54nnbu7ar42u43y356rpojsrtm2ravz4uq.arweave.net/gphwP9qFigBKGSW7xrQ0-CPNU5vG--i9yZRmzUQVzyk/mod.ts"
+  },
   "remote": {
     "https://deno.land/std@0.174.0/_util/asserts.ts": "178dfc49a464aee693a7e285567b3d0b555dc805ff490505a8aae34f9cfb1462",
     "https://deno.land/std@0.174.0/_util/os.ts": "d932f56d41e4f6a6093d56044e29ce637f8dcc43c5a90af43504a889cf1775e3",
@@ -430,15 +445,12 @@
     "https://raw.githubusercontent.com/callumlocke/wire/deno/lib/schemas.ts": "d9a3faf8565b3358836ed38203ed34a2c8d4318d94dbcd45d63985aab46c8fb3",
     "https://raw.githubusercontent.com/callumlocke/wire/deno/lib/types.ts": "b50ad61dd031e75f58823745dc00412cf2d67aaaa33219f90b71f65134ea2c77"
   },
-  "npm": {
-    "specifiers": {
-      "immer@9.0.16": "immer@9.0.16"
-    },
-    "packages": {
-      "immer@9.0.16": {
-        "integrity": "sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==",
-        "dependencies": {}
-      }
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@types/chrome@^0.0.203",
+        "npm:esbuild@^0.17.5"
+      ]
     }
   }
 }
