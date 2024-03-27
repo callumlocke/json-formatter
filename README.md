@@ -14,7 +14,7 @@ Chrome extension that auto-formats JSON when you view it in a browser tab.
 - Buttons for toggling between raw and parsed JSON
 - ~~Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console~~*
 
-> *Typing `json` the in console is not working since Manifest v3. If you need a workaround, paste this snippet into the console:
+> *Typing `json` in the console is not working since Manifest v3. If you need a workaround, paste this snippet into the console:
 >
 > ```js
 > json = JSON.parse(document.getElementById("jsonFormatterRaw").querySelector("pre").innerText)
