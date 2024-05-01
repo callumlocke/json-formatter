@@ -1,5 +1,7 @@
-import { subset, tmp, Transform, Matchable, createMatcher } from 'wire'
+import { createMatcher, Matchable, subset, tmp, Transform } from 'wire'
 import * as pathUtil from 'std/path/mod.ts'
+import { build } from 'esbuild'
+import inlineCssPlugin from 'esbuild-plugin-inline-css'
 
 // HACK esbuild wire plugin using tmp - better to use esbuild's plugin API providing custom resolver and loader to avoid tmp files
 const wirePluginEsbuild = ({
@@ -22,6 +24,7 @@ const wirePluginEsbuild = ({
 }): Transform => {
   const match = createMatcher(filter)
   const matchEntry = createMatcher(entry)
+  const cwd = Deno.cwd()
 
   return subset(
     match,
@@ -31,23 +34,14 @@ const wirePluginEsbuild = ({
 
       // compile each entry file with esbuild
       await Promise.all(
-        entryFileNames.map(async (entryFile) => {
-          const cmd = [
-            './node_modules/.bin/esbuild',
-            '--bundle',
-            pathUtil.join(input.path, entryFile),
-            '--outfile=' + pathUtil.join(output.path, rename(entryFile)),
-          ]
-          if (minify) cmd.push('--minify')
-          if (sourceMap) cmd.push('--sourcemap')
-
-          const result = await Deno.run({ cmd }).status()
-
-          if (!result.success) {
-            throw new Error('compile failed')
-          }
-          await Promise.resolve()
-        })
+        entryFileNames.map((entryFile) => build({
+          entryPoints: [pathUtil.join(cwd, 'src', entryFile)],
+          bundle: true,
+          outfile: pathUtil.join(output.path, rename(entryFile)),
+          minify: minify,
+          sourcemap: sourceMap,
+          plugins: [inlineCssPlugin()]
+        }))
       )
     }, tmpRoot)
   )
