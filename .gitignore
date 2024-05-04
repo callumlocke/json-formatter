@@ -3,3 +3,4 @@ compass_app_log.txt
 /node_modules/
 /.sass-cache/
 /.wire/
+.idea
