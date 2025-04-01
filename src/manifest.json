@@ -1,6 +1,6 @@
 {
   "name": "JSON Formatter",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "manifest_version": 3,
   "description": "Makes JSON easy to read. Open source.",
   "homepage_url": "https://github.com/callumlocke/json-formatter",
