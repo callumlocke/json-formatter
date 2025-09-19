@@ -14,6 +14,12 @@
       "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_end"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["set-json-global.js"],
+      "run_at": "document_idle",
+      "world": "MAIN"
     }
   ],
   "permissions": ["storage"],
