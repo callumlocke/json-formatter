@@ -6,5 +6,8 @@
   "imports": {
     "std/": "https://deno.land/std@0.174.0/",
     "wire": "https://deno.land/x/wire@v2.0.0-alpha.2/mod.ts"
+  },
+  "compilerOptions": {
+    "lib": ["es2016", "deno.ns"]
   }
 }

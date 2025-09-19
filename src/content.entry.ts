@@ -1,11 +1,11 @@
+import { assert } from './lib/assert'
 import './lib/beforeAll'
+import { buildDom } from './lib/buildDom'
+import { JsonArray, JsonObject, JsonValue } from './lib/types'
 // @ts-ignore
 // import css from './style.css'
 // @ts-ignore
 // import darkThemeCss from './styleDark.css'
-import { buildDom } from './lib/buildDom'
-import { JsonArray, JsonObject, JsonValue } from './lib/types'
-import { assert } from './lib/assert'
 
 const css = `body {
   background-color: #fff;
@@ -338,7 +338,7 @@ const resultPromise = (async (): Promise<{
 
   const rawLength = rawPreContent.length
 
-  if (rawLength > 3000000)
+  if (rawLength > 3_000_000)
     return {
       formatted: false,
       note: `Too long`,
@@ -470,14 +470,20 @@ const resultPromise = (async (): Promise<{
     // Export parsed JSON for easy access in console - DISABLED; doesn't work with manifest v3 - maybe re-enable later via background worker somehow
     // @ts-ignore
     // window.json = parsedJsonValue
+    // Object.defineProperty(window, 'json', {
+    //   value: parsedJsonValue,
+    //   configurable: true,
+    //   enumerable: false, // keep it tidy in console auto-complete
+    //   writable: false,
+    // })
     // console.log('JSON Formatter: Type "json" to inspect.')
   }
 
-  // remove the pretty-print bar
+  // hide the pretty-print bar
   for (const el of document.getElementsByClassName(
     'json-formatter-container'
   )) {
-    el.style.display = 'none'
+    ;(el as HTMLElement).style.display = 'none'
   }
 
   return {
@@ -496,15 +502,19 @@ const resultPromise = (async (): Promise<{
       // (CSS hides the contents and shows an ellipsis.)
 
       // Add a count of the number of child properties/items
-      if (!el.id) {
-        // TODO why is this id check needed?
-        // Find the blockInner
-        blockInner = el.firstElementChild
-        while (blockInner && !blockInner.classList.contains('blockInner')) {
-          blockInner = blockInner.nextElementSibling
-        }
-        if (!blockInner) continue
-      }
+      // if (!el.id) {
+      //   // TODO why is this id check needed?
+      //   // Find the blockInner
+      //   blockInner = el.firstElementChild
+      //   while (blockInner && !blockInner.classList.contains('blockInner')) {
+      //     blockInner = blockInner.nextElementSibling
+      //   }
+      //   if (!blockInner) continue // ???
+      //   // ??? this continue has no effect, as the for-loop conitinues after this anyway, right?
+      //   // >>> so what is the point of this entire `if (!el.id)` block?
+      //   // original comment says "Add a count of the number of child properties/items"
+      //   // but that feature seems to be working fine, despite this block doing nothing
+      // }
     }
   }
 

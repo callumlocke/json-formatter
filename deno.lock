@@ -448,8 +448,8 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@types/chrome@^0.0.203",
-        "npm:esbuild@^0.17.5"
+        "npm:@types/chrome@^0.0.328",
+        "npm:esbuild@^0.25.5"
       ]
     }
   }

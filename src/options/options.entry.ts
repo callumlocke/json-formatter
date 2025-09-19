@@ -10,7 +10,7 @@ const getRadioButton = (value: 'system'): HTMLInputElement => {
 
 // update UI on startup
 chrome.storage.local.get('themeOverride', (result) => {
-  const value = result.themeOverride
+  const value = result.themeOverride || 'system' // default to 'system' if not set
   // console.log('initial value', value)
 
   getRadioButton(value).checked = true

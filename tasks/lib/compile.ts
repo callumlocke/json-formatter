@@ -41,11 +41,15 @@ const wirePluginEsbuild = ({
           if (minify) cmd.push('--minify')
           if (sourceMap) cmd.push('--sourcemap')
 
-          const result = await Deno.run({ cmd }).status()
+          const command = new Deno.Command(cmd.shift(), {
+            args: cmd,
+            cwd: tmpRoot || Deno.cwd(),
+            // env: { ...Deno.env.toObject() },
+          })
 
-          if (!result.success) {
-            throw new Error('compile failed')
-          }
+          const child = await command.spawn()
+          const result = await child.status
+          if (!result.success) throw new Error('compile failed')
           await Promise.resolve()
         })
       )
