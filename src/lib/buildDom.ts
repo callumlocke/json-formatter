@@ -105,11 +105,17 @@ export const buildDom = (
       } else {
         innerStringEl.innerText = escapedString
       }
+
+      const copyBtn = document.createElement("button")
+      copyBtn.textContent = "Copy";
+      copyBtn.addEventListener("click", () => { navigator.clipboard.writeText(value) })
+
       const valueElement = templates.t_string.cloneNode(false)
       valueElement.appendChild(templates.t_dblqText.cloneNode(false))
       valueElement.appendChild(innerStringEl)
       valueElement.appendChild(templates.t_dblqText.cloneNode(false))
       entry.appendChild(valueElement)
+      entry.appendChild(copyBtn)
       break
     }
 
