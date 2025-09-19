@@ -1,13 +1,298 @@
 import './lib/beforeAll'
-
 // @ts-ignore
-import css from './style.css'
+// import css from './style.css'
 // @ts-ignore
-import darkThemeCss from './styleDark.css'
-
+// import darkThemeCss from './styleDark.css'
 import { buildDom } from './lib/buildDom'
 import { JsonArray, JsonObject, JsonValue } from './lib/types'
 import { assert } from './lib/assert'
+
+const css = `body {
+  background-color: #fff;
+  user-select: text;
+  overflow-y: scroll !important;
+  margin: 0;
+  position: relative;
+  padding-top: 1px; /* hack to prevent margin collapse in 'Raw' */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+#optionBar {
+  user-select: none;
+  position: absolute;
+  z-index: 10;
+  top: 8px;
+  right: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 3px 3px #fff;
+  padding: 5px;
+}
+#buttonFormatted,
+#buttonPlain {
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  background: linear-gradient(#fafafa, #f4f4f4 40%, #e5e5e5);
+  border: 1px solid #aaa;
+  color: #444;
+  font-size: 13px;
+  /* text-transform: uppercase; */
+  margin-bottom: 0px;
+  min-width: 4em;
+  padding: 3px 0;
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  width: 80px;
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.3);
+}
+#buttonFormatted {
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#buttonPlain {
+  margin-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+:is(#buttonPlain, #buttonFormatted):not(.selected):hover {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  background: #ebebeb linear-gradient(#fefefe, #f8f8f8 40%, #e9e9e9);
+  border-color: #999;
+  color: #222;
+}
+:is(#buttonPlain, #buttonFormatted):active {
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
+  background: #ebebeb linear-gradient(#f4f4f4, #efefef 40%, #dcdcdc);
+  color: #333;
+}
+:is(#buttonPlain, #buttonFormatted).selected {
+  box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.2);
+  background: #ebebeb linear-gradient(#e4e4e4, #dfdfdf 40%, #dcdcdc);
+  color: #333;
+}
+:is(#buttonPlain, #buttonFormatted):focus {
+  outline: 0;
+}
+.entry {
+  display: block;
+  padding-left: 20px;
+  margin-left: -20px;
+  position: relative;
+  content-visibility: auto;
+}
+#jsonFormatterParsed {
+  padding-left: 28px;
+  padding-top: 6px;
+  line-height: 1.5;
+}
+#jsonFormatterRaw {
+  padding: 36px 10px 5px;
+}
+.collapsed {
+  white-space: nowrap;
+}
+.collapsed > .blockInner {
+  display: none;
+}
+.collapsed > .ell:after {
+  content: '…';
+  font-weight: bold;
+}
+.collapsed > .ell {
+  margin: 0 4px;
+  color: #888;
+}
+.collapsed .entry {
+  display: inline;
+}
+
+.collapsed:after {
+  content: attr(data-size);
+  color: #aaa;
+}
+
+.e {
+  width: 20px;
+  height: 18px;
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 1px;
+  color: black;
+  z-index: 5;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.15;
+}
+
+.e::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6.9px;
+  border-color: transparent transparent transparent currentColor;
+  transform: rotate(90deg) translateY(1px);
+}
+
+.collapsed > .e::after {
+  transform: none;
+}
+
+.e:hover {
+  opacity: 0.35;
+}
+.e:active {
+  opacity: 0.5;
+}
+.collapsed .entry .e {
+  display: none;
+}
+.blockInner {
+  display: block;
+  padding-left: 24px;
+  border-left: 1px dotted #bbb;
+  margin-left: 2px;
+}
+#jsonFormatterParsed {
+  color: #444;
+}
+
+.entry {
+  font-size: 13px;
+  font-family: monospace;
+}
+
+.b {
+  font-weight: bold;
+}
+.s {
+  color: #0b7500;
+  word-wrap: break-word;
+}
+a:link,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover,
+a:active {
+  text-decoration: underline;
+  color: #050;
+}
+.bl,
+.nl,
+.n {
+  font-weight: bold;
+  color: #1a01cc;
+}
+.k {
+  color: #000;
+}
+
+[hidden] {
+  display: none !important;
+}
+span {
+  white-space: pre-wrap;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#spinner {
+  animation: spin 2s linear infinite;
+}
+`
+const darkThemeCss = `body {
+  background-color: #1a1a1a;
+  color: #eee;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:hover,
+a:active {
+  color: hsl(114, 90%, 55%);
+}
+
+#optionBar {
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  background: #1a1a1a;
+  box-shadow: 0px 0px 3px 3px #1a1a1a;
+}
+
+#jsonFormatterParsed {
+  color: #b6b6b6;
+}
+
+.blockInner {
+  border-color: #4d4d4d;
+}
+
+.k {
+  color: #fff;
+}
+
+.s {
+  color: hsl(114, 100%, 35%);
+}
+
+.bl,
+.nl,
+.n {
+  color: hsl(200, 100%, 70%);
+}
+
+.e {
+  color: #fff;
+  opacity: 0.25;
+}
+
+.e:hover {
+  opacity: 0.45;
+}
+.e:active {
+  opacity: 0.6;
+}
+
+.collapsed:after {
+  color: #707070;
+}
+
+:is(#buttonPlain, #buttonFormatted) {
+  text-shadow: none;
+  border: 0;
+  background: hsl(200, 35%, 60%);
+  box-shadow: none;
+  color: #000;
+}
+
+:is(#buttonPlain, #buttonFormatted):not(.selected):hover {
+  box-shadow: none;
+  background: hsl(200, 50%, 70%);
+  color: #000;
+}
+
+:is(#buttonPlain, #buttonFormatted).selected {
+  box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.7);
+  background: hsl(200, 40%, 60%);
+  color: #000;
+}
+`
 
 const PERFORMANCE_DEBUGGING = false
 
@@ -60,7 +345,7 @@ const resultPromise = (async (): Promise<{
 
   const rawLength = rawPreContent.length
 
-  if (rawLength > 3000000)
+  if (rawLength > 3_000_000)
     return {
       formatted: false,
       note: `Too long`,
@@ -192,14 +477,20 @@ const resultPromise = (async (): Promise<{
     // Export parsed JSON for easy access in console - DISABLED; doesn't work with manifest v3 - maybe re-enable later via background worker somehow
     // @ts-ignore
     // window.json = parsedJsonValue
+    // Object.defineProperty(window, 'json', {
+    //   value: parsedJsonValue,
+    //   configurable: true,
+    //   enumerable: false, // keep it tidy in console auto-complete
+    //   writable: false,
+    // })
     // console.log('JSON Formatter: Type "json" to inspect.')
   }
 
-  // remove the pretty-print bar
+  // hide the pretty-print bar
   for (const el of document.getElementsByClassName(
     'json-formatter-container'
   )) {
-    el.style.display = 'none'
+    ;(el as HTMLElement).style.display = 'none'
   }
 
   return {
@@ -218,15 +509,19 @@ const resultPromise = (async (): Promise<{
       // (CSS hides the contents and shows an ellipsis.)
 
       // Add a count of the number of child properties/items
-      if (!el.id) {
-        // TODO why is this id check needed?
-        // Find the blockInner
-        blockInner = el.firstElementChild
-        while (blockInner && !blockInner.classList.contains('blockInner')) {
-          blockInner = blockInner.nextElementSibling
-        }
-        if (!blockInner) continue
-      }
+      // if (!el.id) {
+      //   // TODO why is this id check needed?
+      //   // Find the blockInner
+      //   blockInner = el.firstElementChild
+      //   while (blockInner && !blockInner.classList.contains('blockInner')) {
+      //     blockInner = blockInner.nextElementSibling
+      //   }
+      //   if (!blockInner) continue // ???
+      //   // ??? this continue has no effect, as the for-loop conitinues after this anyway, right?
+      //   // >>> so what is the point of this entire `if (!el.id)` block?
+      //   // original comment says "Add a count of the number of child properties/items"
+      //   // but that feature seems to be working fine, despite this block doing nothing
+      // }
     }
   }
 
