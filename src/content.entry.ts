@@ -1,11 +1,11 @@
+import { assert } from './lib/assert'
 import './lib/beforeAll'
+import { buildDom } from './lib/buildDom'
+import { JsonArray, JsonObject, JsonValue } from './lib/types'
 // @ts-ignore
 // import css from './style.css'
 // @ts-ignore
 // import darkThemeCss from './styleDark.css'
-import { buildDom } from './lib/buildDom'
-import { JsonArray, JsonObject, JsonValue } from './lib/types'
-import { assert } from './lib/assert'
 
 const css = `body {
   background-color: #fff;
@@ -473,17 +473,6 @@ const resultPromise = (async (): Promise<{
     const rootEntry = buildDom(parsedJsonRootStruct, false)
     await Promise.resolve()
     parsedJsonContainer.append(rootEntry)
-
-    // Export parsed JSON for easy access in console - DISABLED; doesn't work with manifest v3 - maybe re-enable later via background worker somehow
-    // @ts-ignore
-    // window.json = parsedJsonValue
-    // Object.defineProperty(window, 'json', {
-    //   value: parsedJsonValue,
-    //   configurable: true,
-    //   enumerable: false, // keep it tidy in console auto-complete
-    //   writable: false,
-    // })
-    // console.log('JSON Formatter: Type "json" to inspect.')
   }
 
   // hide the pretty-print bar
@@ -500,28 +489,9 @@ const resultPromise = (async (): Promise<{
   }
 
   function collapse(elements: HTMLElement[] | HTMLCollection) {
-    let el, i, blockInner
-
-    for (i = elements.length - 1; i >= 0; i--) {
-      el = elements[i]
-      el.classList.add('collapsed')
-
-      // (CSS hides the contents and shows an ellipsis.)
-
-      // Add a count of the number of child properties/items
-      // if (!el.id) {
-      //   // TODO why is this id check needed?
-      //   // Find the blockInner
-      //   blockInner = el.firstElementChild
-      //   while (blockInner && !blockInner.classList.contains('blockInner')) {
-      //     blockInner = blockInner.nextElementSibling
-      //   }
-      //   if (!blockInner) continue // ???
-      //   // ??? this continue has no effect, as the for-loop conitinues after this anyway, right?
-      //   // >>> so what is the point of this entire `if (!el.id)` block?
-      //   // original comment says "Add a count of the number of child properties/items"
-      //   // but that feature seems to be working fine, despite this block doing nothing
-      // }
+    for (let i = elements.length - 1; i >= 0; i--) {
+      const el = elements[i]
+      el.classList.add('collapsed') // hides contents and shows an ellipsis
     }
   }
 
