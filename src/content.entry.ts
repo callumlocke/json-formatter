@@ -393,45 +393,36 @@ const resultPromise = (async (): Promise<{
     }
 
   // Status: probably JSON, and acceptable length.
-
-  // Detach the pre
-  originalPreElement.remove()
-
-  // Add inner containers
-  const parsedJsonContainer = document.createElement('div')
-  parsedJsonContainer.id = 'jsonFormatterParsed'
-  document.body.appendChild(parsedJsonContainer)
-
-  const rawJsonContainer = document.createElement('div')
-  rawJsonContainer.hidden = true
-  rawJsonContainer.id = 'jsonFormatterRaw'
-  rawJsonContainer.append(originalPreElement)
-  document.body.appendChild(rawJsonContainer)
-
   // Try to parse as JSON
   {
     let parsedJsonValue: JsonValue
     try {
       parsedJsonValue = JSON.parse(rawPreContent)
     } catch (e) {
-      // undo UI changes and return
-      parsedJsonContainer.remove()
-      rawJsonContainer.remove()
-      document.body.prepend(originalPreElement)
-
       return { formatted: false, note: 'Does not parse as JSON', rawLength }
     }
 
-    if (
-      typeof parsedJsonValue !== 'object' &&
-      !Array.isArray(parsedJsonValue)
-    ) {
+    if (typeof parsedJsonValue !== 'object') {
       return {
         formatted: false,
         note: 'Technically JSON but not an object or array',
         rawLength,
       }
     }
+
+    // Detach the pre
+    originalPreElement.remove()
+
+    // Add inner containers
+    const parsedJsonContainer = document.createElement('div')
+    parsedJsonContainer.id = 'jsonFormatterParsed'
+    document.body.appendChild(parsedJsonContainer)
+
+    const rawJsonContainer = document.createElement('div')
+    rawJsonContainer.hidden = true
+    rawJsonContainer.id = 'jsonFormatterRaw'
+    rawJsonContainer.append(originalPreElement)
+    document.body.appendChild(rawJsonContainer)
 
     // Status: it is a valid JSON object or array, and we have parsed the whole thing.
     const parsedJsonRootStruct = parsedJsonValue as JsonObject | JsonArray
