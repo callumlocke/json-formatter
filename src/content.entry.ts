@@ -325,6 +325,9 @@ const resultPromise = (async (): Promise<{
   note: string
   rawLength: number | null
 }> => {
+  if (document.title)
+    return { formatted: false, note: 'document.title exists', rawLength: null }
+
   const originalPreElement = (() => {
     const bodyChildren = document.body.children
     const length = bodyChildren.length
