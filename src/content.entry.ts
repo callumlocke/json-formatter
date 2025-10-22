@@ -326,21 +326,52 @@ const resultPromise = (async (): Promise<{
   rawLength: number | null
 }> => {
   if (document.title)
-    return { formatted: false, note: 'document.title exists', rawLength: null }
+    return { formatted: false, note: 'document.title is contentful', rawLength: null }
 
-  const originalPreElement = (() => {
+  const originalPreResult:
+    | { kind: 'success', element: HTMLPreElement }
+    | { kind: 'failure', note: string }
+  = (() => {
+    let pre: HTMLPreElement | null = null
     const bodyChildren = document.body.children
     const length = bodyChildren.length
     for (let i = 0; i < length; i++) {
       const child = bodyChildren[i]
-      if (child.tagName === 'PRE') return child as HTMLPreElement
+
+      switch (child.tagName) {
+        case 'PRE': {
+          if (pre != null)
+            return { kind: 'failure', note: 'Multiple body>pre elements' }
+          pre = child as HTMLPreElement
+          break
+        }
+        case 'P':
+        case 'H1':
+        case 'H2':
+        case 'H3':
+        case 'H4':
+        case 'H5':
+        case 'H6': {
+          return { kind: 'failure', note: 'body contains textual elements' }
+        }
+      }
     }
-    return null
+
+    if (pre != null) {
+      if (pre.checkVisibility?.() === false)
+        return { kind: 'failure', note: 'body>pre is not rendered' }
+
+      return { kind: 'success', element: pre }
+    }
+
+    return { kind: 'failure', note: 'No body>pre' }
   })()
 
-  if (originalPreElement === null)
-    return { formatted: false, note: 'No body>pre found', rawLength: null }
+  if (originalPreResult.kind !== 'success') {
+    return { formatted: false, note: originalPreResult.note, rawLength: null }
+  }
 
+  const originalPreElement = originalPreResult.element
   const rawPreContent = originalPreElement.textContent
 
   if (!rawPreContent)
