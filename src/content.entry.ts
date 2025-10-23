@@ -1,7 +1,8 @@
 import { assert } from './lib/assert'
 import './lib/beforeAll'
 import { buildDom } from './lib/buildDom'
-import { JsonArray, JsonObject, JsonValue } from './lib/types'
+import { getResult } from './lib/getResult'
+import { JsonArray, JsonObject } from './lib/types'
 // @ts-ignore
 // import css from './style.css'
 // @ts-ignore
@@ -320,96 +321,13 @@ const cssPromise = new Promise<string>((resolve) => {
   })
 })
 
-const resultPromise = (async (): Promise<{
-  formatted: boolean
-  note: string
-  rawLength: number | null
-}> => {
-  if (document.title)
-    return { formatted: false, note: 'document.title is contentful', rawLength: null }
+const resultPromise = (async () => {
+  const result = getResult(document)
+  if (!result.formatted) return result
 
-  const originalPreResult:
-    | { kind: 'success', element: HTMLPreElement }
-    | { kind: 'failure', note: string }
-  = (() => {
-    let pre: HTMLPreElement | null = null
-    const bodyChildren = document.body.children
-    const length = bodyChildren.length
-    for (let i = 0; i < length; i++) {
-      const child = bodyChildren[i]
+  const { element: originalPreElement, parsed: parsedJsonValue } = result
 
-      switch (child.tagName) {
-        case 'PRE': {
-          if (pre != null)
-            return { kind: 'failure', note: 'Multiple body>pre elements' }
-          pre = child as HTMLPreElement
-          break
-        }
-        case 'P':
-        case 'H1':
-        case 'H2':
-        case 'H3':
-        case 'H4':
-        case 'H5':
-        case 'H6': {
-          return { kind: 'failure', note: 'body contains textual elements' }
-        }
-      }
-    }
-
-    if (pre != null) {
-      if (pre.checkVisibility?.() === false)
-        return { kind: 'failure', note: 'body>pre is not rendered' }
-
-      return { kind: 'success', element: pre }
-    }
-
-    return { kind: 'failure', note: 'No body>pre' }
-  })()
-
-  if (originalPreResult.kind !== 'success') {
-    return { formatted: false, note: originalPreResult.note, rawLength: null }
-  }
-
-  const originalPreElement = originalPreResult.element
-  const rawPreContent = originalPreElement.textContent
-
-  if (!rawPreContent)
-    return { formatted: false, note: 'No content in body>pre', rawLength: 0 }
-
-  const rawLength = rawPreContent.length
-
-  if (rawLength > 3_000_000)
-    return {
-      formatted: false,
-      note: `Too long`,
-      rawLength,
-    }
-  if (!/^\s*[\{\[]/.test(rawPreContent))
-    return {
-      formatted: false,
-      note: `Does not start with { or ]`,
-      rawLength,
-    }
-
-  // Status: probably JSON, and acceptable length.
-  // Try to parse as JSON
   {
-    let parsedJsonValue: JsonValue
-    try {
-      parsedJsonValue = JSON.parse(rawPreContent)
-    } catch (e) {
-      return { formatted: false, note: 'Does not parse as JSON', rawLength }
-    }
-
-    if (typeof parsedJsonValue !== 'object') {
-      return {
-        formatted: false,
-        note: 'Technically JSON but not an object or array',
-        rawLength,
-      }
-    }
-
     // Detach the pre
     originalPreElement.remove()
 
@@ -507,11 +425,7 @@ const resultPromise = (async (): Promise<{
     ;(el as HTMLElement).style.display = 'none'
   }
 
-  return {
-    formatted: true,
-    note: 'done',
-    rawLength,
-  }
+  return result
 
   function collapse(elements: HTMLElement[] | HTMLCollection) {
     for (let i = elements.length - 1; i >= 0; i--) {

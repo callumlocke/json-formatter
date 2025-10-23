@@ -2,6 +2,8 @@
   "private": true,
   "devDependencies": {
     "@types/chrome": "^0.0.328",
-    "esbuild": "^0.25.5"
+    "@types/jsdom": "^27.0.0",
+    "esbuild": "^0.25.5",
+    "jsdom": "^27.0.1"
   }
 }
