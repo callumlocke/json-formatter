@@ -2,7 +2,6 @@ import { assert } from './lib/assert'
 import './lib/beforeAll'
 import { buildDom } from './lib/buildDom'
 import { getResult } from './lib/getResult'
-import { JsonArray, JsonObject } from './lib/types'
 // @ts-ignore
 // import css from './style.css'
 // @ts-ignore
@@ -325,7 +324,7 @@ const resultPromise = (async () => {
   const result = getResult(document)
   if (!result.formatted) return result
 
-  const { element: originalPreElement, parsed: parsedJsonValue } = result
+  const { element: originalPreElement, parsed: parsedJsonRootStruct } = result
 
   {
     // Detach the pre
@@ -343,8 +342,6 @@ const resultPromise = (async () => {
     document.body.appendChild(rawJsonContainer)
 
     // Status: it is a valid JSON object or array, and we have parsed the whole thing.
-    const parsedJsonRootStruct = parsedJsonValue as JsonObject | JsonArray
-
     // Flesh out the UI and handle events
     {
       // Insert CSS

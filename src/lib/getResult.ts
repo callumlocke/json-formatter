@@ -1,9 +1,9 @@
-import type { JsonValue } from './types.ts'
+import type { JsonValue, JsonObject, JsonArray } from './types.ts'
 
 export const MAX_LENGTH = 3_000_000
 
 export type Result =
-  | { formatted: true, note: string, rawLength: number, element: HTMLPreElement, parsed: JsonValue }
+  | { formatted: true, note: string, rawLength: number, element: HTMLPreElement, parsed: JsonObject | JsonArray }
   | { formatted: false, note: string, rawLength: number | null }
 
 export function getResult(document = globalThis.document): Result {
@@ -55,17 +55,14 @@ export function getResult(document = globalThis.document): Result {
 
   // Status: probably JSON, and acceptable length.
   // Try to parse as JSON
-  let parsed: JsonValue
   try {
-    parsed = JSON.parse(rawPreContent)
+    const parsed: JsonValue = JSON.parse(rawPreContent)
+
+    return typeof parsed === 'object' && parsed != null
+      ? { formatted: true, note: 'done', element: pre, rawLength, parsed }
+      // this branch should be unreachable anyway due to checking { or [ match above
+      : { formatted: false, note: 'Technically JSON but not an object or array', rawLength }
   } catch (e) {
     return { formatted: false, note: 'Does not parse as JSON', rawLength }
   }
-
-  if (typeof parsed !== 'object') {
-    // should be unreachable anyway due to checking /^\s*[\{\[]/ match above
-    return { formatted: false, note: 'Technically JSON but not an object or array', rawLength }
-  }
-
-  return { formatted: true, note: 'done', element: pre, rawLength, parsed }
 }
