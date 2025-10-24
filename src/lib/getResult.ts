@@ -48,7 +48,9 @@ export function getResult(document = globalThis.document): Result {
 
   if (rawLength > MAX_LENGTH)
     return { formatted: false, note: 'Too long', rawLength }
-  if (!/^\s*[\{\[]/.test(rawPreContent))
+
+  const [startChar] = rawPreContent.match(/[^\x20\x0a\x0d\x09]/) ?? []
+  if (startChar !== '{' && startChar !== '[')
     return { formatted: false, note: 'Does not start with { or ]', rawLength }
 
   // Status: probably JSON, and acceptable length.
