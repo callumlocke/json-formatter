@@ -1,5 +1,4 @@
-compass_app_log.txt
 /dist/
+dist.zip
 /node_modules/
-/.sass-cache/
 /.wire/
