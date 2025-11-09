@@ -1,7 +1,7 @@
 import { assert } from './lib/assert'
 import './lib/beforeAll'
 import { buildDom } from './lib/buildDom'
-import { JsonArray, JsonObject, JsonValue } from './lib/types'
+import { getResult } from './lib/getResult'
 // @ts-ignore
 // import css from './style.css'
 // @ts-ignore
@@ -320,88 +320,28 @@ const cssPromise = new Promise<string>((resolve) => {
   })
 })
 
-const resultPromise = (async (): Promise<{
-  formatted: boolean
-  note: string
-  rawLength: number | null
-}> => {
-  const originalPreElement = (() => {
-    const bodyChildren = document.body.children
-    const length = bodyChildren.length
-    for (let i = 0; i < length; i++) {
-      const child = bodyChildren[i]
-      if (child.tagName === 'PRE') return child as HTMLPreElement
-    }
-    return null
-  })()
+const resultPromise = (async () => {
+  const result = getResult(document)
+  if (!result.formatted) return result
 
-  if (originalPreElement === null)
-    return { formatted: false, note: 'No body>pre found', rawLength: null }
+  const { element: originalPreElement, parsed: parsedJsonRootStruct } = result
 
-  const rawPreContent = originalPreElement.textContent
-
-  if (!rawPreContent)
-    return { formatted: false, note: 'No content in body>pre', rawLength: 0 }
-
-  const rawLength = rawPreContent.length
-
-  if (rawLength > 3_000_000)
-    return {
-      formatted: false,
-      note: `Too long`,
-      rawLength,
-    }
-  if (!/^\s*[\{\[]/.test(rawPreContent))
-    return {
-      formatted: false,
-      note: `Does not start with { or ]`,
-      rawLength,
-    }
-
-  // Status: probably JSON, and acceptable length.
-
-  // Detach the pre
-  originalPreElement.remove()
-
-  // Add inner containers
-  const parsedJsonContainer = document.createElement('div')
-  parsedJsonContainer.id = 'jsonFormatterParsed'
-  document.body.appendChild(parsedJsonContainer)
-
-  const rawJsonContainer = document.createElement('div')
-  rawJsonContainer.hidden = true
-  rawJsonContainer.id = 'jsonFormatterRaw'
-  rawJsonContainer.append(originalPreElement)
-  document.body.appendChild(rawJsonContainer)
-
-  // Try to parse as JSON
   {
-    let parsedJsonValue: JsonValue
-    try {
-      parsedJsonValue = JSON.parse(rawPreContent)
-    } catch (e) {
-      // undo UI changes and return
-      parsedJsonContainer.remove()
-      rawJsonContainer.remove()
-      document.body.prepend(originalPreElement)
+    // Detach the pre
+    originalPreElement.remove()
 
-      return { formatted: false, note: 'Does not parse as JSON', rawLength }
-    }
+    // Add inner containers
+    const parsedJsonContainer = document.createElement('div')
+    parsedJsonContainer.id = 'jsonFormatterParsed'
+    document.body.appendChild(parsedJsonContainer)
 
-    if (
-      typeof parsedJsonValue !== 'object' &&
-      !Array.isArray(parsedJsonValue)
-    ) {
-      return {
-        formatted: false,
-        note: 'Technically JSON but not an object or array',
-        rawLength,
-      }
-    }
+    const rawJsonContainer = document.createElement('div')
+    rawJsonContainer.hidden = true
+    rawJsonContainer.id = 'jsonFormatterRaw'
+    rawJsonContainer.append(originalPreElement)
+    document.body.appendChild(rawJsonContainer)
 
     // Status: it is a valid JSON object or array, and we have parsed the whole thing.
-    const parsedJsonRootStruct = parsedJsonValue as JsonObject | JsonArray
-
     // Flesh out the UI and handle events
     {
       // Insert CSS
@@ -482,11 +422,7 @@ const resultPromise = (async (): Promise<{
     ;(el as HTMLElement).style.display = 'none'
   }
 
-  return {
-    formatted: true,
-    note: 'done',
-    rawLength,
-  }
+  return result
 
   function collapse(elements: HTMLElement[] | HTMLCollection) {
     for (let i = elements.length - 1; i >= 0; i--) {

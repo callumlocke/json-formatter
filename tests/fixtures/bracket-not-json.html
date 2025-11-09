@@ -1,0 +1,22 @@
+<!-- https://github.com/callumlocke/json-formatter/issues/275 -->
+<!--
+  EXPECT {
+    "formatted": false,
+    "note": "body contains textual elements",
+    "rawLength": null
+  }
+-->
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Title</h1>
+
+Body Text
+
+<pre style="border: 1px solid red;">
+[ begin with a bracket, but not JSON
+</pre>
+
+</body>
+</html>
