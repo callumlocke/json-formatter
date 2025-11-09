@@ -1,5 +1,5 @@
-import { assert } from './lib/assert'
 import './lib/beforeAll'
+import { assert } from './lib/assert'
 import { buildDom } from './lib/buildDom'
 import { getResult } from './lib/getResult'
 // @ts-ignore

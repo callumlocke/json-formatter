@@ -3,12 +3,22 @@ import type { JsonValue, JsonObject, JsonArray } from './types.ts'
 export const MAX_LENGTH = 3_000_000
 
 export type Result =
-  | { formatted: true, note: string, rawLength: number, element: HTMLPreElement, parsed: JsonObject | JsonArray }
-  | { formatted: false, note: string, rawLength: number | null }
+  | {
+      formatted: true
+      note: string
+      rawLength: number
+      element: HTMLPreElement
+      parsed: JsonObject | JsonArray
+    }
+  | { formatted: false; note: string; rawLength: number | null }
 
 export function getResult(document = globalThis.document): Result {
   if (document.title)
-    return { formatted: false, note: 'document.title is contentful', rawLength: null }
+    return {
+      formatted: false,
+      note: 'document.title is contentful',
+      rawLength: null,
+    }
 
   let pre: HTMLPreElement | null = null
   const bodyChildren = document.body.children
@@ -19,7 +29,11 @@ export function getResult(document = globalThis.document): Result {
     switch (child.tagName) {
       case 'PRE': {
         if (pre != null)
-          return { formatted: false, note: 'Multiple body > pre elements', rawLength: null }
+          return {
+            formatted: false,
+            note: 'Multiple body > pre elements',
+            rawLength: null,
+          }
         pre = child as HTMLPreElement
         break
       }
@@ -30,7 +44,11 @@ export function getResult(document = globalThis.document): Result {
       case 'H4':
       case 'H5':
       case 'H6': {
-        return { formatted: false, note: 'body contains textual elements', rawLength: null }
+        return {
+          formatted: false,
+          note: 'body contains textual elements',
+          rawLength: null,
+        }
       }
     }
   }
@@ -38,7 +56,11 @@ export function getResult(document = globalThis.document): Result {
   if (pre == null)
     return { formatted: false, note: 'No body > pre', rawLength: null }
   if (pre.checkVisibility?.() === false)
-    return { formatted: false, note: 'body > pre is not rendered', rawLength: null }
+    return {
+      formatted: false,
+      note: 'body > pre is not rendered',
+      rawLength: null,
+    }
 
   const rawPreContent = pre.textContent
   const rawLength = rawPreContent.length
@@ -60,8 +82,12 @@ export function getResult(document = globalThis.document): Result {
 
     return typeof parsed === 'object' && parsed != null
       ? { formatted: true, note: 'done', element: pre, rawLength, parsed }
-      // this branch should be unreachable anyway due to checking { or [ match above
-      : { formatted: false, note: 'Technically JSON but not an object or array', rawLength }
+      : // this branch should be unreachable anyway due to checking { or [ match above
+        {
+          formatted: false,
+          note: 'Technically JSON but not an object or array',
+          rawLength,
+        }
   } catch (e) {
     return { formatted: false, note: 'Does not parse as JSON', rawLength }
   }

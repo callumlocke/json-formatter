@@ -1,14 +1,11 @@
 {
-  "version": "3",
-  "packages": {
-    "specifiers": {
-      "npm:immer@9.0.16": "npm:immer@9.0.16"
-    },
-    "npm": {
-      "immer@9.0.16": {
-        "integrity": "sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==",
-        "dependencies": {}
-      }
+  "version": "5",
+  "specifiers": {
+    "npm:immer@9.0.16": "9.0.16"
+  },
+  "npm": {
+    "immer@9.0.16": {
+      "integrity": "sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ=="
     }
   },
   "redirects": {
@@ -446,10 +443,16 @@
     "https://raw.githubusercontent.com/callumlocke/wire/deno/lib/types.ts": "b50ad61dd031e75f58823745dc00412cf2d67aaaa33219f90b71f65134ea2c77"
   },
   "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@^1.0.15",
+      "jsr:@std/fs@^1.0.19"
+    ],
     "packageJson": {
       "dependencies": [
         "npm:@types/chrome@^0.0.328",
-        "npm:esbuild@^0.25.5"
+        "npm:@types/jsdom@27",
+        "npm:esbuild@~0.25.5",
+        "npm:jsdom@^27.0.1"
       ]
     }
   }

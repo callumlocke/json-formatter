@@ -1,3 +1,7 @@
+import { assert } from './assert'
+import { getValueType } from './getValueType'
+import { createBlankSpan, templates } from './templates'
+import { JsonValue } from './types'
 import {
   TYPE_ARRAY,
   TYPE_BOOL,
@@ -6,10 +10,6 @@ import {
   TYPE_OBJECT,
   TYPE_STRING,
 } from './constants'
-import { assert } from './assert'
-import { getValueType } from './getValueType'
-import { createBlankSpan, templates } from './templates'
-import { JsonValue } from './types'
 
 /**
  * Recursively builds a style-able DOM tree of nested spans, based on a JSON value (or key-value pair).

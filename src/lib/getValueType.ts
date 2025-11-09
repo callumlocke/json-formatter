@@ -1,3 +1,4 @@
+import { JsonValue } from './types'
 import {
   TYPE_ARRAY,
   TYPE_BOOL,
@@ -6,7 +7,6 @@ import {
   TYPE_OBJECT,
   TYPE_STRING,
 } from './constants'
-import { JsonValue } from './types'
 
 export const getValueType = (value: JsonValue) => {
   if (typeof value === 'string') return TYPE_STRING

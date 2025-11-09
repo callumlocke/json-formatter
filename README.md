@@ -41,6 +41,11 @@ https://callumlocke.github.io/json-formatter/
 
 - Run `deno task dev`
 
+**Tests:**
+
+- `deno task test`
+- `deno task update-snapshots`
+
 **To install your local build to Chrome**
 
 - Open Chrome and go to `chrome://extensions`
