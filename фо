@@ -1,0 +1,39 @@
+function setupSearch() {
+  const input = document.getElementById('json-search-input') as HTMLInputElement;
+  const countDisplay = document.getElementById('search-count');
+
+  input?.addEventListener('input', () => {
+    const query = input.value.toLowerCase();
+    
+    // 1. Очищаємо попередні підсвічування
+    document.querySelectorAll('.json-formatter-search-match').forEach(el => {
+      const parent = el.parentNode;
+      if (parent) {
+        parent.textContent = parent.textContent; // Спрощений спосіб скинути розмітку
+      }
+    });
+
+    if (query.length < 2) {
+      if (countDisplay) countDisplay.textContent = '';
+      return;
+    }
+
+    // 2. Шукаємо в ключах та значеннях
+    const targets = document.querySelectorAll('.key, .string, .number, .boolean');
+    let foundCount = 0;
+
+    targets.forEach(target => {
+      const text = target.textContent || '';
+      if (text.toLowerCase().includes(query)) {
+        foundCount++;
+        // Підсвічування (проста заміна для прикладу)
+        const regex = new RegExp(`(${query})`, 'gi');
+        target.innerHTML = text.replace(regex, '<span class="json-formatter-search-match">$1</span>');
+      }
+    });
+
+    if (countDisplay) countDisplay.textContent = ` Знайдено: ${foundCount}`;
+  });
+}
+
+// Викликати setupSearch() після того, як buildDom завершить роботу
