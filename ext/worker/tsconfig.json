@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["webworker", "es2022"], // no dom
+    "types": [], // use webext-polyfill instead of chrome
+    "tsBuildInfoFile": "../../.tsbuild/ext/worker.tsbuildinfo"
+  }
+}

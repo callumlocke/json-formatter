@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["es2022"],
+    "types": [],
+    // "typeRoots": ["../node_modules/@types", "../lib/types"],
+
+    /* THE TRICK: Emit strictly to a hidden folder */
+    "noEmit": false /* Must be false for References to work */,
+    "emitDeclarationOnly": true /* Only create .d.ts, no .js */,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "../.tsbuild/lib",
+    "tsBuildInfoFile": "../.tsbuild/lib.tsbuildinfo"
+  },
+  "include": ["**/*"]
+}

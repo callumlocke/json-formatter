@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "references": [{ "path": "../lib" }],
+  "compilerOptions": {
+    "lib": ["esnext"],
+    "types": ["bun"],
+    "allowImportingTsExtensions": true,
+    "tsBuildInfoFile": "../.tsbuild/task.tsbuildinfo"
+  }
+}

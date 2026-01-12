@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "es2022"],
+    "types": [],
+    "tsBuildInfoFile": "../../.tsbuild/ext/isolated.tsbuildinfo"
+  }
+}

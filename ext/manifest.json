@@ -1,0 +1,38 @@
+{
+  "name": "__MSG_EXTENSION_NAME__",
+  "short_name": "__MSG_EXTENSION_SHORT_NAME__",
+  "version": "0.9.1",
+  "manifest_version": 3,
+  "default_locale": "en",
+  "description": "__MSG_EXTENSION_DESCRIPTION__",
+  "homepage_url": "https://github.com/callumlocke/json-formatter",
+  "minimum_chrome_version": "88",
+  "icons": {
+    "128": "icons/128.png",
+    "32": "icons/32.png"
+  },
+  "action": {},
+  "background": {
+    "service_worker": "worker/worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/core.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/console.js"],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ],
+  "permissions": ["storage", "unlimitedStorage", "webRequest"],
+  "host_permissions": ["*://*/*", "<all_urls>"],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  }
+}

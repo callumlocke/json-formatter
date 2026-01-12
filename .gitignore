@@ -1,4 +1,6 @@
-/dist/
-dist.zip
+/tmp/
+dist*
 /node_modules/
-/.wire/
+report*
+/.tsbuild/
+.env

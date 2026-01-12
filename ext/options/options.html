@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Options - JSON Formatter</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+
+  <body
+    class="flex flex-col gap-8 bg-white dark:bg-gray-900 dark:text-white p-8 text-3xl"
+  >
+    <fieldset className="">
+      <legend class="font-bold mb-2">Theme</legend>
+
+      <div className="mb-4">
+        <label className="flex gap-2">
+          <input type="radio" name="theme" value="system" />
+          Automatic (follow OS setting)
+        </label>
+      </div>
+      <div className="mb-4">
+        <label className="flex gap-2">
+          <input type="radio" name="theme" value="force_dark" />
+          Force dark theme
+        </label>
+      </div>
+      <div className="mb-4">
+        <label className="flex gap-2">
+          <input type="radio" name="theme" value="force_light" />
+          Force light theme
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset className="">
+      <legend class="font-bold mb-2">Other</legend>
+
+      <div className="mb-4">
+        <label className="flex gap-2">
+          <input type="checkbox" name="disable_gf" />
+          Disable Give Freely appeal for donations
+        </label>
+      </div>
+    </fieldset>
+    <script src="options.js" type="module"></script>
+  </body>
+</html>

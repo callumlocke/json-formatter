@@ -4,11 +4,7 @@
     "statusBar.noFolderBackground": "#0A0A0D",
     "statusBar.debuggingBackground": "#511f1f",
     "activityBar.background": "#233207",
-    "titleBar.activeBackground": "#304609",
+    "titleBar.activeBackground": "#729831",
     "titleBar.activeForeground": "#F7FCED"
-  },
-  "deno.enable": true,
-  "deno.lint": true,
-  "deno.unstable": true,
-  "deno.enablePaths": ["tasks", "tests"]
+  }
 }

@@ -1,9 +1,38 @@
 {
   "private": true,
   "devDependencies": {
-    "@types/chrome": "^0.0.328",
+    "@givefreely/library": "^1.17.8",
+    "@tailwindcss/cli": "^4.1.18",
+    "@types/bun": "^1.3.5",
+    "@types/chrome": "^0.1.32",
     "@types/jsdom": "^27.0.0",
-    "esbuild": "^0.25.5",
-    "jsdom": "^27.0.1"
+    "@types/node": "^25.0.3",
+    "@types/pretty-bytes": "^5.2.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/webextension-polyfill": "^0.12.4",
+    "@types/ws": "^8.18.1",
+    "arkenv": "^0.8.0",
+    "arktype": "^2.1.29",
+    "chalk": "^5.6.2",
+    "esbuild": "^0.27.2",
+    "google-closure-compiler": "^20251216.0.0",
+    "jsdom": "^27.3.0",
+    "prettier": "^3.7.4",
+    "pretty-bytes": "^7.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "serve": "^14.2.5",
+    "tailwindcss": "^4.1.18",
+    "tiny-invariant": "^1.3.3",
+    "typescript": "^5.9.3",
+    "webextension-polyfill": "^0.12.0",
+    "ws": "^8.18.3"
+  },
+  "scripts": {
+    "build": "bun run task/build",
+    "watch": "bun run --watch task/watch",
+    "clean": "bun run task/clean",
+    "checksum": "(cd dist && find . -type f -not -name '.DS_Store' -print0 | LC_ALL=C sort -z | xargs -0 shasum | shasum | awk '{print $1}')"
   }
 }
