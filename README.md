@@ -1,3 +1,9 @@
+> # 📣 Announcement: important changes from v0.9 onwards
+>
+> See [full details](https://github.com/callumlocke/json-formatter/issues/301) including new funding model and new features planned.
+
+---
+
 # JSON Formatter
 
 Chrome extension that helps you view and explore JSON API responses.
