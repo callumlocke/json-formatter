@@ -211,18 +211,6 @@ export const build = singleFile(async () => {
 
     await Promise.all(copies)
 
-    // patch line making console noise - TODO fix properly
-    {
-      const coreBundle = path.join(distPath, 'content/core.js')
-      await Bun.write(
-        coreBundle,
-        (await Bun.file(coreBundle).text()).replace(
-          `(!L.payload.config)`,
-          '(!L?.payload.config)',
-        ),
-      )
-    }
-
     // finally, modify manifest to highlight if this is a dev build
     if (DEV) {
       const distManifestFile = Bun.file(path.join(distPath, 'manifest.json'))
