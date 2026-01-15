@@ -1,0 +1,11 @@
+{
+  "Profile":{
+    "Value":"Base64 Encoding AC Profile. Set to empty string to clear the profile."
+  },
+  "RootCertificates":{
+    "Value":[
+      "Base64 Encoding of Certificate1. Pass an empty list to clear any imported server certificates.",
+      "Base64 Encoding of Certificate2.",
+   ]
+  }
+ }
