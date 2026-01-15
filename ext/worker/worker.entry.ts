@@ -106,6 +106,13 @@ if (true) {
     }
   }
 
+  // Make extension action button open the options page
+  if (!DEV) {
+    browser.action.onClicked.addListener(() => {
+      browser.runtime.openOptionsPage()
+    })
+  }
+
   // Keep track of the manifest version
   {
     const currentVersion = browser.runtime.getManifest().version
