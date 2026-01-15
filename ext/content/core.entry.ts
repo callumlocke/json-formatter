@@ -267,11 +267,6 @@ const renderPromise = (async (): Promise<
 renderPromise.then(async (result) => {
   if (PERFMARKS) performance.mark('DONE')
 
-  if (GIVEFREELY_ID) {
-    const prefs = await initialPrefsPromise
-    if (!prefs.disableGiveFreely) await initGfContent()
-  }
-
   if (result.rendered) {
     if (PERFMARKS)
       logGlobal('MARKS', performance.getEntriesByName('PERF_RENDER_DURATION'))
@@ -303,5 +298,17 @@ renderPromise.then(async (result) => {
           responseInfoResult.responseInfo,
         )
     } else logLocal(`⚠️ Unexpeced - could not find window.__jf_pre`)
+  } else if (GIVEFREELY_ID) {
+    const { protocol, port, hostname } = new URL(location.href)
+
+    if (
+      protocol === 'https:' &&
+      !port &&
+      hostname !== 'localhost' &&
+      !hostname.endsWith('.local')
+    ) {
+      const prefs = await initialPrefsPromise
+      if (!prefs.disableGiveFreely) await initGfContent()
+    }
   }
 })
