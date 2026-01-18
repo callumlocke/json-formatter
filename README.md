@@ -1,26 +1,6 @@
-# 📢 Announcement: Give Freely appeal
-As of v0.9, JSON Formatter is using Give Freely to raise money for good causes like Code.org, and to help fund ongoing development. You might see an appeal pop up like this:
-
-<img width="623" height="426" alt="Screenshot of Give Freely appeal popup" src="https://github.com/user-attachments/assets/4b4a36d6-8e64-4f09-b018-ebd4afb405f3" />
-
-It lets you instruct a retailer to donate a 'affiliate' fee on your behalf with just a click. It does **not** track your browsing or collect PII, and it doesn't interfere with voucher codes etc, so it never costs you anything.
-
-If you're allergic to popup appeals, or just hate this idea for whatever reason, you can easily disable it on the options page (`chrome://extensions/?options=bcjindcccaagfpapjjmafapmmgkkhgoa`) and the Give Freely code will never be called again. 
-
-Or, as an official alternative for those who just feel more comfortable with the previous version before this change, I’ve also published v0.8 as [JSON Formatter Classic](https://chromewebstore.google.com/detail/json-formatter-classic/caacnjeoikecoeepknkbjdcaediamaej). This won't receive further updates other than bug fixes.
-
-Read more about why I’m making this change and more details [here](https://github.com/callumlocke/json-formatter/issues/301).
-
----
-
 # JSON Formatter
 
 Chrome extension that helps you view and explore JSON API responses.
-
-Official releases on the Chrome Web Store:
-
-- [JSON Formatter](https://chromewebstore.google.com/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa), built from the `master` branch. 
-- [JSON Formatter Classic](https://chromewebstore.google.com/detail/json-formatter-classic/caacnjeoikecoeepknkbjdcaediamaej), built from the [`v0.8`](https://github.com/callumlocke/json-formatter/tree/v0.8) branch. Will not be actively updated.
 
 ## Features
 
