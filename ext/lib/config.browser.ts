@@ -9,8 +9,6 @@ export const MAX_LENGTH = 3_000_000
 // $VARS are replaced via `define` option on `Bun.build`
 export const PERFMARKS = // @ts-expect-error
   $PERFMARKS as boolean
-export const GIVEFREELY_ID = // @ts-expect-error
-  $GIVEFREELY_ID as string | null
 
 export const JF_CONTEXT: JfContext =
   // @ts-expect-error

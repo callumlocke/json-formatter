@@ -1,6 +1,5 @@
 import invariant from 'tiny-invariant'
 import browser from 'webextension-polyfill'
-import { GIVEFREELY_ID, MAX_LENGTH, PERFMARKS } from '../lib/config.browser'
 import { buildDom } from './lib/buildDom'
 import { getDocInfo } from './lib/getDocumentInfo'
 import type { JsonValue } from '../../lib/types'
@@ -13,7 +12,7 @@ import { prefStore } from '../lib/preferences/preferences'
 import css from './style.css' with { type: 'text' }
 // @ts-expect-error
 import darkThemeCss from './styleDark.css' with { type: 'text' }
-import { initGfContent } from './initGfContent'
+import { MAX_LENGTH } from '../lib/config.browser'
 
 const initialPrefsPromise = prefStore.get()
 
@@ -298,17 +297,5 @@ renderPromise.then(async (result) => {
           responseInfoResult.responseInfo,
         )
     } else logLocal(`⚠️ Unexpeced - could not find window.__jf_pre`)
-  } else if (GIVEFREELY_ID) {
-    const { protocol, port, hostname } = new URL(location.href)
-
-    if (
-      protocol === 'https:' &&
-      !port &&
-      hostname !== 'localhost' &&
-      !hostname.endsWith('.local')
-    ) {
-      const prefs = await initialPrefsPromise
-      if (!prefs.disableGiveFreely) await initGfContent()
-    }
   }
 })

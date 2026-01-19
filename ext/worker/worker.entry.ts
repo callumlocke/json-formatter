@@ -8,7 +8,6 @@ import {
   addResponseInfoToCache,
   getResponseInfoFromCache,
 } from './tabResponseCache'
-import { disableGfBackground, initGfBackground } from './initGfBackground'
 
 // 'global' logs mean logs to worker console from any extension context
 onMessage('JF_GLOBAL_LOG', ({ message, payload }, sender) => {
@@ -138,17 +137,4 @@ if (true) {
   // onInstalled (after updates), attempt to migrate misc localstorage values to current prefs
 
   await migrateOnUpdate()
-
-  // Activate/deactivate GF on load and whenever pref changes
-  {
-    const prefs = await prefStore.get()
-    if (!prefs.disableGiveFreely) await initGfBackground()
-
-    prefStore.onChange(({ newValue }) => {
-      if (newValue && 'disableGiveFreely' in newValue) {
-        if (newValue.disableGiveFreely) disableGfBackground()
-        else initGfBackground()
-      }
-    })
-  }
 })()

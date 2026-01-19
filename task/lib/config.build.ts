@@ -11,8 +11,6 @@ export const PERFMARKS = process.env.PERFMARKS
   ? process.env.PERFMARKS !== 'false'
   : DEV
 
-export const GIVEFREELY_ID = process.env.GIVEFREELY_ID ?? null
-
 // Directories
 export const repoRoot = path.resolve(__dirname, '..', '..')
 export const extPath = path.join(repoRoot, 'ext')

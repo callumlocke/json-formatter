@@ -8,7 +8,6 @@ import {
   repoRoot,
   distPath,
   PERFMARKS,
-  GIVEFREELY_ID,
 } from './config.build'
 import { singleFile } from './singleFile'
 import { rm, rename } from 'fs/promises'
@@ -46,9 +45,7 @@ export const build = singleFile(async () => {
       env: 'inline',
       define: {
         $PERFMARKS: JSON.stringify(PERFMARKS),
-        $GIVEFREELY_ID: JSON.stringify(GIVEFREELY_ID),
       },
-      // external: ['../vendor/gf-worker.js'],
       minify: true,
       sourcemap: SOURCE_MAPS ? 'linked' : false,
       tsconfig: 'tsconfig.json',

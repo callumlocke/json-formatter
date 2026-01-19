@@ -4,7 +4,6 @@
   "workspaces": {
     "": {
       "devDependencies": {
-        "@givefreely/library": "^1.17.8",
         "@tailwindcss/cli": "^4.1.18",
         "@types/bun": "^1.3.5",
         "@types/chrome": "^0.1.32",
@@ -110,8 +109,6 @@
     "@esbuild/win32-ia32": ["@esbuild/win32-ia32@0.27.2", "", { "os": "win32", "cpu": "ia32" }, "sha512-Iuws0kxo4yusk7sw70Xa2E2imZU5HoixzxfGCdxwBdhiDgt9vX9VUCBhqcwY7/uh//78A1hMkkROMJq9l27oLQ=="],
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.27.2", "", { "os": "win32", "cpu": "x64" }, "sha512-sRdU18mcKf7F+YgheI/zGf5alZatMUTKj/jNS6l744f9u3WFu4v7twcUI9vu4mknF4Y9aDlblIie0IM+5xxaqQ=="],
-
-    "@givefreely/library": ["@givefreely/library@1.17.8", "", {}, "sha512-lnUCFIauFKq3DImS637t2u4FDPlUKWT8/7qXUoE4ISOfeEtG+j0B+nkDl8GWPHFHULG/4I+ZYmuC5DWx85Ryfg=="],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.13", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA=="],
 

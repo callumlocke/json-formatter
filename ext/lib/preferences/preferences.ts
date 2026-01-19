@@ -17,11 +17,6 @@ export const UserPreferences = {
     }
     return false
   }),
-
-  disableGiveFreely: defineSetting<boolean>(
-    false,
-    (value) => typeof value === 'boolean',
-  ),
 }
 
 export type UserPreferences = InferSchema<typeof UserPreferences>
