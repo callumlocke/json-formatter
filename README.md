@@ -1,3 +1,11 @@
+> # ARCHIVED
+> 
+> I am no longer developing JSON Formatter as an open source project. I'm moving to a closed-source, commercial model in order to build a more comprehensive API-browsing tool with premium features.
+>
+> I know some users (especially here on GitHub) will always prefer open source tools, so I’m leaving this repo online for others to use/fork, and I’ve published the final open source version as [JSON Formatter Classic](https://chromewebstore.google.com/detail/json-formatter-classic/caacnjeoikecoeepknkbjdcaediamaej) – you can switch to that if you just want a simple, open source, local-only JSON-formatting extension that won't receive updates.
+
+---
+
 # JSON Formatter
 
 Chrome extension that helps you view and explore JSON API responses.
@@ -14,12 +22,9 @@ Chrome extension that helps you view and explore JSON API responses.
 - Buttons for toggling between raw and parsed JSON
 - Parsed JSON is exported as a global variable, `json`, so you can inspect it in the console (now working again!)
 
-**Some JSON documents for testing it on:**
-https://callumlocke.github.io/json-formatter/
-
 ## Installation
 
-**Option 1 (recommended)** – Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/bcjindcccaagfpapjjmafapmmgkkhgoa).
+**Option 1** – Install [JSON Formatter Classic](https://chromewebstore.google.com/detail/json-formatter-classic/caacnjeoikecoeepknkbjdcaediamaej) from the Chrome Web Store.
 
 **Option 2** – Install it from source (see below).
 
@@ -63,21 +68,3 @@ Historically, the JavaScript standard explicitly stated that object keys can be 
 For now, your best option is to just use the "Raw" button to see the raw JSON. This is what the server sent. The "Parsed" buttons represents what you'll get from `JSON.parse`.
 
 In future JSON Formatter might switch from using `JSON.parse` to a custom parser (if performance allows) in order to detect when a value has been 'changed' by parsing and show an appropriate warning.
-
-## Roadmap
-
-Before v1.0:
-
-- Rewriting & modernising for improved JSON-detection logic and configurability (underway)
-- Better rendering architecture
-- Show more request info including headers where applicable
-
-For v1.0 or later (tentative):
-
-- Customizable themes
-- Support broken JSON, with error highlighting
-- Better copy & paste
-- Copyable JS property chains
-- A way to easily see when parsed values are different from the raw JSON (numbers outside range, key reordering)
-- A way to use jq syntax (or similar) in the browser
-- A way to use JSON Formatter on pasted-in JSON
